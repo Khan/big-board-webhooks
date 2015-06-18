@@ -1,0 +1,6 @@
+[submodule "third_party/isodate-src"]
+	path = third_party/isodate-src
+	url = https://github.com/gweis/isodate.git
+[submodule "third_party/trollop-src"]
+	path = third_party/trollop-src
+	url = https://github.com/khan/trollop.git

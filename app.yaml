@@ -1,0 +1,29 @@
+application: khan-big-board
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: main.app
+
+libraries:
+- name: ssl
+  version: latest
+
+skip_files:
+####
+# Backup files/etc -- created by editors, but not part of the source tree.
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*\.orig$
+- ^(.*/)?.*\.rej$
+####
+# Third-party
+# All third_party directories that have "-src" or "-khansrc" are sym-
+# linked to their non-src version (see third_party/README for details).
+# The one exception is javascript-khansrc, which is handled with the
+# javascript code above.
+- ^third_party/.*-src$
