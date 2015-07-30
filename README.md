@@ -115,6 +115,9 @@ its description to include ```||GGPWW||```. If you see stickers start to appear
 across the top of the card (green, green, purple, white, and white stickers to
 be exact), then the webhook is working!
 
+Or be professional and run unit tests:
+`python testrunner.py ~/khan/webapp/third_party/frankenserver .`
+
 ### What to do if it doesn't work
 
 Hold on to your hats, b/c this was written by a manager in a rare bit of free

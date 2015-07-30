@@ -21,7 +21,6 @@ import os
 from google.appengine.api import taskqueue
 import webapp2
 
-import app_engine_config  # @UnusedImport
 import big_board
 import google_drive
 
