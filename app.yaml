@@ -5,6 +5,9 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /_ah/mail/new-projects@khan-big-board.appspotmail.com
+  script: mail.app
+  login: admin
 - url: /.*
   script: main.app
 
@@ -13,6 +16,9 @@ libraries:
   version: latest
 - name: lxml
   version: 2.3.5
+
+inbound_services:
+- mail
 
 skip_files:
 ####
