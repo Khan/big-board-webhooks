@@ -8,6 +8,7 @@ import secrets
 import stickers
 import webhooks
 
+# TODO(marcia): Switch over to using trello_util to retrieve the big board
 # Trello board ID for https://trello.com/b/ddoFIElb/pipeline-2-big-board
 BOARD_ID = '556e586ec7e9446796c9a346'
 

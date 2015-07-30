@@ -23,6 +23,7 @@ import webapp2
 
 import big_board
 import google_drive
+import proposals_board
 
 
 class RequestHandler(webapp2.RequestHandler):
@@ -47,6 +48,12 @@ class Setup(RequestHandler):
 class GoogleTest(RequestHandler):
     def get(self):
         google_drive.test()
+
+
+class ProposalTest(RequestHandler):
+    def get(self):
+        # Very rudimentary "test" that adds a card to the Proposals board
+        proposals_board.test()
 
 
 class UpdateBoardWebHook(RequestHandler):
@@ -94,4 +101,5 @@ app = webapp2.WSGIApplication([
     ('/googletest', GoogleTest),  # TODO(kamens): remove this test handler
     ('/setup', Setup),
     ('/webhook/update_board', UpdateBoardWebHook),
+    ('/proposaltest', ProposalTest),
 ], debug=True)
