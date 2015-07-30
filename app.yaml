@@ -11,6 +11,8 @@ handlers:
 libraries:
 - name: ssl
   version: latest
+- name: lxml
+  version: 2.3.5
 
 skip_files:
 ####

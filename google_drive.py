@@ -12,10 +12,17 @@ import logging
 from googleapiclient import discovery
 import httplib2
 from oauth2client import appengine
+import pyquery
 
 
-# TODO(kamens): remove this test sucker!
+# STOPSHIP(kamens): docstring everything and replace janky tests
 def test():
+    html = test_pull_html()
+    title = test_parse_title(html)
+    logging.info("Title parsed from body: %s" % title)
+
+
+def test_pull_html():
     creds = appengine.AppAssertionCredentials(
             "https://www.googleapis.com/auth/drive")
     http = creds.authorize(httplib2.Http())
@@ -24,11 +31,18 @@ def test():
     test_file_id = "1hhE7Tp8c5_i7cXMQtqTFuevLymm1wbR_jYQ1apjeiZ0"
     results = service.files().get(fileId=test_file_id).execute()
 
-    logging.critical(results)
-    logging.critical(results["title"])
+    logging.info("Pulling HTML from google doc: %s" % results["title"])
 
     html_url = results["exportLinks"]["text/html"]
-    response, content = http.request(html_url)
+    response, html = http.request(html_url)
 
-    logging.critical(response)
-    logging.critical(content)
+    return html
+
+
+def test_parse_title(html):
+    d = pyquery.PyQuery(html)
+    body = d("body")
+    logging.info(body.html())
+
+    title_from_body = d("body p.title")
+    return title_from_body.text()

@@ -19,3 +19,9 @@
 [submodule "third_party/uritemplate-src"]
 	path = third_party/uritemplate-src
 	url = https://github.com/uri-templates/uritemplate-py.git
+[submodule "third_party/pyquery-src"]
+	path = third_party/pyquery-src
+	url = https://github.com/gawel/pyquery.git
+[submodule "third_party/cssselect-src"]
+	path = third_party/cssselect-src
+	url = https://github.com/SimonSapin/cssselect.git
