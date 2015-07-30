@@ -6,6 +6,7 @@ fun'n'fancy Trello™ power
 Right now all this does is automatically keep
 [big board](http://khanacademy.org/r/big-board) Trello card stickers up-to-date
 as the cards are edited.
+TODO(kamens): ...but more to come!
 
 ![gif screenshot](https://raw.githubusercontent.com/kamens/big-board-webhooks/master/stickers.gif?token=AAGmqnghRKX1knCFMNlMEWNLrOsJeKPmks5VidA8wA%3D%3D)
 
@@ -36,19 +37,35 @@ custom stickers for the Trello account being used below.
 
 Start by copying secrets.py.example to secrets.py.
 
-You'll need to set the Trello API key in secrets.py by doing the following:
-    1) Copy the password via 'show secret' at
-        http://phabricator.khanacademy.org/K75
-    2) Go to trello.com in an incognito window and log in using
-        bigboard@khanacademy.org and the above password.
-    3) Go to https://trello.com/app-key and grab the developer API key.
+**You'll need to set the Trello API key in secrets.py:**
+ 1. Copy the password via 'show secret' at
+    http://phabricator.khanacademy.org/K75
+ 2. Go to trello.com in an incognito window and log in using
+    bigboard@khanacademy.org and the above password.
+ 3. Go to https://trello.com/app-key and grab the developer API key.
 
-You also need to set the oauth token in secrets.py. Find it via 'show secret'
-    at https://phabricator.khanacademy.org/K76.
-    Note that you can also regenerate an oauth token following the "getting
-    your oauth token" steps at https://github.com/sarumont/py-trello. But you
+**You also need to set the oauth token in secrets.py.**
+ 1. Find it via 'show secret' at https://phabricator.khanacademy.org/K76.
+
+Note that you can also regenerate an oauth token following the "getting your
+    oauth token" steps at https://github.com/sarumont/py-trello. But you
     shouldn't have to do this unless somebody cleared the token, as the one
     stored in phabricator is set to never expire.
+
+**Next add your Google service account's ID and email to secrets.py.**
+ 1. Find both via 'show secret' at https://phabricator.khanacademy.org/K83.
+
+Note that while the following is already taken care of for
+    khan-big-board.appspot.com, if you are doing this for a new app, you need
+    to:
+ 1. Follow the instructions for "Creating a service account" at https://developers.google.com/api-client-library/python/auth/service-accounts.
+ 2. Follow the instructions for "Delegating domain-wide authority to the
+    service account" at
+    https://developers.google.com/identity/protocols/OAuth2ServiceAccount,
+    providing domain-wide access to the Google Drive API. You'll need to use
+    `https://www.googleapis.com/auth/drive` as the requested API Scope so
+    these webhooks have access to Google Drive docs.
+
 
 ### Now deploy the app
 

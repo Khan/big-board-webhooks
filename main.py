@@ -9,7 +9,7 @@ sequences of Trello stickers (e.g. if "||GPW||" is found in the card's
 description, this app should create a sequence of three stickers on the Trello
 card: green, purple, and white). See stickers.py for more.
 
-TODO(kamens): note that this could conceviably be combined w/ our khan-webhooks
+TODO(kamens): note that this could conceivably be combined w/ our khan-webhooks
 repo if we want to unify all webhook repos. Right now this is just a small,
 separate app focused on Trello/big-board integration.
 """
@@ -23,6 +23,7 @@ import webapp2
 
 import app_engine_config  # @UnusedImport
 import big_board
+import google_drive
 
 
 class RequestHandler(webapp2.RequestHandler):
@@ -42,6 +43,11 @@ class Setup(RequestHandler):
     def post(self):
         """Run initial big board+webhook setup (triggered by task queue)."""
         big_board.setup()
+
+
+class GoogleTest(RequestHandler):
+    def get(self):
+        google_drive.test()
 
 
 class UpdateBoardWebHook(RequestHandler):
@@ -86,6 +92,7 @@ class UpdateBoardWebHook(RequestHandler):
 
 
 app = webapp2.WSGIApplication([
+    ('/googletest', GoogleTest),  # TODO(kamens): remove this test handler
     ('/setup', Setup),
     ('/webhook/update_board', UpdateBoardWebHook),
 ], debug=True)

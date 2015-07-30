@@ -4,3 +4,18 @@
 [submodule "third_party/trollop-src"]
 	path = third_party/trollop-src
 	url = https://github.com/khan/trollop.git
+[submodule "third_party/google-api-python-client-src"]
+	path = third_party/google-api-python-client-src
+	url = https://github.com/google/google-api-python-client
+[submodule "third_party/oauth2client-src"]
+	path = third_party/oauth2client-src
+	url = https://github.com/google/oauth2client.git
+[submodule "third_party/httplib2-src"]
+	path = third_party/httplib2-src
+	url = https://github.com/jcgregorio/httplib2.git
+[submodule "third_party/six-src"]
+	path = third_party/six-src
+	url = https://github.com/kelp404/six.git
+[submodule "third_party/uritemplate-src"]
+	path = third_party/uritemplate-src
+	url = https://github.com/uri-templates/uritemplate-py.git
