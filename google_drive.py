@@ -12,8 +12,36 @@ import re
 
 from googleapiclient import discovery
 import httplib2
-from oauth2client import appengine
+import oauth2client.client
 import pyquery
+
+import secrets
+
+# When authenticating to access Google Drive docs, we'll impersonate this user.
+# This impersonation is allowed because we're logging in as a preconfigured
+# Google Service account that's been given Google Drive API scope for the KA
+# domain.
+GOOGLE_DRIVE_USER = "bigboard@khanacademy.org"
+
+
+def get_authenticated_drive_service():
+    """Get an authenticated Google Drive API service.
+
+    Will be authenticated as the bigboard@khanacademy.org user (by way of
+    impersonation using a preconfigured Google Service account).
+
+    Returns a tuple of (authorized_google_service, authorized_http_object)
+    """
+    with open("khan-big-board-key.pem") as f:
+        private_key = f.read()
+
+    creds = oauth2client.client.SignedJwtAssertionCredentials(
+            secrets.google_service_account_email, private_key,
+            "https://www.googleapis.com/auth/drive",
+            sub=GOOGLE_DRIVE_USER)
+    http = creds.authorize(httplib2.Http())
+    service = discovery.build("drive", "v2", http=http)
+    return (service, http)
 
 
 # STOPSHIP(kamens): docstring everything and replace janky tests
@@ -26,10 +54,7 @@ def test():
 
 # STOPSHIP(kamens): remove janky test
 def test_pull_html():
-    creds = appengine.AppAssertionCredentials(
-            "https://www.googleapis.com/auth/drive")
-    http = creds.authorize(httplib2.Http())
-    service = discovery.build("drive", "v2", http=http)
+    service, http = get_authenticated_drive_service()
 
     test_file_id = "1hhE7Tp8c5_i7cXMQtqTFuevLymm1wbR_jYQ1apjeiZ0"
     results = service.files().get(fileId=test_file_id).execute()
@@ -60,10 +85,7 @@ def pull_doc_data(doc_id):
     Returns:
         tuple of (document title, document html)
     """
-    creds = appengine.AppAssertionCredentials(
-            "https://www.googleapis.com/auth/drive")
-    http = creds.authorize(httplib2.Http())
-    service = discovery.build("drive", "v2", http=http)
+    service, http = get_authenticated_drive_service()
 
     # Pull doc metadata, including title and HTML URL
     results = service.files().get(fileId=doc_id).execute()

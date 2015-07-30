@@ -59,5 +59,6 @@ target/
 # Temp files
 *~
 
-# Secrets file
+# Secrets files
 secrets.py
+*.pem

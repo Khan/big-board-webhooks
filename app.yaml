@@ -16,6 +16,8 @@ libraries:
   version: latest
 - name: lxml
   version: 2.3.5
+- name: pycrypto
+  version: "latest"
 
 inbound_services:
 - mail

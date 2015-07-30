@@ -52,12 +52,17 @@ Note that you can also regenerate an oauth token following the "getting your
     shouldn't have to do this unless somebody cleared the token, as the one
     stored in phabricator is set to never expire.
 
-**Next add your Google service account's ID and email to secrets.py.**
- 1. Find both via 'show secret' at https://phabricator.khanacademy.org/K83.
+**Next add your Google service account's email to secrets.py...**
+ 1. Find it via 'show secret' at https://phabricator.khanacademy.org/K83.
+
+**...and the same Google service account's PEM key to this repo's directory.**
+ 1. Find it via 'show secret' at https://phabricator.khanacademy.org/K85 and
+    paste into a file called `khan-big-board-key.pem`.
 
 Note that while the following is already taken care of for
-    khan-big-board.appspot.com, if you are doing this for a new app, you need
-    to:
+    khan-big-board.appspot.com, if you are doing this for a new app and don't
+    have access to the above secrets for a preconfig'd Google service account,
+    you need to:
  1. Follow the instructions for "Creating a service account" at https://developers.google.com/api-client-library/python/auth/service-accounts.
  2. Follow the instructions for "Delegating domain-wide authority to the
     service account" at
@@ -65,6 +70,8 @@ Note that while the following is already taken care of for
     providing domain-wide access to the Google Drive API. You'll need to use
     `https://www.googleapis.com/auth/drive` as the requested API Scope so
     these webhooks have access to Google Drive docs.
+ 3. Grab the account's email and P12 key from the Google Developers Console
+ 4. Convert the P12 key to PEM format (see http://stackoverflow.com/questions/27305867/google-api-access-using-service-account-oauth2client-client-cryptounavailableerr/27384087#27384087)
 
 
 ### Now deploy the app
