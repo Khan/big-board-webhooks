@@ -24,6 +24,26 @@ def get_proposals_board():
     return _get_board_by_name('PROPOSALS_BOARD')
 
 
+def get_card_by_doc_id(doc_id):
+    """Return the card, if it exists, corresponding to this project doc id."""
+    # TODO(marcia): Should we bother about maintaining one connection vs one
+    # connection per board? I dunno how this trollop thing works. Let's go with
+    # this for now.
+
+    # Go through each board and try to find the doc id in a card's description.
+    for name in BOARD_NAME_TO_ID.keys():
+        board = _get_board_by_name(name)
+
+        # TODO(marcia): There is a practical limit to the # of cards on the
+        # big board and proposals board, but not as much to the completed
+        # projects board. Will we run into perf problems later on?
+        for card in board.cards:
+            if doc_id in card.desc:
+                return card
+
+    return None
+
+
 def _get_client():
     client = trollop.TrelloConnection(secrets.trello_api_key,
         secrets.trello_oauth_token)
