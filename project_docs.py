@@ -1,5 +1,6 @@
 """Utilities for representing, parsing, and modifying project docs."""
 import logging
+import re
 
 import pyquery
 
@@ -10,12 +11,36 @@ class ProjectDoc(object):
     """Stores all data representing a project doc."""
     def __init__(self, doc_id, title, html):
         self.doc_id = doc_id
-        self.title = title
+        self.raw_title = title
         self.html = html
 
     @property
     def url(self):
         return 'https://docs.google.com/document/d/%s' % self.doc_id
+
+    @property
+    def title(self):
+        """Return a normalized project title for use as Trello card title.
+
+        Strips out common "project proposal" prefixes/suffixes like
+            "Project proposal: Gorilla"
+        """
+        normalized_title = self.raw_title
+
+        re_patterns_to_remove = [
+                r'^[\s]*Project Proposal:?[\s]+',  # "Project proposal: Monkey"
+                r'^[\s]*Project Brief:?[\s]+',  # "Project brief: Monkey"
+                r'^[\s]*Project:?[\s]+',  # "Project: Monkey"
+                r'[\s]+Project Brief[\s]*',  # "Monkey Project Brief"
+                r'[\s]+Project Proposal[\s]*',  # "Monkey Project Proposal"
+                r'[\s]+Project[\s]*',  # "Monkey Project"
+            ]
+
+        for re_pattern in re_patterns_to_remove:
+            normalized_title = re.sub(re_pattern, '', normalized_title,
+                    flags=re.IGNORECASE)
+
+        return normalized_title
 
     def __repr__(self):
         return "<ProjectDoc: \"%s\">" % self.title

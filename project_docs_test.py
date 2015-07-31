@@ -53,6 +53,29 @@ EXAMPLE_NON_PROJECT_DOCS = [
         ]
 
 
+class ProjectDocsTitleTest(unittest.TestCase):
+
+    def test_project_title_normalization(self):
+        expected_title = "Monkey bars"
+        titles = [
+                "Monkey bars",
+                "Project: Monkey bars",
+                "Project Monkey bars",
+                "Project proposal: Monkey bars",
+                "Project proposal Monkey bars",
+                "Project BRIEF: Monkey bars",
+                "Project brief Monkey bars",
+                "Monkey bars   project Proposal",
+                "Monkey bars project brief",
+                "Monkey bars project",
+                "  Project proposal:  Monkey bars project",
+        ]
+
+        for title in titles:
+            doc = project_docs.ProjectDoc("_", title, "_")
+            self.assertEqual(doc.title, expected_title)
+
+
 class ProjectDocsTest(unittest.TestCase):
 
     def test_single_project_doc_pull(self):
@@ -79,7 +102,6 @@ class ProjectDocsTest(unittest.TestCase):
         This uses a series of real project docs as examples of project doc
         formats created over a few months' time span.
         """
-        return
         for doc_id, title_snippet in EXAMPLE_PROJECT_DOCS.iteritems():
             docs = project_docs.pull_project_docs_data([doc_id])
             self.assertEqual(len(docs), 1)
