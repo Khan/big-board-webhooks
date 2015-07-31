@@ -6,6 +6,7 @@ TODO(kamens): expand docs
 """
 
 import logging
+import os
 
 from google.appengine.api import mail
 from google.appengine.ext.webapp import mail_handlers
@@ -14,6 +15,14 @@ import webapp2
 import appengine_config  # @UnusedImport
 import google_drive
 import proposals_board
+
+import jinja2
+
+
+JINJA_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
 
 
 class NewProjectsMailHandler(mail_handlers.InboundMailHandler):
@@ -52,8 +61,6 @@ class NewProjectsMailHandler(mail_handlers.InboundMailHandler):
         respondees = ",".join([message.sender, message.to, cc])
         self.respond(respondees, subject, new_cards)
 
-        # Email response to new-projects@ka.org letting 'em know what happened
-        # STOPSHIP(kamens): email_response(new_cards)...
         # STOPSHIP(kamens): any sort of error handling / emailing if something
         # wasn't created??...?
 
@@ -61,18 +68,37 @@ class NewProjectsMailHandler(mail_handlers.InboundMailHandler):
         SENDER = "Projects Platypus <no-reply@khan-big-board.appspotmail.com>"
         message = mail.EmailMessage(to=to, sender=SENDER, subject=subject)
 
-        body = "Hello friend!\n\n"
+        body = """Hello friend!
 
-        # TODO(marcia): Make this better.
+        Why are you using a text only email client? Your trello card(s) will
+        be listed below.
+        """
+
         for card in new_cards:
-            if card["card_already_existed"]:
-                body += "Card already existed: %s" % card["url"]
-            else:
-                body += "Created new big board card: %s" % card["url"]
+            body += "\nTrello card: %s" % card["url"]
 
         message.body = body
 
+        html = self._get_html_content(new_cards)
+        if html:
+            message.html = html
+
         message.send()
+
+    def _get_html_content(self, new_cards):
+        template = JINJA_ENVIRONMENT.get_template(
+            'templates/email_content.html')
+
+        if len(new_cards) == 1:
+            cta_text = "Check out your brand new Trello card!"
+            cta_url = new_cards[0]["url"]
+        else:
+            cta_text = "Check out the proposals board"
+            cta_url = "https://trello.com/b/L0D5OwTL/pipeline-1-proposals"
+
+        return template.render(new_cards=new_cards, cta_text=cta_text,
+            cta_url=cta_url)
+
 
 app = webapp2.WSGIApplication([NewProjectsMailHandler.mapping()], debug=True)
 

@@ -13,15 +13,19 @@ def create_cards_from_doc_ids(doc_ids):
     cards_data = []
 
     for doc in docs:
-        card_already_existed = True
+        already_existed = True
         card = trello_util.get_card_by_doc_id(doc.doc_id)
         if not card:
             card = _add_card(doc.title, doc.url)
-            card_already_existed = False
+            already_existed = False
 
         cards_data.append({
-            "url": card.url,
-            "card_already_existed": card_already_existed,
+            'name': card.name,
+            'url': card.url,
+
+            # TODO(marcia): Decide how to incorporate this visually. Not used
+            # at the moment. If not used ever, remove.
+            'already_existed': already_existed,
         })
 
     return cards_data

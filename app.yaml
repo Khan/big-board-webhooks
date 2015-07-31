@@ -18,6 +18,8 @@ libraries:
   version: 2.3.5
 - name: pycrypto
   version: "latest"
+- name: jinja2
+  version: latest
 
 inbound_services:
 - mail
