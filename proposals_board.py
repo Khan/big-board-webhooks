@@ -1,6 +1,7 @@
 """Tool for interacting with Trello's project proposals board."""
 import logging
 
+import google_drive
 import project_docs
 import trello_util
 
@@ -15,9 +16,20 @@ def create_cards_from_doc_ids(doc_ids):
     for doc in docs:
         already_existed = True
         card = trello_util.get_card_by_doc_id(doc.doc_id)
+
         if not card:
+            # A new card was created!
             card = _add_card(doc.title, doc.url)
             already_existed = False
+
+        # Regardless of whether or not a card was created, try to make sure a
+        # link exists from the Google Doc to the Trello Card
+        try:
+            google_drive.add_trello_link(doc.doc_id, card._id)
+        except Exception as e:
+            # STOPSHIP(kamens): figure out if errors are actually thrown in
+            # permission error situations
+            logging.warning("Failed to add link to Google doc: %s" % e)
 
         cards_data.append({
             'name': card.name,
