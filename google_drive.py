@@ -34,6 +34,11 @@ GOOGLE_SCRIPT_WEB_APP_DEBUG_URL = "https://script.google.com/a/macros/khanacadem
 GOOGLE_SCRIPT_WEB_APP_URL = GOOGLE_SCRIPT_WEB_APP_PROD_URL
 
 
+class PermissionError(Exception):
+    """Permission exception raised when missin perm/access to a Google Doc."""
+    pass
+
+
 def get_authenticated_drive_service():
     """Get an authenticated Google Drive API service.
 
@@ -90,10 +95,23 @@ def add_trello_link(doc_id, trello_card_id):
         "trelloURL": trello_util.get_url_by_card_id(trello_card_id)
         })
 
-    response, html = http.request(url)
+    response, content = http.request(url)
 
-    title, html = pull_doc_data(doc_id)
-    return html
+    # We have to check the content for error messages b/c Apps Script always
+    # returns 200 status codes. See this case for more:
+    # https://code.google.com/p/google-apps-script-issues/issues/detail?id=3151
+    if content.startswith("Error:"):
+        if content == "Error: Missing edit permissions":
+            # No edit permissions on doc
+            raise PermissionError()
+        if content == "Error: Cannot find doc":
+            # Either doc doesn't exist or no read permissions
+            raise PermissionError()
+        else:
+            # TODO(kamens): handle other unknown error cases
+            pass
+
+    return response
 
 
 def remove_trello_links(doc_id):

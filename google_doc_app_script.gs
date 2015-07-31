@@ -15,12 +15,29 @@
  *    trelloURL: target trello URL for adding card link
  *    removeTrelloLinks (optional): if "true", remove all trello links from
  *        google doc ID. This is used when cleaning up unit tests.
+ *
+ * Returns a 200 status response w/ "Done!" if successful and
+ *  "Error: [explanation]" otherwise.
+ *
+ * TODO(kamens): change error responses to non-200 status codes once this issue
+ * is resolved:
+ * https://code.google.com/p/google-apps-script-issues/issues/detail?id=3151
  */
 function doGet(e) {
   var docId = e.parameter.docId;
-  if (!docId) {
-    // TODO(kamens): any sort of error handling
-    return;
+
+  // Make sure this Google Doc has been granted "anyone in domain can edit"
+  var file = null;
+  try {
+    file = DriveApp.getFileById(docId);
+  } catch(err) {
+    // File doesn't exist or no access to file whatsoever
+    return ContentService.createTextOutput("Error: Cannot find doc");
+  }
+    
+  var permission = file.getSharingPermission();
+  if (!(permission === DriveApp.Permission.EDIT)) {
+    return ContentService.createTextOutput("Error: Missing edit permissions");
   }
   
   var doc = DocumentApp.openById(docId);
@@ -38,7 +55,7 @@ function doGet(e) {
     addTrelloLink(body, trelloURL);
   }
   
-  return HtmlService.createHtmlOutput("Done!");
+  return ContentService.createTextOutput("Done!");
 }
 
 
@@ -119,7 +136,8 @@ function addTrelloLink(body, trelloURL) {
  */
 function debug() {
   doGet({parameter: {
-    docId: "10BqZBGx_PLaj3MtO7rf7VRsbIm2xCk-PeufYzPoerkQ",
+    docId: "1uc4_O3H6OgjPBSzb8lJvXwFipJ6zUs7utDUtwIhEPqI",
     trelloURL: "https://trello.com/c/Owfp15Jo"
   }});
 }
+

@@ -10,6 +10,11 @@ import google_drive
 EXAMPLE_GOOGLE_DOC_ID = "10BqZBGx_PLaj3MtO7rf7VRsbIm2xCk-PeufYzPoerkQ"
 EXAMPLE_TRELLO_CARD_ID = "Owfp15Jo"
 
+EXAMPLE_READ_ONLY_GOOGLE_DOC_ID = (
+    "1Cz_9bFqfhqF4lyxqiikIsf7YyNnI4ofK6DfJ_FuzBgg")
+EXAMPLE_PRIVATE_GOOGLE_DOC_ID = (
+    "1uc4_O3H6OgjPBSzb8lJvXwFipJ6zUs7utDUtwIhEPqI")
+
 
 class AddTrelloLinkToDocTest(unittest.TestCase):
 
@@ -34,3 +39,13 @@ class AddTrelloLinkToDocTest(unittest.TestCase):
         title, html = google_drive.pull_doc_data(EXAMPLE_GOOGLE_DOC_ID)
         self.assertIn("trello.com", html)
         self.assertIn(EXAMPLE_TRELLO_CARD_ID, html)
+
+    def test_add_trello_link_to_read_only_doc(self):
+        with self.assertRaises(google_drive.PermissionError):
+            google_drive.add_trello_link(EXAMPLE_READ_ONLY_GOOGLE_DOC_ID,
+                    EXAMPLE_TRELLO_CARD_ID)
+
+    def test_add_trello_link_to_private_doc(self):
+        with self.assertRaises(google_drive.PermissionError):
+            google_drive.add_trello_link(EXAMPLE_PRIVATE_GOOGLE_DOC_ID,
+                    EXAMPLE_TRELLO_CARD_ID)

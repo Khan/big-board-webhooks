@@ -24,10 +24,14 @@ def create_cards_from_doc_ids(doc_ids):
         # link exists from the Google Doc to the Trello Card
         try:
             google_drive.add_trello_link(doc.doc_id, card._id)
+        except google_drive.PermissionError:
+            logging.warning("No edit permissions for Google doc: %s"
+                    % doc.doc_id)
         except Exception as e:
-            # STOPSHIP(kamens): figure out if errors are actually thrown in
-            # permission error situations
-            logging.warning("Failed to add link to Google doc: %s" % e)
+            # TODO(kamens) we don't want to crash if something unexpected fails
+            # when editing the Google Doc, but it'd be nice to understand more
+            # about what can go wrong
+            logging.warning("Failed to edit Google doc: %s" % e)
 
         cards_data.append({
             'name': card.name,
