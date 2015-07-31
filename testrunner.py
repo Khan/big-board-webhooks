@@ -21,15 +21,16 @@ import sys
 import unittest
 
 
-USAGE = """%prog SDK_PATH TEST_PATH
+USAGE = """%prog SDK_PATH TEST_PATH PATTERN
 Run unit tests for App Engine apps.
 
 SDK_PATH    Path to Google Cloud or Google App Engine SDK installation, usually
             ~/google_cloud_sdk
-TEST_PATH   Path to package containing test modules"""
+TEST_PATH   Path to package containing test modules
+PATTERN     [optional] Pattern to match test files"""
 
 
-def main(sdk_path, test_path):
+def main(sdk_path, test_path, pattern):
     # If the sdk path points to a google cloud sdk installation
     # then we should alter it to point to the GAE platform location.
     if os.path.exists(os.path.join(sdk_path, 'platform/google_appengine')):
@@ -53,17 +54,23 @@ def main(sdk_path, test_path):
 
     # Discover and run tests.
     suite = unittest.loader.TestLoader().discover(test_path,
-            pattern="*_test.py")
+            pattern=pattern)
     unittest.TextTestRunner(verbosity=2).run(suite)
 
 
 if __name__ == '__main__':
     parser = optparse.OptionParser(USAGE)
     options, args = parser.parse_args()
-    if len(args) != 2:
-        print 'Error: Exactly 2 arguments required.'
+
+    if len(args) < 2:
         parser.print_help()
         sys.exit(1)
+
     SDK_PATH = args[0]
     TEST_PATH = args[1]
-    main(SDK_PATH, TEST_PATH)
+
+    PATTERN = "*_test.py"
+    if len(args) > 2:
+        PATTERN = args[2]
+
+    main(SDK_PATH, TEST_PATH, PATTERN)
