@@ -10,7 +10,7 @@ import logging
 from google.appengine.ext.webapp import mail_handlers
 import webapp2
 
-import app_engine_config  # @UnusedImport
+import appengine_config  # @UnusedImport
 import google_drive
 import proposals_board
 

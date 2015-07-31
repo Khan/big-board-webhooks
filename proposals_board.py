@@ -10,7 +10,22 @@ def create_cards_from_doc_ids(doc_ids):
 
     docs = project_docs.pull_project_docs_data(doc_ids)
 
-    # STOPSHIP(kamens): actually gotta create the cards ;) (using add_card)
+    cards_data = []
+
+    for doc in docs:
+        card_already_existed = True
+        card = trello_util.get_card_by_doc_id(doc.doc_id)
+        if not card:
+            card = _add_card(doc.title, doc.url)
+            card_already_existed = False
+
+        cards_data.append({
+            "url": card.url,
+            "card_already_existed": card_already_existed,
+        })
+
+    # TODO(marcia): Send this cards_data back in the auto-reply to let the
+    # proposer know about the cards.
 
     return docs  # Should return cards, not docs
 
@@ -29,8 +44,11 @@ def _add_card(name, desc=None):
     # Enter the project into the pipeline by adding a card to the proposals
     # board's first list (coincidentally named "Proposal").
     proposal_list = board.lists[0]
+
     card = proposal_list.add_card(name, desc)
 
     # STOPSHIP(marcia): Respond back to new-projects@ with a link to this newly
     # created Trello card!
     logging.info(card.url)
+
+    return card

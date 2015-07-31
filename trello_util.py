@@ -12,7 +12,8 @@ BOARD_NAME_TO_ID = {
     # https://trello.com/b/L0D5OwTL/pipeline-1-proposals
     'PROPOSALS_BOARD': '5568a44da46f86d0046a1244',
 
-    # TODO(marcia): Get the id for the land o completed board?
+    # https://trello.com/b/bJhNUT7y/pipeline-3-land-of-completed-project
+    'COMPLETED_BOARD': '556e59e75aa60c1fe1e1a09e',
 }
 
 

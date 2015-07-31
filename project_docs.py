@@ -6,9 +6,14 @@ import google_drive
 
 class ProjectDoc(object):
     """Stores all data representing a project doc."""
-    def __init__(self, title, html):
+    def __init__(self, doc_id, title, html):
+        self.doc_id = doc_id
         self.title = title
         self.html = html
+
+    @property
+    def url(self):
+        return 'https://docs.google.com/document/d/%s' % self.doc_id
 
     def __repr__(self):
         return "<ProjectDoc: \"%s\">" % self.title
@@ -29,8 +34,7 @@ def pull_project_docs_data(doc_ids):
                     (doc_id, e))
 
         if doc_data:
-            doc = ProjectDoc(doc_data[0], doc_data[1])
+            doc = ProjectDoc(doc_id, doc_data[0], doc_data[1])
             docs.append(doc)
 
     return docs
-
