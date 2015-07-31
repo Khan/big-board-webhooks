@@ -7,6 +7,7 @@ TODO(kamens): expand docs
 
 import logging
 
+from google.appengine.api import mail
 from google.appengine.ext.webapp import mail_handlers
 import webapp2
 
@@ -41,13 +42,37 @@ class NewProjectsMailHandler(mail_handlers.InboundMailHandler):
 
         # Create new cards for project docs that don't have trello cards yet
         new_cards = proposals_board.create_cards_from_doc_ids(google_doc_ids)
-        logging.info("Created new big board cards: %s" % new_cards)
+
+        # The message might not have these attributes, so we access in this
+        # more defensive manner.
+        subject = getattr(message, 'subject', '')
+        cc = getattr(message, 'cc', '')
+
+        # Now that we've received an email, auto respond with Trello cards
+        respondees = ",".join([message.sender, message.to, cc])
+        self.respond(respondees, subject, new_cards)
 
         # Email response to new-projects@ka.org letting 'em know what happened
         # STOPSHIP(kamens): email_response(new_cards)...
         # STOPSHIP(kamens): any sort of error handling / emailing if something
         # wasn't created??...?
 
+    def respond(self, to, subject, new_cards):
+        SENDER = "Projects Platypus <no-reply@khan-big-board.appspotmail.com>"
+        message = mail.EmailMessage(to=to, sender=SENDER, subject=subject)
+
+        body = "Hello friend!\n\n"
+
+        # TODO(marcia): Make this better.
+        for card in new_cards:
+            if card["card_already_existed"]:
+                body += "Card already existed: %s" % card["url"]
+            else:
+                body += "Created new big board card: %s" % card["url"]
+
+        message.body = body
+
+        message.send()
 
 app = webapp2.WSGIApplication([NewProjectsMailHandler.mapping()], debug=True)
 

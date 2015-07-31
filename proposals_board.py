@@ -24,10 +24,7 @@ def create_cards_from_doc_ids(doc_ids):
             "card_already_existed": card_already_existed,
         })
 
-    # TODO(marcia): Send this cards_data back in the auto-reply to let the
-    # proposer know about the cards.
-
-    return docs  # Should return cards, not docs
+    return cards_data
 
 
 def test():
