@@ -8,18 +8,30 @@ Note: Getting google drive integration working requires a bit of secrets+config
 setup. See README.md for more.
 """
 import re
+import urllib
 
-from googleapiclient import discovery
+import googleapiclient.discovery
+import googleapiclient.http
 import httplib2
 import oauth2client.client
 
 import secrets
+import trello_util
 
 # When authenticating to access Google Drive docs, we'll impersonate this user.
 # This impersonation is allowed because we're logging in as a preconfigured
 # Google Service account that's been given Google Drive API scope for the KA
 # domain.
 GOOGLE_DRIVE_USER = "bigboard@khanacademy.org"
+
+# Google script web app URL that's used to trigger edits of google docs. See
+# README.md and google_doc_app_script.gs
+GOOGLE_SCRIPT_WEB_APP_PROD_URL = "https://script.google.com/a/macros/khanacademy.org/s/AKfycbzpHXKPW8Un5u-apTpS_CB_5LTFK0UWugrmn6WcZyijes2FlCs/exec"
+GOOGLE_SCRIPT_WEB_APP_DEBUG_URL = "https://script.google.com/a/macros/khanacademy.org/s/AKfycbxeIDtwA2z-MWnp2DgiSwCPpheSReOMHLTJlo-FT8o/dev"
+# Switch this to use _DEBUG_URL during testing - debug url always hits the
+# latest version of the google apps script. prod url hits a stable published
+# version.
+GOOGLE_SCRIPT_WEB_APP_URL = GOOGLE_SCRIPT_WEB_APP_PROD_URL
 
 
 def get_authenticated_drive_service():
@@ -38,7 +50,7 @@ def get_authenticated_drive_service():
             "https://www.googleapis.com/auth/drive",
             sub=GOOGLE_DRIVE_USER)
     http = creds.authorize(httplib2.Http())
-    service = discovery.build("drive", "v2", http=http)
+    service = googleapiclient.discovery.build("drive", "v2", http=http)
     return (service, http)
 
 
@@ -63,10 +75,46 @@ def pull_doc_data(doc_id):
     return (title, html)
 
 
+def add_trello_link(doc_id, trello_card_id):
+    """Add a link to Trello within the specified Google Doc.
+
+    Accomplishes this by hitting our Google Apps Script
+    (google_doc_app_script.gs) that's published as a web service.
+
+    If the Trello link already exists, this won't add another one.
+    """
+    service, http = get_authenticated_drive_service()
+
+    url = GOOGLE_SCRIPT_WEB_APP_URL + "?" + urllib.urlencode({
+        "docId": doc_id,
+        "trelloURL": trello_util.get_url_by_card_id(trello_card_id)
+        })
+
+    response, html = http.request(url)
+
+    title, html = pull_doc_data(doc_id)
+    return html
+
+
+def remove_trello_links(doc_id):
+    """Remove all links to Trello from specified Google Doc.
+
+    Only used during unit testing to clean up previously-added links.
+    """
+    service, http = get_authenticated_drive_service()
+
+    url = GOOGLE_SCRIPT_WEB_APP_URL + "?" + urllib.urlencode({
+        "docId": doc_id,
+        "removeTrelloLinks": "true"
+        })
+
+    response, html = http.request(url)
+
+
 def extract_doc_ids(s):
     """Extract list of Google Doc IDs from string containing Google Drive URLs.
 
-    STOPSHIP(kamens): unit tests
+    TODO(kamens): unit tests
 
     Arguments:
         s: any arbitrary string, like the body of an email message, that may

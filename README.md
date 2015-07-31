@@ -3,10 +3,11 @@
 KA™ Big Board™-specific App Engine™-powered webhooks for extra super
 fun'n'fancy Trello™ power
 
-Right now all this does is automatically keep
+Right now all this automatically keeps
 [big board](http://khanacademy.org/r/big-board) Trello card stickers up-to-date
-as the cards are edited.
-TODO(kamens): ...but more to come!
+as the cards are edited, listens for new projects being submitted to
+new-projects@ka.org and automatically creates Trello<=>Google Doc links, and
+maybe more to come.
 
 ![gif screenshot](https://raw.githubusercontent.com/kamens/big-board-webhooks/master/stickers.gif?token=AAGmqnghRKX1knCFMNlMEWNLrOsJeKPmks5VidA8wA%3D%3D)
 
@@ -33,7 +34,7 @@ custom stickers for the Trello account being used below.
 
 ## Deployment
 
-### First set up secrets.py
+### First set up secrets
 
 Start by copying secrets.py.example to secrets.py.
 
@@ -72,6 +73,26 @@ Note that while the following is already taken care of for
     these webhooks have access to Google Drive docs.
  3. Grab the account's email and P12 key from the Google Developers Console
  4. Convert the P12 key to PEM format (see http://stackoverflow.com/questions/27305867/google-api-access-using-service-account-oauth2client-client-cryptounavailableerr/27384087#27384087)
+
+
+
+### Then deploy the Google Apps Script web service
+
+This has already been done for Khan Academy and only needs to be done if
+starting a new instance of big-board-webhooks or if the apps script needs
+updating.
+
+ 1. Log in to https://script.google.com with the bigboard@khanacademy.org
+ Google account (pass at http://phabricator.khanacademy.org/K75).
+ 2. Create a new blank project and paste the contents of
+ `google_doc_app_script.gs` as its code. This script contains a web request
+ handler that, when triggered, modifies Google Docs by adding Trello links to
+ 'em.)
+ 3. Publish ==> Deploy as web app. Choose "Execute the app as: Me" and "Who has
+ access: Only myself." Click Update.
+ 4. Copy the published web app URL and use it as the value of
+ `GOOGLE_SCRIPT_WEB_APP_PROD_URL` in google_drive.py.
+
 
 
 ### Now deploy the app
