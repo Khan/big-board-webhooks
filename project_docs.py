@@ -31,9 +31,9 @@ class ProjectDoc(object):
                 r'^[\s]*Project Proposal:?[\s]+',  # "Project proposal: Monkey"
                 r'^[\s]*Project Brief:?[\s]+',  # "Project brief: Monkey"
                 r'^[\s]*Project:?[\s]+',  # "Project: Monkey"
-                r'[\s]+Project Brief[\s]*',  # "Monkey Project Brief"
-                r'[\s]+Project Proposal[\s]*',  # "Monkey Project Proposal"
-                r'[\s]+Project[\s]*',  # "Monkey Project"
+                r'[\s]+Project Brief[\s]*$',  # "Monkey Project Brief"
+                r'[\s]+Project Proposal[\s]*$',  # "Monkey Project Proposal"
+                r'[\s]+Project[\s]*$',  # "Monkey Project"
             ]
 
         for re_pattern in re_patterns_to_remove:

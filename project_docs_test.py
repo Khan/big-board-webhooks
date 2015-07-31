@@ -75,6 +75,10 @@ class ProjectDocsTitleTest(unittest.TestCase):
             doc = project_docs.ProjectDoc("_", title, "_")
             self.assertEqual(doc.title, expected_title)
 
+        doc = project_docs.ProjectDoc("_",
+                "Project Proposal: Awesome project here!", "_")
+        self.assertEqual(doc.title, "Awesome project here!")
+
 
 class ProjectDocsTest(unittest.TestCase):
 
