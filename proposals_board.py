@@ -7,8 +7,6 @@ import trello_util
 
 
 def create_cards_from_doc_ids(doc_ids):
-    # STOPSHIP(kamens): check to make sure these docs/cards don't already exist
-
     docs = project_docs.pull_project_docs_data(doc_ids)
 
     cards_data = []

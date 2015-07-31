@@ -10,6 +10,9 @@ handlers:
   login: admin
 - url: /.*
   script: main.app
+- url: /_ah/queue/deferred
+    script: google.appengine.ext.deferred.deferred.application
+    login: admin
 
 libraries:
 - name: ssl
@@ -39,3 +42,6 @@ skip_files:
 # The one exception is javascript-khansrc, which is handled with the
 # javascript code above.
 - ^third_party/.*-src$
+
+builtins:
+- deferred: on
