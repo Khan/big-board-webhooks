@@ -43,6 +43,13 @@ class NewProjectsMailHandler(mail_handlers.InboundMailHandler):
         creates new Trello cards for emails received that contain links to new
         Google Doc project docs.
         """
+        # We only want to do auto-responder magic if the message is the first
+        # in its thread. Subsequent responses (or our own auto-response) should
+        # be ignored.
+        if 'In-Reply-To' in message.original:
+            logging.info("Ignoring message because it's a response!")
+            return
+
         # Find all google doc ids referenced in email
         google_doc_ids = NewProjectsMailHandler.google_doc_ids_from_message(
                 message)
@@ -52,6 +59,10 @@ class NewProjectsMailHandler(mail_handlers.InboundMailHandler):
         # Create new cards for project docs that don't have trello cards yet
         new_cards = proposals_board.create_cards_from_doc_ids(google_doc_ids)
 
+        if not new_cards:
+            logging.info("Ignoring message because it has no project docs")
+            return
+
         # The message might not have these attributes, so we access in this
         # more defensive manner.
         subject = getattr(message, 'subject', '')
@@ -59,14 +70,20 @@ class NewProjectsMailHandler(mail_handlers.InboundMailHandler):
 
         # Now that we've received an email, auto respond with Trello cards
         respondees = ",".join([message.sender, message.to, cc])
-        self.respond(respondees, subject, new_cards)
+
+        # Locally sent messages don't have an id.
+        message_id = message.original.get('Message-ID', 'dummy-id-for-dev')
+
+        self.respond(message_id, respondees, subject, new_cards)
 
         # STOPSHIP(kamens): any sort of error handling / emailing if something
         # wasn't created??...?
 
-    def respond(self, to, subject, new_cards):
+    def respond(self, original_message_id, to, subject, new_cards):
         SENDER = "Projects Platypus <no-reply@khan-big-board.appspotmail.com>"
-        message = mail.EmailMessage(to=to, sender=SENDER, subject=subject)
+
+        message = mail.EmailMessage(to=to, sender=SENDER, subject=subject,
+            headers={'In-Reply-To': original_message_id})
 
         body = """Hello friend!
 
