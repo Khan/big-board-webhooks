@@ -9,7 +9,7 @@ as the cards are edited, listens for new projects being submitted to
 new-projects@ka.org and automatically creates Trello<=>Google Doc links, and
 maybe more to come.
 
-![gif screenshot](https://raw.githubusercontent.com/kamens/big-board-webhooks/master/stickers.gif?token=AAGmqnghRKX1knCFMNlMEWNLrOsJeKPmks5VidA8wA%3D%3D)
+![gif screenshot](https://raw.githubusercontent.com/Khan/big-board-webhooks/master/stickers.gif?token=AAGmqnghRKX1knCFMNlMEWNLrOsJeKPmks5VidA8wA%3D%3D)
 
 ## Warning
 
