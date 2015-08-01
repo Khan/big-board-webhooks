@@ -46,14 +46,21 @@ class RetrospectiveEmailTest(unittest.TestCase):
         # TODO(kamens): make this test less brittle by not making it rely on an
         # existing Trello card
         card_id = "trudGlxB"  # Example trello card from completed board
+
+        # Try to send a retro reminder as if triggered by this Trello card's
+        # move to the completed board
         retrospective.send_retro_reminder_for_card(card_id)
 
         # The above card is an SAT card, and Annie's the PM. Make sure she got
         # a retro reminder email.
         messages = self.mail_stub.get_sent_messages(to="annie@khanacademy.org")
+
         self.assertEqual(1, len(messages))
-        self.assertIn("I'm a raccoon!", messages[0].subject)
-        self.assertIn("Set up your retrospective!", messages[0].body.decode())
+        self.assertIn("retro for \"SAT Beta 1.1", messages[0].subject)
+        self.assertIn("Create your retrospective doc!",
+                messages[0].body.decode())
+        self.assertIn("automatically create your retro doc",
+                messages[0].html.decode())
 
     def test_finding_preferred_email(self):
         """Test finding preferred email to send retro reminder to.

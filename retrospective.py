@@ -94,12 +94,12 @@ def _already_has_retro_doc(card):
 def _create_retro_reminder_email(to_email, card):
     # TODO(marcia): We eventually want to unify all the email stuff.
     SENDER = "Retro Raccoon <no-reply@khan-big-board.appspotmail.com>"
-    subject = "Time to set up your retrospective! I'm a raccoon!"
+    subject = "Want help setting up your retro for \"%s\"?" % card.name
 
     message = mail.EmailMessage(to=to_email, sender=SENDER, subject=subject)
 
     # STOPSHIP(kamens): change to real contents / link that makes copy of doc
-    cta_text = "Set up your retrospective!"
+    cta_text = "Create your retrospective doc!"
     cta_url = ('https://docs.google.com/document/d/'
         '1gbejuiityqZR9LDq-tyJGL0RHkAbCFe9Wc5IULPSQqw/edit')
 
