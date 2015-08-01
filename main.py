@@ -17,6 +17,7 @@ separate app focused on Trello/big-board integration.
 import json
 import logging
 import os
+import re
 
 from google.appengine.api import taskqueue
 import webapp2
@@ -25,6 +26,7 @@ import google_drive
 import proposals_board
 import retrospective
 import stickers
+import trello_util
 import webhooks
 
 
@@ -61,6 +63,26 @@ class GoogleTest(RequestHandler):
 class EmailTest(RequestHandler):
     def get(self):
         retrospective.send_reminder_email()
+
+
+class SetupRetro(RequestHandler):
+    def get(self):
+        # TODO(marcia): Remove this dummy card id when it's more wired up
+        card_id = self.request.get('card_id', 'helK7yaW')
+        card = trello_util.get_card_by_id(card_id)
+
+        # Check whether there's already a retro url on the card.
+        retro_urls = re.findall(
+            r'\[Retrospective doc\]\((%s)\)' % google_drive.GOOGLE_DOC_RE,
+            card.desc)
+
+        if not retro_urls:
+            # TODO(marcia): Copy the template and then add it to the card
+            # And then remove below `else` and we'll always just redirect
+            pass
+        else:
+            url = str(retro_urls[0])
+            self.redirect(url)
 
 
 class ProposalTest(RequestHandler):
@@ -116,4 +138,5 @@ app = webapp2.WSGIApplication([
     ('/webhook/update_board', UpdateBoardWebHook),
     ('/proposaltest', ProposalTest),
     ('/emailtest', EmailTest),
+    ('/retro', SetupRetro),
 ], debug=True)

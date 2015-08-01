@@ -24,6 +24,8 @@ import trello_util
 # domain.
 GOOGLE_DRIVE_USER = "bigboard@khanacademy.org"
 
+GOOGLE_DOC_RE = r'https?://docs.google.com/?[^\s]*/document/[^\>\s]+'
+
 # Google script web app URL that's used to trigger edits of google docs. See
 # README.md and google_doc_app_script.gs
 GOOGLE_SCRIPT_WEB_APP_PROD_URL = "https://script.google.com/a/macros/khanacademy.org/s/AKfycbzpHXKPW8Un5u-apTpS_CB_5LTFK0UWugrmn6WcZyijes2FlCs/exec"
@@ -142,8 +144,7 @@ def extract_doc_ids(s):
     if not s:
         return []
 
-    google_drive_urls = re.findall(
-            r'(https?://docs.google.com/?[^\s]*/document/[^\>\s]+)', s)
+    google_drive_urls = re.findall(r'(%s)' % GOOGLE_DOC_RE, s)
 
     google_doc_ids = map(doc_id_from_url, google_drive_urls)
     return filter(None, google_doc_ids)

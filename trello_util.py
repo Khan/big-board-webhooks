@@ -33,6 +33,11 @@ def get_url_by_card_id(card_id):
     return "https://trello.com/c/%s" % card_id
 
 
+def get_card_by_id(card_id):
+    client = get_client()
+    return client.get_card(card_id)
+
+
 def get_card_by_doc_id(doc_id):
     """Return the card, if it exists, corresponding to this project doc id."""
     # TODO(marcia): Should we bother about maintaining one connection vs one
