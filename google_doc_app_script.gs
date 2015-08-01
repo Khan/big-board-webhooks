@@ -92,22 +92,42 @@ function alreadyHasTrelloLink(body, trelloURL) {
 
 
 /**
- * Find element index of title paragraph in Google Doc
+ * Find title paragraph in the Google Doc
  *
  * We use this to figure out where to insert the link to Trello
+ * and how to style it.
  */
-function findTitleParagraphIndex(body) {
+function findTitleParagraph(body) {
   var paragraphs = body.getParagraphs();
   for (var ix = 0; ix < paragraphs.length; ix++) {
     var paragraph = paragraphs[ix];
     var attrs = paragraph.getAttributes();
     if (attrs.HEADING === DocumentApp.ParagraphHeading.TITLE) {
-      return body.getChildIndex(paragraph);
+      return paragraph;
     }
   }
   
-  // If we couldn't find a title paragraph, just assume it's the first element
-  return 0;
+  return null;
+}
+
+
+/**
+ * Populate dictionary of styles that should be copied from the title paragraph
+ * to the new Trello link paragraph
+ */
+function populateStylesFromTitleParagraph(titleParagraph, style) {
+  var attrsToCopy = {};
+  attrsToCopy[DocumentApp.Attribute.INDENT_START] = true;
+  attrsToCopy[DocumentApp.Attribute.INDENT_FIRST_LINE] = true;
+  attrsToCopy[DocumentApp.Attribute.INDENT_END] = true;
+  attrsToCopy[DocumentApp.Attribute.FONT_FAMILY] = true;
+  
+  var attrs = titleParagraph.getAttributes();
+  for (var key in attrs) {
+    if (attrsToCopy[key]) {
+      style[key] = attrs[key];
+    }
+  }
 }
 
 
@@ -115,14 +135,20 @@ function findTitleParagraphIndex(body) {
  * Add new paragraph to Google Doc w/ link to specified Trello card
  */
 function addTrelloLink(body, trelloURL) {
+  var indexToInsert = 0;
   var style = {};
-  style[DocumentApp.Attribute.FONT_FAMILY] = 'Proxima Nova';
-  style[DocumentApp.Attribute.FOREGROUND_COLOR] = '#999999';
+
+  style[DocumentApp.Attribute.FONT_FAMILY] = 'Proxima Nova';  
   style[DocumentApp.Attribute.FONT_SIZE] = 11;
+  style[DocumentApp.Attribute.FOREGROUND_COLOR] = '#999999';
   
-  // Insert paragraph immediately after title
-  // TODO(kamens): more elegantly handle failure when we don't have write perms
-  var indexToInsert = findTitleParagraphIndex(body) + 1;
+  var titleParagraph = findTitleParagraph(body);
+  if (titleParagraph) {
+    indexToInsert = body.getChildIndex(titleParagraph) + 1;
+    populateStylesFromTitleParagraph(titleParagraph, style);
+  }
+  
+  // Insert paragraph immediately after title, styled similarly
   var paragraph = body.insertParagraph(indexToInsert,
     'See Trello card for project\'s current status.');
   
@@ -136,8 +162,9 @@ function addTrelloLink(body, trelloURL) {
  */
 function debug() {
   doGet({parameter: {
-    docId: "1uc4_O3H6OgjPBSzb8lJvXwFipJ6zUs7utDUtwIhEPqI",
+    docId: "1KByn1RUhm6DyEGHB1dj9BRyDUxBOKFw2Nh4xWyQUv6M",
     trelloURL: "https://trello.com/c/Owfp15Jo"
   }});
 }
+
 
