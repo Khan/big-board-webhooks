@@ -4,6 +4,7 @@ See https://trello.com/docs/gettingstarted/webhooks.html for more.
 """
 import logging
 
+import retrospective
 import secrets
 import stickers
 import trello_util
@@ -56,8 +57,7 @@ class RetrospectiveWebhookHandler(object):
     @staticmethod
     def handle(action_type, card_id, board_id):
         """Sync card stickers."""
-        # STOPSHIP(kamens): implement
-        logging.critical("Fire off the retro!")
+        retrospective.send_retro_reminder_for_card(card_id)
 
 
 def trigger_update_handlers(action_type, card_id, board_id):

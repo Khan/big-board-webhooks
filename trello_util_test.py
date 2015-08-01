@@ -1,9 +1,9 @@
 """Unit tests for testing Google drive project doc interactions."""
 
+import unittest
+
 from google.appengine.api import apiproxy_stub_map
 from google.appengine.api import urlfetch_stub
-
-import unittest
 
 import trello_util
 

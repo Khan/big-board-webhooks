@@ -1,8 +1,11 @@
 """Unit tests for testing our retrospective-creating functionality."""
 
+import mock
 import unittest
 
-import mock
+from google.appengine.api import apiproxy_stub_map
+from google.appengine.api import urlfetch_stub
+from google.appengine.ext import testbed
 
 import retrospective
 
@@ -21,8 +24,36 @@ class RetrospectiveEmailTest(unittest.TestCase):
         self.mock_patch = mock.patch('random.random', return_value=0)
         self.mock_patch.start()
 
+        # Create a stub map so we can build App Engine mock stubs.
+        apiproxy_stub_map.apiproxy = apiproxy_stub_map.APIProxyStubMap()
+
+        # Register App Engine mock stubs.
+        apiproxy_stub_map.apiproxy.RegisterStub(
+            'urlfetch', urlfetch_stub.URLFetchServiceStub())
+
+        # Patch mail so we can test sending reminders
+        self.testbed = testbed.Testbed()
+        self.testbed.activate()
+        self.testbed.init_mail_stub()
+        self.mail_stub = self.testbed.get_stub(testbed.MAIL_SERVICE_NAME)
+
     def tearDown(self):
         self.mock_patch.stop()
+        self.testbed.deactivate()
+
+    def test_sending_retro_reminder_for_card(self):
+        """Test sending a retro reminder for specific Trello card."""
+        # TODO(kamens): make this test less brittle by not making it rely on an
+        # existing Trello card
+        card_id = "trudGlxB"  # Example trello card from completed board
+        retrospective.send_retro_reminder_for_card(card_id)
+
+        # The above card is an SAT card, and Annie's the PM. Make sure she got
+        # a retro reminder email.
+        messages = self.mail_stub.get_sent_messages(to="annie@khanacademy.org")
+        self.assertEqual(1, len(messages))
+        self.assertIn("I'm a raccoon!", messages[0].subject)
+        self.assertIn("Set up your retrospective!", messages[0].body.decode())
 
     def test_finding_preferred_email(self):
         """Test finding preferred email to send retro reminder to.

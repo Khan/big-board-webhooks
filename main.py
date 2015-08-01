@@ -24,7 +24,6 @@ import webapp2
 
 import google_drive
 import proposals_board
-import retrospective
 import stickers
 import trello_util
 import webhooks
@@ -60,13 +59,9 @@ class GoogleTest(RequestHandler):
         logging.info("Title: %s" % title)
 
 
-class EmailTest(RequestHandler):
-    def get(self):
-        retrospective.send_reminder_email()
-
-
 class SetupRetro(RequestHandler):
     def get(self):
+        # STOPSHIP(kamens): remove, this being moved to retrospective.py
         # TODO(marcia): Remove this dummy card id when it's more wired up
         card_id = self.request.get('card_id', 'helK7yaW')
         card = trello_util.get_card_by_id(card_id)
@@ -140,10 +135,11 @@ class UpdateBoardWebHook(RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/googletest', GoogleTest),  # TODO(kamens): remove this test handler
     ('/setup', Setup),
     ('/webhook/update_board', UpdateBoardWebHook),
+
+    # STOPSHIP(kamens): remove or organize these little tests?
+    ('/googletest', GoogleTest),  # TODO(kamens): remove this test handler
     ('/proposaltest', ProposalTest),
-    ('/emailtest', EmailTest),
     ('/retro', SetupRetro),
 ], debug=True)
