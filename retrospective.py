@@ -13,6 +13,10 @@ import google_drive
 import trello_util
 
 
+# The URL that'll be hit by users following the "create a retro doc" email link
+ABSOLUTE_RETRO_CREATION_URL = 'http://khan-big-board.appspot.com/retro/create'
+
+
 # TODO(kamens): find some way to keep these lists of PM names up-to-date.
 # Likely via pingboard or google directory API.
 
@@ -60,7 +64,7 @@ def send_retro_reminder_for_card(card_id):
                 card_id)
         return False
 
-    if _already_has_retro_doc(card):
+    if bool(_get_existing_retro_doc_url(card)):
         logging.warning("Not sending retro reminder, retro already exists.")
         return False
 
@@ -77,39 +81,94 @@ def send_retro_reminder_for_card(card_id):
                 "for card members: %s" % full_names)
         return False
 
-    email_msg = _create_retro_reminder_email(to_email, card)
+    email_msg = _get_retro_reminder_email(to_email, card)
     email_msg.send()
 
     return True
 
 
-def _already_has_retro_doc(card):
-    # STOPSHIP(kamens): perhaps make this check doc links for retro-lookin' doc
-    retro_links = re.findall(
+def ensure_card_has_retro_doc(card_id):
+    """Ensure Trello card's description has a link to a retro doc.
+
+    Will create a new retro doc if necessary.
+    """
+    card = trello_util.get_card_by_id(card_id)
+    if not card:
+        logging.warning("Not ensuring retro doc, couldn't find card: %s" %
+                card_id)
+        return None
+
+    retro_doc_url, created_new_doc = _get_or_create_retro_doc_for_card(card)
+
+    if created_new_doc:
+        logging.info("Created new retro doc: %s" % retro_doc_url)
+
+        # Add this retro doc url back to the card
+        # TODO(kamens): insert retro link directly after project doc link?
+        new_desc = '%s\n[Retrospective doc](%s)' % (card.desc, retro_doc_url)
+        card.update_desc(new_desc)
+
+    return retro_doc_url
+
+
+def _get_or_create_retro_doc_for_card(card):
+    """Return URL of retro doc for Trello card, creating new doc if necessary.
+
+    If a retro doc already exists in the card's description, just return that.
+
+    Returns tuple of (url, [bool indicating whether new doc was created])
+    """
+    existing_retro_doc_url = _get_existing_retro_doc_url(card)
+    if existing_retro_doc_url:
+        logging.info("Not creating retro doc, one already exists: %s" %
+                existing_retro_doc_url)
+        return (existing_retro_doc_url, False)
+
+    # Make a copy of the retro template
+    new_retro_doc_url = google_drive.copy_retro_template()
+    
+    return (new_retro_doc_url, True)
+
+
+def _get_existing_retro_doc_url(card):
+    """Get existing retro doc url in Trello card description, if any.
+
+    TODO(kamens): be smarter about retro doc detection, perhaps by checking all
+    links for retro-lookin' google docs.
+
+    Returns None if no retro docs are linked.
+    """
+    retro_matches = re.findall(
         r'\[Retrospective doc\]\((%s)\)' % google_drive.GOOGLE_DOC_RE,
         card.desc)
-    return bool(retro_links)
+    
+    if retro_matches:
+        return retro_matches[0]
+
+    return None
 
 
-def _create_retro_reminder_email(to_email, card):
+def _get_retro_reminder_email(to_email, card):
     # TODO(marcia): We eventually want to unify all the email stuff.
     SENDER = "Retro Raccoon <no-reply@khan-big-board.appspotmail.com>"
     subject = "Want help setting up your retro for \"%s\"?" % card.name
 
-    message = mail.EmailMessage(to=to_email, sender=SENDER, subject=subject)
-
-    # STOPSHIP(kamens): change to real contents / link that makes copy of doc
     cta_text = "Create your retrospective doc!"
-    cta_url = ('https://docs.google.com/document/d/'
-        '1gbejuiityqZR9LDq-tyJGL0RHkAbCFe9Wc5IULPSQqw/edit')
-
-    message.body = "%s %s" % (cta_text, cta_url)
+    cta_url = _get_url_for_retro_doc_creation(card)
 
     template = JINJA_ENVIRONMENT.get_template(
         'templates/retrospective_reminder_email_content.html')
 
+    message = mail.EmailMessage(to=to_email, sender=SENDER, subject=subject)
+    message.body = "%s %s" % (cta_text, cta_url)
     message.html = template.render(cta_text=cta_text, cta_url=cta_url)
+
     return message
+
+
+def _get_url_for_retro_doc_creation(card):
+    """Get URL that, when hit, triggers retro creation for a trello card."""
+    return "%s?card_id=%s" % (ABSOLUTE_RETRO_CREATION_URL, card._id)
 
 
 def _get_preferred_email_from_full_names(full_names):

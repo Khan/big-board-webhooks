@@ -17,15 +17,14 @@ separate app focused on Trello/big-board integration.
 import json
 import logging
 import os
-import re
 
 from google.appengine.api import taskqueue
 import webapp2
 
 import google_drive
 import proposals_board
+import retrospective
 import stickers
-import trello_util
 import webhooks
 
 
@@ -59,35 +58,19 @@ class GoogleTest(RequestHandler):
         logging.info("Title: %s" % title)
 
 
-class SetupRetro(RequestHandler):
+class CreateRetro(RequestHandler):
     def get(self):
-        # STOPSHIP(kamens): remove, this being moved to retrospective.py
-        # TODO(marcia): Remove this dummy card id when it's more wired up
-        card_id = self.request.get('card_id', 'helK7yaW')
-        card = trello_util.get_card_by_id(card_id)
+        # STOPSHIP(kamens): do anything in error cases during redirect attempt?
+        card_id = self.request.get("card_id")
+        retro_url = retrospective.ensure_card_has_retro_doc(card_id)
 
-        # Check whether there's already a retro url on the card.
-        retro_urls = re.findall(
-            r'\[Retrospective doc\]\((%s)\)' % google_drive.GOOGLE_DOC_RE,
-            card.desc)
-
-        url = None
-
-        if not retro_urls:
-            # Make a copy of the retro template
-            url = google_drive.copy_retro_template()
-
-            # Add this retro doc url back to the card
-            # TODO(marcia): Make this DRY'er
-            new_desc = '[Retrospective doc](%s)\n%s' % (url, card.desc)
-            card.update_desc(new_desc)
-        else:
-            url = retro_urls[0]
-
-        if url:
-            self.redirect(str(url))
-        else:
-            logging.warning("No retro whatsoever - something weird happened")
+        # Don't allow redirects to anything other than docs.google.com. Doing
+        # this out of phishing protection habit, but this actual threat is
+        # probably nonexistent since it'd involve screwing w/ our Trello cards
+        # in order to populate 'em w/ a phishing URL.
+        if retro_url.startswith("https://docs.google.com/"):
+            # Header redirect values must be str, not unicode
+            self.redirect(str(retro_url))
 
 
 class ProposalTest(RequestHandler):
@@ -137,9 +120,9 @@ class UpdateBoardWebHook(RequestHandler):
 app = webapp2.WSGIApplication([
     ('/setup', Setup),
     ('/webhook/update_board', UpdateBoardWebHook),
+    ('/retro/create', CreateRetro),
 
     # STOPSHIP(kamens): remove or organize these little tests?
     ('/googletest', GoogleTest),  # TODO(kamens): remove this test handler
     ('/proposaltest', ProposalTest),
-    ('/retro', SetupRetro),
 ], debug=True)

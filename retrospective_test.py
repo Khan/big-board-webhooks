@@ -8,6 +8,7 @@ from google.appengine.api import urlfetch_stub
 from google.appengine.ext import testbed
 
 import retrospective
+import trello_util
 
 # TODO(kamens): make these tests less brittle by making them rely on mocked
 # data - or anything other than the actual google directory results for our
@@ -40,6 +41,26 @@ class RetrospectiveEmailTest(unittest.TestCase):
     def tearDown(self):
         self.mock_patch.stop()
         self.testbed.deactivate()
+
+    @unittest.skip("Unskip if you have a test card for adding a retro link.")
+    def test_creating_retro_doc_for_card(self):
+        """Test creating a new retro doc and adding it to a Trello card.
+
+        This test is skipped by default, but can be unskipped if you want to
+        test this -- just set card_id to the test Trello card you don't mind
+        letting this unit test add a link to.
+        """
+        # TODO(kamens): make this test less brittle by not making it rely on an
+        # existing Trello card
+        card_id = "vj7RC8T5"
+
+        card = trello_util.get_card_by_id(card_id)
+        self.assertNotIn("Retrospective doc", card.desc)
+
+        retrospective.ensure_card_has_retro_doc(card_id)
+
+        card = trello_util.get_card_by_id(card_id)
+        self.assertIn("Retrospective doc", card.desc)
 
     def test_sending_retro_reminder_for_card(self):
         """Test sending a retro reminder for specific Trello card."""
