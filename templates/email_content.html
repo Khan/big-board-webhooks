@@ -65,11 +65,11 @@
 
         <tr style="vertical-align: top;">
             <td style="padding-right: 20px;">
-                <img src="https://www.khanacademy.org/images/avatars/piceratops-ultimate.png" alt=""
-                    style="width: 40px; padding-top: 5px;">
+                <img src="{{ card['image_url'] }}" alt=""
+                    style="width: 50px; padding-top: 5px;">
             </td>
             <td style="vertical-align: middle;">
-                <p style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 20px; line-height: 24px; color: #666; margin: 0 0 10px; color: #333; margin-bottom: 2px;">
+                <p style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 20px; line-height: 24px; margin: 0 0 10px; color: #1C758A; margin-bottom: 2px;">
                     <strong>
                         <a href="{{ card['url'] }}" target="_blank" style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 20px; color: #678d00; text-decoration: underline; color: #333;">{{ card['name'] }}</a>
                         {% if not card['already_existed'] %}

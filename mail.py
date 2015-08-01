@@ -39,6 +39,24 @@ CARD_ALREADY_EXISTS_SNIPPETS = [
     "Fleetwood found this card for you!",
 ]
 
+AVATAR_NAMES = [
+    'aqualine',
+    'duskpin',
+    'leafers',
+    'piceratops',
+    'primosaur',
+    'starky',
+]
+
+
+AVATAR_SUFFIXES = [
+    'sapling',
+    'seed',
+    'seedling',
+    'tree',
+    'ultimate',
+]
+
 
 def process_message(message_id, respondees, subject, google_doc_ids):
     """Process message and send an auto-response with links to Trello cards."""
@@ -80,21 +98,35 @@ def _get_text_content(cards):
     return body
 
 
+def _get_sample(source, num_to_sample):
+    num_source = len(source)
+
+    # If our source is too small, we'll just repeat items.
+    if num_source < num_to_sample:
+        source = list(source)
+        multiplier = int(math.ceil(num_to_sample * 1.0 / num_source))
+        source *= multiplier
+
+    return random.sample(source, num_to_sample)
+
+
 def _insert_random_snippets(stock_snippets, cards):
     """Insert a snippet for each card, sampled from our stock snippets."""
-    num_cards = len(cards)
-    num_snippets = len(stock_snippets)
-
-    # If we have fewer stock snippets than we need to give, we'll repeat them.
-    if num_snippets < num_cards:
-        stock_snippets = list(stock_snippets)
-        multiplier = int(math.ceil(num_cards * 1.0 / num_snippets))
-        stock_snippets *= multiplier
-
-    snippets = random.sample(stock_snippets, num_cards)
+    snippets = _get_sample(stock_snippets, len(cards))
 
     for card, snippet in zip(cards, snippets):
         card['snippet'] = snippet
+
+
+def _insert_random_images(cards):
+    avatars = _get_sample(AVATAR_NAMES, len(cards))
+    suffixes = _get_sample(AVATAR_SUFFIXES, len(cards))
+
+    for card, avatar, suffix in zip(cards, avatars, suffixes):
+        # Doo doo we're using KA avatars... hope that's ok!
+        card['image_url'] = (
+            'http://www.khanacademy.org/images/avatars/%s-%s.png' %
+            (avatar, suffix))
 
 
 def _get_html_content(cards):
@@ -107,6 +139,7 @@ def _get_html_content(cards):
 
     _insert_random_snippets(CARD_CREATED_SNIPPETS, new_cards)
     _insert_random_snippets(CARD_ALREADY_EXISTS_SNIPPETS, existing_cards)
+    _insert_random_images(cards)
 
     if len(cards) == 1:
         cta_text = "Check out your Trello card!"
