@@ -1,0 +1,130 @@
+{# Template for Project Platypus' reminder email to hold a retrospective.
+    This was shamelessly stolen by viewing the source of webapp's
+    answer_notification_email.html test email
+    https://www.khanacademy.org/devadmin/testemails/AnswerNotification?litmus=1
+
+    Love,
+    Khan Academy Healthy Hackathon IV, 2015.
+#}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+    {# TODO(marcia): Not sure how this title appears yet. #}
+    <title>Thanks for proposing a project!</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Varela+Round);
+    </style>
+</head>
+<body>
+<br>
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%"
+        style="width: 100%; font-size: 12px;">
+<tr>
+<td>
+
+<table align="center" valign="top" border="0"
+        cellpadding="0" cellspacing="0" width="600"
+        style="width: 600px; background: #fff; border-radius: 8px; border: 2px solid #eee;"
+        >
+<!-- header image -->
+<tr style="text-align: center; padding: 10px;">
+    <td>
+        <a href="{{ cta_url }}">
+        <img height="30" border="0"
+             src="https://www.khanacademy.org/imaget/emails/header-logo.png?code=YW5zd2VyX25vdGlmaWNhdGlvbl9lbWFpbF9vcGVuCl9nYWVfYmluZ29fcmFuZG9tOll5UVQwLUUwMFN4LVFWVFdwTUdqc1hRRkd0UGdydE5obHctUmQ2Rk4="
+             alt="Khan Academy"
+             style="padding: 20px; vertical-align: bottom;">
+         </a>
+    </td>
+</tr>
+<!-- gradient image -->
+<tr>
+    <td>
+        <img src="https://www.khanacademy.org/images/emails/email-gradient.png" alt="">
+    </td>
+</tr>
+
+<!-- Show all the Trello cards for project docs in the initial email. -->
+<tr>
+    <td>
+        <table align="center" valign="top" border="0"
+        cellpadding="0" cellspacing="0" width="600"
+        style="width: 600px; padding: 20px 50px 50px 130px;"
+        >
+        <!-- spacer -->
+        <tr>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br>
+            </td>
+        </tr>
+
+        <tr style="vertical-align: top;">
+            <td>
+                <img src="http://www.khanacademy.org/images/avatars/piceratops-ultimate.png" alt=""
+                    style="width: 50px; padding-top: 5px;">
+            </td>
+            <td style="vertical-align: middle;">
+                <p style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 20px; line-height: 24px; margin: 0 0 10px; margin-bottom: 2px;">
+                    <strong>
+                        <a href="https://docs.google.com/document/d/1gbejuiityqZR9LDq-tyJGL0RHkAbCFe9Wc5IULPSQqw/edit" target="_blank" style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 20px; text-decoration: underline; color: #1C758A;">Check out your fancy pre-retro doc</a>
+                    </strong>
+                </p>
+                <p style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 10px; line-height: 24px; color: #bbb; margin: 0 0 10px; margin-bottom: 2px;">
+                    Schedule your retro, send out the doc, and you're good to go!
+                </p>
+            </td>
+        </tr>
+</table>
+    </td>
+</tr>
+<!-- call-to-action area -->
+<tr>
+    <td style="background-color: #1C758A;
+            border-bottom-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            padding: 60px 100px;">
+        <a href="{{ cta_url }}" style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; border: 1px solid #76a015; background-color: #7fac05; color: white; display: inline-block; padding: 0 32px; margin: 0; border-radius: 5px; font-size: 16px; line-height: 40px; text-decoration: none; cursor: pointer;display: block;
+              text-align: center;
+              border-radius: 20px;
+              font-size: 18px;
+              line-height: 40px;
+              color: #1C758A;
+              background-color: #fff;
+              border-color: #fff;">{{ cta_text }}</a>
+    </td>
+</tr>
+
+</table>
+
+<br>
+<br>
+
+
+<table align="center" valign="top" border="0"
+        cellpadding="0" cellspacing="0" width="600"
+        style="width: 600px; background: #fff; text-align: center;"
+        >
+<tr>
+
+    <td style="padding: 0 40px;">
+        <p style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-weight: normal; font-size: 10px; color: #666;">
+            Brought to you with &#9829; by
+                <a href="https://trello.com/b/b7IIpk16/healthy-hackathon-iv" target="_blank" style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 10px; font-weight: normal; color: #678d00; text-decoration: none; text-decoration: underline;">Healthy Hackathon 2015</a>
+        </p>
+    </td>
+</tr>
+
+</table>
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

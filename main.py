@@ -23,6 +23,7 @@ import webapp2
 
 import google_drive
 import proposals_board
+import retrospective
 import stickers
 import webhooks
 
@@ -55,6 +56,11 @@ class GoogleTest(RequestHandler):
         doc_id = self.request.get("doc_id")
         title, html = google_drive.pull_doc_data(doc_id)
         logging.info("Title: %s" % title)
+
+
+class EmailTest(RequestHandler):
+    def get(self):
+        retrospective.send_reminder_email()
 
 
 class ProposalTest(RequestHandler):
@@ -109,4 +115,5 @@ app = webapp2.WSGIApplication([
     ('/setup', Setup),
     ('/webhook/update_board', UpdateBoardWebHook),
     ('/proposaltest', ProposalTest),
+    ('/emailtest', EmailTest),
 ], debug=True)
