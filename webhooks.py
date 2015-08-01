@@ -4,22 +4,50 @@ See https://trello.com/docs/gettingstarted/webhooks.html for more.
 """
 import logging
 
-# The webhook URL that'll be registered and fired any time big board is updated
+import secrets
+import trello_util
+
+# The webhook URL that'll be registered and fired any time a board is updated
 ABSOLUTE_WEBHOOK_URL = 'http://khan-big-board.appspot.com/webhook/update_board'
 
 
-def add_board_webhook(client, board_id):
+def _add_update_board_webhook(client, board_id):
     """Add a webhook to big board identified by its Trello board id."""
     board = client.get_board(board_id)
     logging.info("Adding webhook for: %s" % board)
     board.add_webhook(ABSOLUTE_WEBHOOK_URL)
 
 
-def remove_all_webhooks(client, oauth_token):
+def _remove_all_webhooks(client, oauth_token):
     """Remove all webhooks associated with this oauth token."""
     logging.info("Removing all webhooks")
     token = client.get_token(oauth_token)
     for webhook in token.webhooks:
         logging.info("Removing webhook: %s" % webhook)
         webhook.delete()
+
+
+def setup():
+    """Setup initial hooks between this webhook server and all Trello boards.
+
+    After this is run, all updates to cards on the big board (or project
+    pipeline board, etc) will fire webhooks that get handled by this server.
+    These webhooks keep each card's stickers up-to-date.
+
+    This initial setup also does a one-time update of all stickers for all
+    cards on the big board.
+    """
+    client = trello_util.get_client()
+
+    # Remove any existing webhooks for the bigboard@khanacademy.org Trello user
+    # so we don't wind up registering multiple webhooks.
+    _remove_all_webhooks(client, secrets.trello_oauth_token)
+
+    # Add new webhooks that'll fire any time an update happens on any board.
+    _add_update_board_webhook(client,
+            trello_util.get_board_id_by_name('BIG_BOARD'))
+    _add_update_board_webhook(client,
+            trello_util.get_board_id_by_name('PROPOSALS_BOARD'))
+    _add_update_board_webhook(client,
+            trello_util.get_board_id_by_name('COMPLETED_BOARD'))
 

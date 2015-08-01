@@ -21,9 +21,10 @@ import os
 from google.appengine.api import taskqueue
 import webapp2
 
-import big_board
 import google_drive
 import proposals_board
+import stickers
+import webhooks
 
 
 class RequestHandler(webapp2.RequestHandler):
@@ -42,7 +43,11 @@ class Setup(RequestHandler):
 
     def post(self):
         """Run initial big board+webhook setup (triggered by task queue)."""
-        big_board.setup()
+        webhooks.setup()
+
+        # Update all stickers on big board (but only big board, don't waste
+        # time on completed and pipeline) during initial setup
+        stickers.sync_big_board_stickers()
 
 
 class GoogleTest(RequestHandler):
@@ -94,7 +99,7 @@ class UpdateBoardWebHook(RequestHandler):
         if action_type in ["moveCardToBoard", "createCard", "updateCard"]:
             logging.info("Syncing card stickers for %s due to action type %s" %
                     (card_id, action_type))
-            big_board.sync_card_stickers(card_id)
+            stickers.sync_card_stickers(card_id)
 
         self.success("WebHook received")
 

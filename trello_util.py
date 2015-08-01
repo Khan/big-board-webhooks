@@ -17,6 +17,10 @@ BOARD_NAME_TO_ID = {
 }
 
 
+def get_board_id_by_name(name):
+    return BOARD_NAME_TO_ID.get(name, None)
+
+
 def get_big_board():
     return _get_board_by_name('BIG_BOARD')
 
@@ -49,7 +53,7 @@ def get_card_by_doc_id(doc_id):
     return None
 
 
-def _get_client():
+def get_client():
     client = trollop.TrelloConnection(secrets.trello_api_key,
         secrets.trello_oauth_token)
 
@@ -57,10 +61,10 @@ def _get_client():
 
 
 def _get_board_by_name(name):
-    board_id = BOARD_NAME_TO_ID.get(name, None)
+    board_id = get_board_id_by_name(name)
     if not board_id:
         return None
 
-    client = _get_client()
+    client = get_client()
 
     return client.get_board(board_id)

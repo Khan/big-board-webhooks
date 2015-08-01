@@ -13,6 +13,7 @@ import random
 import re
 
 import custom_stickers
+import trello_util
 
 
 def update(client, card):
@@ -86,6 +87,13 @@ def create_sticker_post_data(client, card):
     margin_top = 5
     offset = 18
     count = 0
+
+    if len(sticker_string) > 6:
+        # Hacky little fix for cards w/ lots of stickers.
+        # TODO(kamens): actually measure Trello's x position limit and
+        # calculate correct offset per card depending on # of stickers
+        offset = 10
+
     for sticker_letter in sticker_string.upper():
         custom_sticker = custom_stickers.CustomStickers.from_shortname(
                 sticker_letter)
@@ -97,3 +105,17 @@ def create_sticker_post_data(client, card):
         count += 1
     return sticker_post_data
 
+
+def sync_card_stickers(card_id):
+    """Sync Trello card stickers w/ ||GPW||-formatted string in description."""
+    client = trello_util.get_client()
+    card = client.get_card(card_id)
+    update(client, card)
+
+
+def sync_big_board_stickers():
+    """Sync all Trello stickers on big board."""
+    client = trello_util.get_client()
+    big_board = trello_util.get_big_board()
+    for card in big_board.cards:
+        update(client, card)
