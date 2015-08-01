@@ -47,7 +47,9 @@ class Setup(RequestHandler):
 
 class GoogleTest(RequestHandler):
     def get(self):
-        google_drive.test()
+        doc_id = self.request.get("doc_id")
+        title, html = google_drive.pull_doc_data(doc_id)
+        logging.info("Title: %s" % title)
 
 
 class ProposalTest(RequestHandler):
