@@ -1,0 +1,234 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: ben@khanacademy.org
+Received: by 10.76.166.165 with SMTP id zh5csp1666557oab;
+        Thu, 14 May 2015 17:13:06 -0700 (PDT)
+X-Received: by 10.170.53.82 with SMTP id 79mr7669427ykv.75.1431648786199;
+        Thu, 14 May 2015 17:13:06 -0700 (PDT)
+Return-Path: <new-projects+bncBCR37T65Z4NRBEPU2SVAKGQERCLNEHI@khanacademy.org>
+Received: from mail-yh0-x247.google.com (mail-yh0-x247.google.com. [2607:f8b0:4002:c01::247])
+        by mx.google.com with ESMTPS id h2si13255315yhq.110.2015.05.14.17.13.05
+        for <ben@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 14 May 2015 17:13:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of new-projects+bncBCR37T65Z4NRBEPU2SVAKGQERCLNEHI@khanacademy.org designates 2607:f8b0:4002:c01::247 as permitted sender) client-ip=2607:f8b0:4002:c01::247;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of new-projects+bncBCR37T65Z4NRBEPU2SVAKGQERCLNEHI@khanacademy.org designates 2607:f8b0:4002:c01::247 as permitted sender) smtp.mail=new-projects+bncBCR37T65Z4NRBEPU2SVAKGQERCLNEHI@khanacademy.org;
+       dkim=pass header.i=@khanacademy.org;
+       dmarc=pass (p=NONE dis=NONE) header.from=khanacademy.org
+Received: by yhdz67 with SMTP id z67sf77261671yhd.0
+        for <ben@khanacademy.org>; Thu, 14 May 2015 17:13:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=khanacademy.org; s=google;
+        h=sender:mime-version:in-reply-to:references:from:date:message-id
+         :subject:to:cc:content-type:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=VEov33MchMGLlNTuWBFlsVj5GK9EEH8vZt1wNQuZZ/Y=;
+        b=cFlJszyFIwB5uf6Ix4xt4GWHth6EujVtec6Fi5bIOK+e50kCeoTKqoNAb+ENgyzfWo
+         fpFeHg1yl8LZiG+RMrzgkxd8cJYuPwD8z/oEcZw6GYv03Iikj6TkXcYKVWoq6YWct7Mx
+         Dc0jvQKiltPLJm0dc8XshRv2d/txacpYbrKjo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=sender:x-gm-message-state:mime-version:in-reply-to:references:from
+         :date:message-id:subject:to:cc:content-type:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=VEov33MchMGLlNTuWBFlsVj5GK9EEH8vZt1wNQuZZ/Y=;
+        b=ZuTGhxz1RgwEji9Gr+RrMY1XHlXzpLVwnqib6ILL1MKOGA6XJmTzz6XRxfVWi+aZab
+         IViQ9PSFurllqRE/guGlowAUC+7XuEUC/MQlzHuwI6PXzpxaEFTtDo2zdcMGXHL9p87N
+         t/1gKKeQmQ+xOIA5aDBgADd2o5K079d5yCVnKi9itR1fG2rufwCpGA8sQmgcTLGy8vDp
+         ACy3gQTrtfpckBMZ7aRPYw7GSXPakdVrq4SzHcvO4pDRJvKy247EXzd7X4FjtjN2XkcI
+         SOh8J5SIyvUh6T36zVpRU8YDMXWUmYJF2wHwjtqNuomUkYCCU8P12cZZJw/7kIZXsa0p
+         ggvA==
+Sender: new-projects@khanacademy.org
+X-Gm-Message-State: ALoCoQlc6dQnDSk3aITTp3vV2UVFuewL9/+aBMTKKlctmL1ikcVaAQJtUEl5uTfo1eDGF7h0OE6s
+X-Received: by 10.140.145.199 with SMTP id 190mr9578381qhr.2.1431648785599;
+        Thu, 14 May 2015 17:13:05 -0700 (PDT)
+X-BeenThere: new-projects@khanacademy.org
+Received: by 10.107.132.145 with SMTP id o17ls1084004ioi.64.gmail; Thu, 14 May
+ 2015 17:13:05 -0700 (PDT)
+X-Received: by 10.43.39.1 with SMTP id tk1mr15930695icb.26.1431648785412;
+        Thu, 14 May 2015 17:13:05 -0700 (PDT)
+Received: from mail-ig0-x22d.google.com (mail-ig0-x22d.google.com. [2607:f8b0:4001:c05::22d])
+        by mx.google.com with ESMTPS id c18si394049igr.39.2015.05.14.17.13.05
+        for <new-projects@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 14 May 2015 17:13:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of monica@khanacademy.org designates 2607:f8b0:4001:c05::22d as permitted sender) client-ip=2607:f8b0:4001:c05::22d;
+Received: by igbyr2 with SMTP id yr2so182632636igb.0
+        for <new-projects@khanacademy.org>; Thu, 14 May 2015 17:13:05 -0700 (PDT)
+X-Received: by 10.107.36.147 with SMTP id k141mr9035403iok.52.1431648785185;
+ Thu, 14 May 2015 17:13:05 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.144.66 with HTTP; Thu, 14 May 2015 17:12:44 -0700 (PDT)
+In-Reply-To: <CADONaHyNQP9pumqCQf8TjVnwRmOMOBRniBN6wRZhzxZWXpJcPA@mail.gmail.com>
+References: <CAGVfAeOkPdaLFHH16s4CZGd5uERero-by6vwhns+1MdiPYArEA@mail.gmail.com>
+ <CADONaHyNQP9pumqCQf8TjVnwRmOMOBRniBN6wRZhzxZWXpJcPA@mail.gmail.com>
+From: Monica Tran <monica@khanacademy.org>
+Date: Thu, 14 May 2015 17:12:44 -0700
+Message-ID: <CAGVfAeO=3neFGA8hdPmFBxwv3UeBmvzTLs6BJMPBLYUfaAE5WA@mail.gmail.com>
+Subject: Re: Any updates to proposal?
+To: Alex Lopatin <alex@khanacademy.org>
+Cc: new-projects <new-projects@khanacademy.org>
+Content-Type: multipart/alternative; boundary=001a1141bbee48d50c051613b54e
+X-Original-Sender: monica@khanacademy.org
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com:
+ domain of monica@khanacademy.org designates 2607:f8b0:4001:c05::22d as
+ permitted sender) smtp.mail=monica@khanacademy.org;       dkim=pass
+ header.i=@khanacademy.org;       dmarc=pass (p=NONE dis=NONE) header.from=khanacademy.org
+Precedence: list
+Mailing-list: list new-projects@khanacademy.org; contact new-projects+owners@khanacademy.org
+List-ID: <new-projects.khanacademy.org>
+X-Google-Group-Id: 775692258477
+List-Post: <http://groups.google.com/a/khanacademy.org/group/new-projects/post>,
+ <mailto:new-projects@khanacademy.org>
+List-Help: <http://support.google.com/a/khanacademy.org/bin/topic.py?topic=25838>,
+ <mailto:new-projects+help@khanacademy.org>
+List-Archive: <http://groups.google.com/a/khanacademy.org/group/new-projects/>
+List-Subscribe: <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>,
+ <mailto:new-projects+subscribe@khanacademy.org>
+List-Unsubscribe: <mailto:googlegroups-manage+775692258477+unsubscribe@googlegroups.com>,
+ <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>
+
+--001a1141bbee48d50c051613b54e
+Content-Type: text/plain; charset=UTF-8
+
+Thanks so much for these updates, Alex.
+
+Based on our quick conversation today, we assume you're going to update the
+fix links projects to callout the benefits to existing HTML articles (for
+translations), in addition to laying the foundation for future Perseus
+articles.  *We've added this project into the queue! *
+
+As for the "Better links" project, we'll defer for now and re-evaluate
+after the "Fix links" among the remaining problems we need to tackle for
+articles.
+
+Thanks,
+Monica
+
+On Thu, May 14, 2015 at 1:58 PM, Alex Lopatin <alex@khanacademy.org> wrote:
+
+> Hey Monica,
+>
+> Here's the first half of the Better Links in Articles
+> <https://docs.google.com/document/d/1aQfqmuXP6z2Hj3cYwAoCetXledZQRAfTlAJqjA0hl7A>
+> project, broken out: Fix Links in Articles
+> <https://docs.google.com/document/d/1o-LhqDSfkC-LQwHlBl-p3bDqM-tpfLkLmJnqhX2adW8>
+> .
+> The second half needs more reworking, specifically in terms of making the
+> motivations/imperatives behind it clearer.
+>
+> - Alex
+>
+> On Thu, May 7, 2015 at 12:11 PM, Monica Tran <monica@khanacademy.org>
+> wrote:
+>
+>> Hello,
+>>
+>> We're getting ready for our weekly project prioritization session, and
+>> just wanted to check in to see if any of you had any updates to your
+>> projects, which are currently still in proposal state awaiting updates
+>> based on feedback/requests. I assume it's too late for today's session, but
+>> just wanted to check in to see whether you were still working on these or
+>> wanted to defer/withdraw them.
+>>
+>> Thanks,
+>> Monica
+>>
+>>
+>>
+>
+
+
+-- 
+
+monica tran
+
+product mgmt & marketing
+
+monica@khanacademy.org
+
+Let's change minds about learning #YouCanLearnAnything
+<https://www.khanacademy.org/youcanlearnanything>
+
+--001a1141bbee48d50c051613b54e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Thanks so much for these updates, Alex.=C2=A0</div><div=
+ class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><=
+br></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,=
+sans-serif">Based on our quick conversation today, we assume you&#39;re goi=
+ng to update the fix links projects to callout the benefits to existing HTM=
+L articles (for translations), in addition to laying the foundation for fut=
+ure Perseus articles. =C2=A0<b>We&#39;ve added this project into the queue!=
+=C2=A0</b></div><div class=3D"gmail_default" style=3D"font-family:arial,hel=
+vetica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fam=
+ily:arial,helvetica,sans-serif">As for the &quot;Better links&quot; project=
+, we&#39;ll defer for now and re-evaluate after the &quot;Fix links&quot; a=
+mong the remaining problems we need to tackle for articles.=C2=A0</div><div=
+ class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><=
+br></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,=
+sans-serif">Thanks,</div><div class=3D"gmail_default" style=3D"font-family:=
+arial,helvetica,sans-serif">Monica</div></div><div class=3D"gmail_extra"><b=
+r><div class=3D"gmail_quote">On Thu, May 14, 2015 at 1:58 PM, Alex Lopatin =
+<span dir=3D"ltr">&lt;<a href=3D"mailto:alex@khanacademy.org" target=3D"_bl=
+ank">alex@khanacademy.org</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
+il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
+t:1ex"><div dir=3D"ltr"><div>Hey Monica,</div><div><br></div><div>Here&#39;=
+s the first half of the <a href=3D"https://docs.google.com/document/d/1aQfq=
+muXP6z2Hj3cYwAoCetXledZQRAfTlAJqjA0hl7A" target=3D"_blank">Better Links in =
+Articles</a> project, broken out: <a href=3D"https://docs.google.com/docume=
+nt/d/1o-LhqDSfkC-LQwHlBl-p3bDqM-tpfLkLmJnqhX2adW8" target=3D"_blank">Fix Li=
+nks in Articles</a>.</div><div>The second half needs more reworking, specif=
+ically in terms of making the motivations/imperatives behind it clearer.</d=
+iv><span class=3D"HOEnZb"><font color=3D"#888888"><div><br></div><div>- Ale=
+x</div></font></span></div><div class=3D"gmail_extra"><br><div class=3D"gma=
+il_quote"><span class=3D"">On Thu, May 7, 2015 at 12:11 PM, Monica Tran <sp=
+an dir=3D"ltr">&lt;<a href=3D"mailto:monica@khanacademy.org" target=3D"_bla=
+nk">monica@khanacademy.org</a>&gt;</span> wrote:<br></span><div><div class=
+=3D"h5"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
+-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail=
+_default" style=3D"font-family:arial,helvetica,sans-serif">Hello,</div><div=
+ class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><=
+br></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,=
+sans-serif">We&#39;re getting ready for our weekly project prioritization s=
+ession, and just wanted to check in to see if any of you had any updates to=
+ your projects, which are currently still in proposal state awaiting update=
+s based on feedback/requests. I assume it&#39;s too late for today&#39;s se=
+ssion, but just wanted to check in to see whether you were still working on=
+ these or wanted to defer/withdraw them.</div><div class=3D"gmail_default" =
+style=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gm=
+ail_default" style=3D"font-family:arial,helvetica,sans-serif">Thanks,</div>=
+<div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-seri=
+f">Monica</div><div></div><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div>=
+<div dir=3D"ltr"><p style=3D"line-height:1.15;margin-top:0pt;margin-bottom:=
+0pt"><br></p></div></div></div></div></div></div>
+</div>
+</blockquote></div></div></div><br></div>
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div class=
+=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><p dir=3D"ltr" style=3D"line-height:1.15;margin-top:0pt;margin-bot=
+tom:0pt"><font size=3D"1"><span style=3D"font-family:verdana,sans-serif;fon=
+t-weight:bold;white-space:pre-wrap;line-height:1.15">monica tran</span><fon=
+t color=3D"#444444" style=3D"font-family:verdana,sans-serif;font-weight:bol=
+d;white-space:pre-wrap;line-height:1.15"> </font><br></font></p><p style=3D=
+"margin-top:0pt;margin-bottom:0pt"><font face=3D"verdana, sans-serif" size=
+=3D"1"><span style=3D"line-height:11px">product mgmt &amp; marketing</span>=
+</font></p><p style=3D"margin-top:0pt;margin-bottom:0pt"><span style=3D"fon=
+t-family:verdana,sans-serif;line-height:1.15"><a href=3D"mailto:monica@khan=
+academy.org" target=3D"_blank"><font size=3D"1">monica@khanacademy.org</fon=
+t></a></span></p><p style=3D"line-height:1.15;margin-top:0pt;margin-bottom:=
+0pt"><font size=3D"1"><span style=3D"font-family:verdana,sans-serif;color:r=
+gb(68,68,68);font-style:italic;vertical-align:baseline;white-space:pre-wrap=
+">Let&#39;s change minds about learning </span><span style=3D"font-family:v=
+erdana,sans-serif;text-decoration:underline;color:rgb(68,68,68);font-style:=
+italic;vertical-align:baseline;white-space:pre-wrap"><a href=3D"https://www=
+.khanacademy.org/youcanlearnanything" style=3D"color:rgb(17,85,204);text-de=
+coration:none" target=3D"_blank">#YouCanLearnAnything</a></span></font><br>=
+</p></div></div></div></div></div></div>
+</div>
+
+--001a1141bbee48d50c051613b54e--

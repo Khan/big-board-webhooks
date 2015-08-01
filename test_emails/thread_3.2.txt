@@ -1,0 +1,172 @@
+                                                                                                                                                                                                                                                               
+MIME-Version: 1.0
+Received: by 10.25.170.4 with HTTP; Mon, 27 Jul 2015 20:15:11 -0700 (PDT)
+In-Reply-To: <CAMDEvD6ZHcovO+BPnJrFRehDnbBGu3ksMvMHaFFJdt-Qug9hxg@mail.gmail.com>
+References: <CAMDEvD4x_o8FHPMNfA7Kx7oM2kfFDScFHFyYQYHG=b7+56Kspw@mail.gmail.com>
+	<CANM37xvvfshhjA1UhZJOqEGgAAGxQ=MMH2yg42Qg4kUpEM673g@mail.gmail.com>
+	<CAMDEvD6ZHcovO+BPnJrFRehDnbBGu3ksMvMHaFFJdt-Qug9hxg@mail.gmail.com>
+Date: Mon, 27 Jul 2015 20:15:11 -0700
+Delivered-To: ben@khanacademy.org
+Message-ID: <CANM37xtOj8DOaAdSi=tt83qYv2ywLfuK=0ZXe+2-gr_R4rS95g@mail.gmail.com>
+Subject: Re: Project proposal: OhNoesOhYes, The Sequel
+From: Ben Kamens <ben@khanacademy.org>
+To: Pamela Fox <pamela@khanacademy.org>
+Cc: Michelle Todd <michelle@khanacademy.org>, Kevin Barabash <kevinb@khanacademy.org>, 
+	compsci-blackhole <compsci-blackhole@khanacademy.org>, 
+	new-projects-blackhole <new-projects-blackhole@khanacademy.org>
+Content-Type: multipart/alternative; boundary=001a113f2f08d21c35051be6e0cf
+
+--001a113f2f08d21c35051be6e0cf
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Likely the engineer. Most engineers actually spend nontrivial time between
+projects, mostly in planning phase (helping plan next project or
+retrospecting previous) or taking care of some other small little doodad
+that we humans have determined is important to take care of b/w projects.
+
+Doesn't happen b/w every project, but happens a lot. If we find ourselves
+w/ lots of "w/ literally one day I can respond to A/B results and make a
+tweak due to our learnings," a between-project day is perfectly healthy and
+encouraged.
+
+On Mon, Jul 27, 2015 at 8:12 PM, Pamela Fox <pamela@khanacademy.org> wrote:
+
+> "Current best wisdom is to, between projects, clean up old A/B tests or
+> surveys, look at results, and make a decision about what needs to be done
+> moving forward"
+>
+> For that sentence, is the implied subject the primary engineer that
+> implemented the project or the project DRI? If its the engineer, how ofte=
+n
+> do engineers have between-project times? (I don't actually know).
+>
+>
+>
+> On Mon, Jul 27, 2015 at 8:07 PM, Ben Kamens <ben@khanacademy.org> wrote:
+>
+>> Also, an observation: it's a bit tricky to do projects where we want to
+>>> release something, wait a week to get feedback, then iterate and get mo=
+re
+>>> feedback. They end up taking longer, since the resources may not exist =
+2
+>>> weeks after.
+>>
+>>
+>> Yup. Admitted.
+>>
+>> Current best wisdom is to, between projects, clean up old A/B tests or
+>> surveys, look at results, and make a decision about what needs to be don=
+e
+>> moving forward. If a day or two of off-project work lets us iterate
+>> post-feedback (changing strings, tiny little things, etc) and re-ship, t=
+hen
+>> so be it =E2=80=94 we just need to keep our eye out for this happening a=
+ll the time
+>> (so we can maybe make it easier to do this) or if it's actually 3, 4, 5,=
+ 6
+>> days (in which case this is more broken than I thought).
+>>
+>> If the learnings mean we need to kick off a followup project w/ more
+>> significant work ("The Sequel!"), then great, that feels perfect.
+>>
+>> On Thu, Jul 23, 2015 at 11:01 AM, Pamela Fox <pamela@khanacademy.org>
+>> wrote:
+>>
+>>> Hello!
+>>>
+>>> This is a follow-up project for OhNoesOhYes:
+>>>
+>>> https://docs.google.com/document/d/1ZLB3xnP_Pz6UKgc9D8eHGFPJacmQeK-546F=
+R6kghMPc/edit#heading=3Dh.nhyxg0lfaux2
+>>>
+>>> Also, an observation: it's a bit tricky to do projects where we want to
+>>> release something, wait a week to get feedback, then iterate and get mo=
+re
+>>> feedback. They end up taking longer, since the resources may not exist =
+2
+>>> weeks after.
+>>>
+>>> (I've noticed that with some of the SEO experiments as well, where they
+>>> seem to have run longer than necessary, due to resources not being
+>>> available to check on the status of the A/B. )
+>>>
+>>> Thanks!
+>>>
+>>> - pamela
+>>>
+>>
+>>
+>
+
+--001a113f2f08d21c35051be6e0cf
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Likely the engineer. Most engineers actually spend nontriv=
+ial time between projects, mostly in planning phase (helping plan next proj=
+ect or retrospecting previous) or taking care of some other small little do=
+odad that we humans have determined is important to take care of b/w projec=
+ts.<div><br></div><div>Doesn&#39;t happen b/w every project, but happens a =
+lot. If we find ourselves w/ lots of &quot;w/ literally one day I can respo=
+nd to A/B results and make a tweak due to our learnings,&quot; a between-pr=
+oject day is perfectly healthy and encouraged.</div></div><div class=3D"gma=
+il_extra"><br><div class=3D"gmail_quote">On Mon, Jul 27, 2015 at 8:12 PM, P=
+amela Fox <span dir=3D"ltr">&lt;<a href=3D"mailto:pamela@khanacademy.org" t=
+arget=3D"_blank">pamela@khanacademy.org</a>&gt;</span> wrote:<br><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex"><div dir=3D"ltr"><span class=3D"">&quot;<span style=3D=
+"font-size:12.8000001907349px">Current best wisdom is to, between projects,=
+ clean up old A/B tests or surveys, look at results, and make a decision ab=
+out what needs to be done moving forward&quot;</span><div><span style=3D"fo=
+nt-size:12.8000001907349px"><br></span></div></span><div><span style=3D"fon=
+t-size:12.8000001907349px">For that sentence, is the implied subject the pr=
+imary engineer that implemented the project or the project DRI? If its the =
+engineer, how often do engineers have between-project times? (I don&#39;t a=
+ctually know).</span></div><div><span style=3D"font-size:12.8000001907349px=
+"><br></span></div><div><span style=3D"font-size:12.8000001907349px"><br></=
+span></div></div><div class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmai=
+l_extra"><br><div class=3D"gmail_quote">On Mon, Jul 27, 2015 at 8:07 PM, Be=
+n Kamens <span dir=3D"ltr">&lt;<a href=3D"mailto:ben@khanacademy.org" targe=
+t=3D"_blank">ben@khanacademy.org</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr"><span><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(2=
+04,204,204);border-left-style:solid;padding-left:1ex"><span style=3D"font-s=
+ize:12.8000001907349px">Also, an observation: it&#39;s a bit tricky to do p=
+rojects where we want to release something, wait a week to get feedback, th=
+en iterate and get more feedback. They end up taking longer, since the reso=
+urces may not exist 2 weeks after.=C2=A0</span></blockquote><div><br></div>=
+</span><div>Yup. Admitted.</div><div><br></div><div>Current best wisdom is =
+to, between projects, clean up old A/B tests or surveys, look at results, a=
+nd make a decision about what needs to be done moving forward. If a day or =
+two of off-project work lets us iterate post-feedback (changing strings, ti=
+ny little things, etc) and re-ship, then so be it =E2=80=94 we just need to=
+ keep our eye out for this happening all the time (so we can maybe make it =
+easier to do this) or if it&#39;s actually 3, 4, 5, 6 days (in which case t=
+his is more broken than I thought).</div><div><br></div><div>If the learnin=
+gs mean we need to kick off a followup project w/ more significant work (&q=
+uot;The Sequel!&quot;), then great, that feels perfect.</div></div><div><di=
+v><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, Jul 23,=
+ 2015 at 11:01 AM, Pamela Fox <span dir=3D"ltr">&lt;<a href=3D"mailto:pamel=
+a@khanacademy.org" target=3D"_blank">pamela@khanacademy.org</a>&gt;</span> =
+wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hello!<div><br></=
+div><div>This is a follow-up project for OhNoesOhYes:</div><div><a href=3D"=
+https://docs.google.com/document/d/1ZLB3xnP_Pz6UKgc9D8eHGFPJacmQeK-546FR6kg=
+hMPc/edit#heading=3Dh.nhyxg0lfaux2" target=3D"_blank">https://docs.google.c=
+om/document/d/1ZLB3xnP_Pz6UKgc9D8eHGFPJacmQeK-546FR6kghMPc/edit#heading=3Dh=
+.nhyxg0lfaux2</a><br></div><div><br></div><div>Also, an observation: it&#39=
+;s a bit tricky to do projects where we want to release something, wait a w=
+eek to get feedback, then iterate and get more feedback. They end up taking=
+ longer, since the resources may not exist 2 weeks after.=C2=A0</div><div><=
+br></div><div>(I&#39;ve noticed that with some of the SEO experiments as we=
+ll, where they seem to have run longer than necessary, due to resources not=
+ being available to check on the status of the A/B. )</div><div><br></div><=
+div>Thanks!</div><span><font color=3D"#888888"><div><br></div><div>- pamela=
+</div></font></span></div>
+</blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+
+--001a113f2f08d21c35051be6e0cf--

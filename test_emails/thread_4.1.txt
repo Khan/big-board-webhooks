@@ -1,0 +1,144 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: ben@khanacademy.org
+Received: by 10.76.166.165 with SMTP id zh5csp1798393oab;
+        Mon, 6 Jul 2015 10:35:57 -0700 (PDT)
+X-Received: by 10.194.205.225 with SMTP id lj1mr10627wjc.138.1436204156942;
+        Mon, 06 Jul 2015 10:35:56 -0700 (PDT)
+Return-Path: <new-projects+bncBDJIHOMRQACRB7HY5KWAKGQEZJLQKGY@khanacademy.org>
+Received: from mail-wi0-x246.google.com (mail-wi0-x246.google.com. [2a00:1450:400c:c05::246])
+        by mx.google.com with ESMTPS id ev15si31347867wjd.117.2015.07.06.10.35.56
+        for <ben@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 06 Jul 2015 10:35:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of new-projects+bncBDJIHOMRQACRB7HY5KWAKGQEZJLQKGY@khanacademy.org designates 2a00:1450:400c:c05::246 as permitted sender) client-ip=2a00:1450:400c:c05::246;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of new-projects+bncBDJIHOMRQACRB7HY5KWAKGQEZJLQKGY@khanacademy.org designates 2a00:1450:400c:c05::246 as permitted sender) smtp.mail=new-projects+bncBDJIHOMRQACRB7HY5KWAKGQEZJLQKGY@khanacademy.org;
+       dkim=pass header.i=@khanacademy.org
+Received: by widjy10 with SMTP id jy10sf54164487wid.3
+        for <ben@khanacademy.org>; Mon, 06 Jul 2015 10:35:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=khanacademy.org; s=google;
+        h=sender:mime-version:date:message-id:subject:from:to:cc:content-type
+         :x-original-sender:x-original-authentication-results:precedence
+         :mailing-list:list-id:x-spam-checked-in-group:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=gfFuFP0zDpaU4egqRNjLxlP8YJT/RsQBJzb8MSU71vA=;
+        b=RPJsR+0kD5f9iXY9K73URTCpLh5ZOP9E7lDWBqRw0b951MBWAh0FFGbwXVzWDcm7hR
+         c1XuYgSHehugSb/86xDN3wRwkX0YyJa3efBaH5x76/v+YrwfY17ZUXD68Dw9MUuJh6os
+         ES5ACvSUVD3oCCsSD2BfPatqRpOn7zXVkK58w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=sender:x-gm-message-state:mime-version:date:message-id:subject:from
+         :to:cc:content-type:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=gfFuFP0zDpaU4egqRNjLxlP8YJT/RsQBJzb8MSU71vA=;
+        b=fFpqWX2ww43CPkrxDvjBmxj+IBvlAQdLgkapQFs5UTkkoqr1XiV0LTw2NEm24h/AtX
+         A7pIFcHZ5znRHbnRwgk1pcyx7Cw4r6TRp0eLX4HUC/Q0mkRSOx7pCoUBKg5p5tX7+Hq9
+         gegd5din3Efne0yK5S4cPd312txTLuOpKntrXrzEzg9b2B16GHohanvs6oqUl3ul/VHf
+         HWgaMRyfK1zbBD1ieNpPX6LhdYrOYGd+QYfyzhWrol5Xriz4WsxkfOCFMLKhSEELhWq+
+         atSD9sc58ms6HWdanzy8eCoUVTxFnBaQPQmNeEEpY603KYVCO73cjbLllKKgED+bbfp4
+         zRMQ==
+Sender: new-projects@khanacademy.org
+X-Gm-Message-State: ALoCoQll6qNsDIW09fyos8hDDCoJp+PvA2NU5kqPid/3+Sp/PIrYyghuUfzVx9g+nVq9R57yr/SW
+X-Received: by 10.180.81.170 with SMTP id b10mr15852358wiy.4.1436204156385;
+        Mon, 06 Jul 2015 10:35:56 -0700 (PDT)
+X-BeenThere: new-projects@khanacademy.org
+Received: by 10.152.23.162 with SMTP id n2ls722138laf.82.gmail; Mon, 06 Jul
+ 2015 10:35:55 -0700 (PDT)
+X-Received: by 10.152.5.167 with SMTP id t7mr12608lat.112.1436204155854;
+        Mon, 06 Jul 2015 10:35:55 -0700 (PDT)
+Received: from mail-la0-x22d.google.com (mail-la0-x22d.google.com. [2a00:1450:4010:c03::22d])
+        by mx.google.com with ESMTPS id kg7si15772209lbc.176.2015.07.06.10.35.54
+        for <new-projects@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 06 Jul 2015 10:35:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of natalie@khanacademy.org designates 2a00:1450:4010:c03::22d as permitted sender) client-ip=2a00:1450:4010:c03::22d;
+Received: by labgy5 with SMTP id gy5so11949387lab.2
+        for <new-projects@khanacademy.org>; Mon, 06 Jul 2015 10:35:54 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 10.152.116.39 with SMTP id jt7mr22680lab.82.1436204154307; Mon,
+ 06 Jul 2015 10:35:54 -0700 (PDT)
+Received: by 10.114.199.146 with HTTP; Mon, 6 Jul 2015 10:35:54 -0700 (PDT)
+Date: Mon, 6 Jul 2015 10:35:54 -0700
+Message-ID: <CAFJSXbo2cTWr1=YvYb9jkRKMco1kNbwiPv8o1NPxoSAXqgKLVA@mail.gmail.com>
+Subject: Where in the World is Khanmen San Diego? (Create locale subdomains)
+From: Natalie Rothfels <natalie@khanacademy.org>
+To: new-projects <new-projects@khanacademy.org>
+Cc: James Irwin <james@khanacademy.org>
+Content-Type: multipart/alternative; boundary=001a11c36592715c2e051a3856de
+X-Original-Sender: natalie@khanacademy.org
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com:
+ domain of natalie@khanacademy.org designates 2a00:1450:4010:c03::22d as
+ permitted sender) smtp.mail=natalie@khanacademy.org;       dkim=pass header.i=@khanacademy.org
+Precedence: list
+Mailing-list: list new-projects@khanacademy.org; contact new-projects+owners@khanacademy.org
+List-ID: <new-projects.khanacademy.org>
+X-Spam-Checked-In-Group: new-projects@khanacademy.org
+X-Google-Group-Id: 775692258477
+List-Post: <http://groups.google.com/a/khanacademy.org/group/new-projects/post>,
+ <mailto:new-projects@khanacademy.org>
+List-Help: <http://support.google.com/a/khanacademy.org/bin/topic.py?topic=25838>,
+ <mailto:new-projects+help@khanacademy.org>
+List-Archive: <http://groups.google.com/a/khanacademy.org/group/new-projects/>
+List-Subscribe: <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>,
+ <mailto:new-projects+subscribe@khanacademy.org>
+List-Unsubscribe: <mailto:googlegroups-manage+775692258477+unsubscribe@googlegroups.com>,
+ <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>
+
+--001a11c36592715c2e051a3856de
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi new-projects,
+
+James wrote up this project to create locale subdomains so we can have the
+infrastructure to easily display things differently across different
+domains *and *reap the SEO benefits therein.
+=E2=80=8B
+ Project Where in the World is Khanman San Diego?
+<https://docs.google.com/a/khanacademy.org/document/d/1RN4UvHSHk5k2EC_YgZq6=
+ceWH3iL9Xqyv5vBKfjDMdjI/edit?usp=3Ddrive_web>
+=E2=80=8B
+James is going on paternity leave, so I'm delivering the message (if you
+will).
+
+Best,
+Natalie
+
+--=20
+*Natalie Rothfels*
+Content Localization Program Manager
+*Khan Academy*
+
+--001a11c36592715c2e051a3856de
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi new-projects,<div><br></div><div>James wrote up this pr=
+oject to create locale subdomains so we can have the infrastructure to easi=
+ly display things differently across different domains <b>and </b>reap the =
+SEO benefits therein.=C2=A0</div><div>=E2=80=8B<br><div class=3D"gmail_chip=
+ gmail_drive_chip" style=3D"width:396px;height:18px;max-height:18px;backgro=
+und-color:#f5f5f5;padding:5px;color:#222;font-family:arial;font-style:norma=
+l;font-weight:bold;font-size:13px;border:1px solid #ddd;line-height:1"><a h=
+ref=3D"https://docs.google.com/a/khanacademy.org/document/d/1RN4UvHSHk5k2EC=
+_YgZq6ceWH3iL9Xqyv5vBKfjDMdjI/edit?usp=3Ddrive_web" target=3D"_blank" style=
+=3D"display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space=
+:nowrap;text-decoration:none;padding:1px 0px;border:none;width:100%"><img s=
+tyle=3D"vertical-align: bottom; border: none;" src=3D"https://ssl.gstatic.c=
+om/docs/doclist/images/icon_11_document_list.png">=C2=A0<span dir=3D"ltr" s=
+tyle=3D"color:#15c;text-decoration:none;vertical-align:bottom">Project Wher=
+e in the World is Khanman San Diego?</span></a></div>=E2=80=8B<br></div><di=
+v>James is going on paternity leave, so I&#39;m delivering the message (if =
+you will).</div><div><br></div><div>Best,</div><div>Natalie<br clear=3D"all=
+"><div><br></div>-- <br><div class=3D"gmail_signature"><div dir=3D"ltr"><di=
+v><div dir=3D"ltr"><div style=3D"color:rgb(136,136,136)"><b><font size=3D"1=
+">Natalie Rothfels</font></b></div><div style=3D"color:rgb(136,136,136)"><f=
+ont size=3D"1">Content Localization Program Manager</font></div><div style=
+=3D"color:rgb(136,136,136)"><i><font size=3D"1">Khan Academy</font></i></di=
+v></div></div></div></div>
+</div></div>
+
+--001a11c36592715c2e051a3856de--

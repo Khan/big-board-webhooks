@@ -1,0 +1,128 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: ben@khanacademy.org
+Received: by 10.76.166.165 with SMTP id zh5csp310512oab;
+        Fri, 24 Jul 2015 17:18:22 -0700 (PDT)
+X-Received: by 10.180.105.165 with SMTP id gn5mr1624078wib.20.1437783502454;
+        Fri, 24 Jul 2015 17:18:22 -0700 (PDT)
+Return-Path: <new-projects-blackhole+bncBDZ2HF4FIQIM3K6LVUCRUBCZGWYZA@khanacademy.org>
+Received: from mail-wi0-x248.google.com (mail-wi0-x248.google.com. [2a00:1450:400c:c05::248])
+        by mx.google.com with ESMTPS id ml5si833626wic.74.2015.07.24.17.18.21
+        for <ben@khanacademy.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 Jul 2015 17:18:22 -0700 (PDT)
+Received-SPF: pass (google.com: domain of new-projects-blackhole+bncBDZ2HF4FIQIM3K6LVUCRUBCZGWYZA@khanacademy.org designates 2a00:1450:400c:c05::248 as permitted sender) client-ip=2a00:1450:400c:c05::248;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of new-projects-blackhole+bncBDZ2HF4FIQIM3K6LVUCRUBCZGWYZA@khanacademy.org designates 2a00:1450:400c:c05::248 as permitted sender) smtp.mail=new-projects-blackhole+bncBDZ2HF4FIQIM3K6LVUCRUBCZGWYZA@khanacademy.org;
+       dkim=pass header.i=@khanacademy.org
+Received: by wilm20 with SMTP id m20sf11694821wil.2
+        for <ben@khanacademy.org>; Fri, 24 Jul 2015 17:18:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=khanacademy.org; s=google;
+        h=sender:mime-version:date:message-id:subject:from:to:content-type
+         :x-original-sender:x-original-authentication-results:precedence
+         :mailing-list:list-id:x-spam-checked-in-group:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=zL7vhPMOFIJTh+NUDb4ArE3lTi53Ap/az7HNjkAFLI8=;
+        b=SRlvy9IDorIqjxSCwQ429715hwO5TOu67lkzUv3kXdk0A8+atoJzCG6+XqVoatPwHN
+         UMiAJvWXg6KmKS6XtO3xMa8BC2zlJMidTeWjUUy2uBqV48RhodDQkH69GnX/7ljcQarc
+         Xiv5uXvwSdw/UqiDFU1sgufDGNAwBZ+4T+AJ0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=sender:x-gm-message-state:mime-version:date:message-id:subject:from
+         :to:content-type:x-original-sender:x-original-authentication-results
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=zL7vhPMOFIJTh+NUDb4ArE3lTi53Ap/az7HNjkAFLI8=;
+        b=iBs/1Pzu9GAUeGmtsVkjO1K30rMOTpe23nX/eCVYfTksagVNPz7vSge/Z3eVI8BE90
+         PX5O+vDzqeQFUjbX7Joh0R07rFxGLTBIy2/TcLM3NTghzUffZ3uS8YQPIGsMiwpX0YJw
+         CJGuJJg6TC9P+N/DN+fXhf9Nvt+nqXWn3jO0R+GU3GTVsP8e8AmqsCBzkg8PZw85MqbH
+         chw15NwxDeOQN/M/8IxVTVW8zOihsDvd/YF76wCjKBsqSnG7nBxeMZCbLqLxlcyoNLjJ
+         wN3Ewp4GMnYvRdDU3lSOrxT/hYJRlAfs/nqZDVD5Jjkj9KloCzZPQTF8vPhpVdR2Zrj8
+         IEcw==
+Sender: new-projects-blackhole@khanacademy.org
+X-Gm-Message-State: ALoCoQljYpCu8uwHeT+35ojDEhhmoE4x1LOeL9MUaW4dYKbZu+BLMfquKuA/MODubiu4WMlLyEqm
+X-Received: by 10.112.54.166 with SMTP id k6mr7196401lbp.0.1437783501892;
+        Fri, 24 Jul 2015 17:18:21 -0700 (PDT)
+X-BeenThere: new-projects-blackhole@khanacademy.org
+Received: by 10.153.5.9 with SMTP id ci9ls481942lad.69.gmail; Fri, 24 Jul 2015
+ 17:18:21 -0700 (PDT)
+X-Received: by 10.112.171.41 with SMTP id ar9mr7292287lbc.24.1437783501416;
+        Fri, 24 Jul 2015 17:18:21 -0700 (PDT)
+X-BeenThere: new-projects@khanacademy.org
+Received: by 10.180.37.144 with SMTP id y16ls261227wij.38.gmail; Fri, 24 Jul
+ 2015 17:18:21 -0700 (PDT)
+X-Received: by 10.180.189.17 with SMTP id ge17mr1557800wic.90.1437783501155;
+        Fri, 24 Jul 2015 17:18:21 -0700 (PDT)
+Received: from mail-wi0-x235.google.com (mail-wi0-x235.google.com. [2a00:1450:400c:c05::235])
+        by mx.google.com with ESMTPS id sc17si17585205wjb.23.2015.07.24.17.18.20
+        for <new-projects@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 Jul 2015 17:18:20 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ayman@khanacademy.org designates 2a00:1450:400c:c05::235 as permitted sender) client-ip=2a00:1450:400c:c05::235;
+Received: by wibxm9 with SMTP id xm9so45639097wib.0
+        for <new-projects@khanacademy.org>; Fri, 24 Jul 2015 17:18:20 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 10.194.109.97 with SMTP id hr1mr6405940wjb.38.1437783499935;
+ Fri, 24 Jul 2015 17:18:19 -0700 (PDT)
+Received: by 10.27.173.132 with HTTP; Fri, 24 Jul 2015 17:18:19 -0700 (PDT)
+Date: Fri, 24 Jul 2015 17:18:19 -0700
+Message-ID: <CAKsNPY+GzrmSn7Toxp6ccxb2LqeRyy=gZ=W6zekFFu664HXntw@mail.gmail.com>
+Subject: Proposal: Design Investigation for Exercises on Phone
+From: Ayman Nadeem <ayman@khanacademy.org>
+To: new-projects@khanacademy.org
+Content-Type: multipart/alternative; boundary=089e01494b38c71c9e051ba80ed8
+X-Original-Sender: ayman@khanacademy.org
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com:
+ domain of ayman@khanacademy.org designates 2a00:1450:400c:c05::235 as
+ permitted sender) smtp.mail=ayman@khanacademy.org;       dkim=pass header.i=@khanacademy.org
+Precedence: list
+Mailing-list: list new-projects-blackhole@khanacademy.org; contact new-projects-blackhole+owners@khanacademy.org
+List-ID: <new-projects-blackhole.khanacademy.org>
+X-Spam-Checked-In-Group: new-projects@khanacademy.org
+X-Google-Group-Id: 913026474608
+List-Post: <http://groups.google.com/a/khanacademy.org/group/new-projects-blackhole/post>,
+ <mailto:new-projects-blackhole@khanacademy.org>
+List-Help: <http://support.google.com/a/khanacademy.org/bin/topic.py?topic=25838>,
+ <mailto:new-projects-blackhole+help@khanacademy.org>
+List-Archive: <http://groups.google.com/a/khanacademy.org/group/new-projects-blackhole/>
+List-Subscribe: <http://groups.google.com/a/khanacademy.org/group/new-projects-blackhole/subscribe>,
+ <mailto:new-projects-blackhole+subscribe@khanacademy.org>
+List-Unsubscribe: <mailto:googlegroups-manage+913026474608+unsubscribe@googlegroups.com>,
+ <http://groups.google.com/a/khanacademy.org/group/new-projects-blackhole/subscribe>
+
+--089e01494b38c71c9e051ba80ed8
+Content-Type: text/plain; charset=UTF-8
+
+Hi all,
+
+Another result of the exercise classification project
+<https://docs.google.com/presentation/d/1YUWNh0VUKNJ85RgtyRcj0kucatxqSJw1coFXfuEbO7U/edit#slide=id.g5b3f975f5_0_96>
+(aside from the perf project proposal
+<https://docs.google.com/a/khanacademy.org/document/d/1ZKcH46_jHP47RnVXl_YLUSqS9pL7JdnQCxqfscUN9vI/edit?usp=sharing>
+I sent out earlier) is around the design work that needs to be done to
+tease out how to make exercises usable on phones.
+
+The project proposal is here
+<https://docs.google.com/a/khanacademy.org/document/d/1ZKcH46_jHP47RnVXl_YLUSqS9pL7JdnQCxqfscUN9vI/edit?usp=sharing>.
+Please have a look and let me know what the best way is to move forward.
+
+Ayman
+
+--089e01494b38c71c9e051ba80ed8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi all,<div><br></div><div>Another result of the <a href=
+=3D"https://docs.google.com/presentation/d/1YUWNh0VUKNJ85RgtyRcj0kucatxqSJw=
+1coFXfuEbO7U/edit#slide=3Did.g5b3f975f5_0_96">exercise classification proje=
+ct</a> (aside from the <a href=3D"https://docs.google.com/a/khanacademy.org=
+/document/d/1ZKcH46_jHP47RnVXl_YLUSqS9pL7JdnQCxqfscUN9vI/edit?usp=3Dsharing=
+">perf project proposal</a> I sent out earlier) is around the design work t=
+hat needs to be done to tease out how to make exercises usable on phones.=
+=C2=A0</div><div><br></div><div>The project proposal is <a href=3D"https://=
+docs.google.com/a/khanacademy.org/document/d/1ZKcH46_jHP47RnVXl_YLUSqS9pL7J=
+dnQCxqfscUN9vI/edit?usp=3Dsharing">here</a>. Please have a look and let me =
+know what the best way is to move forward.</div><div><br></div><div>Ayman</=
+div></div>
+
+--089e01494b38c71c9e051ba80ed8--

@@ -1,0 +1,178 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: ben@khanacademy.org
+Received: by 10.76.166.165 with SMTP id zh5csp2624880oab;
+        Tue, 9 Jun 2015 17:39:54 -0700 (PDT)
+X-Received: by 10.55.33.155 with SMTP id f27mr788960qki.106.1433896794774;
+        Tue, 09 Jun 2015 17:39:54 -0700 (PDT)
+Return-Path: <new-projects+bncBCCP7GVDWELRBWUO32VQKGQEEUBORIQ@khanacademy.org>
+Received: from mail-qk0-x247.google.com (mail-qk0-x247.google.com. [2607:f8b0:400d:c09::247])
+        by mx.google.com with ESMTPS id 53si7046119qgb.16.2015.06.09.17.39.54
+        for <ben@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 09 Jun 2015 17:39:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of new-projects+bncBCCP7GVDWELRBWUO32VQKGQEEUBORIQ@khanacademy.org designates 2607:f8b0:400d:c09::247 as permitted sender) client-ip=2607:f8b0:400d:c09::247;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of new-projects+bncBCCP7GVDWELRBWUO32VQKGQEEUBORIQ@khanacademy.org designates 2607:f8b0:400d:c09::247 as permitted sender) smtp.mail=new-projects+bncBCCP7GVDWELRBWUO32VQKGQEEUBORIQ@khanacademy.org;
+       dkim=pass header.i=@khanacademy.org
+Received: by qkrr80 with SMTP id r80sf43986689qkr.2
+        for <ben@khanacademy.org>; Tue, 09 Jun 2015 17:39:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=khanacademy.org; s=google;
+        h=sender:mime-version:in-reply-to:references:date:message-id:subject
+         :from:to:content-type:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=F7Wri+VbZcrWHvgTbE1ydeHuAoZmiZvevXjxxDdmnxU=;
+        b=FxGGaYNWjN2x8SryJlsqqNM/oFlMwceyJziAn8Qk5FlTB7ONQIOgmTWcDAqnDlTnN6
+         H2cJxdcB4DbZ3fh/WxBXUb9ogyV9p/OO1Q/WhvIPASCLlHhPYOfRp9D1V+ArSAfXnKNs
+         LuLHdzQXM9d6uxPOd7xRjeNrADeZCM+A8zPLQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=sender:x-gm-message-state:mime-version:in-reply-to:references:date
+         :message-id:subject:from:to:content-type:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=F7Wri+VbZcrWHvgTbE1ydeHuAoZmiZvevXjxxDdmnxU=;
+        b=hcVVIIHH6EMePYLn7RKgi9IgWRWyjgGVR32JBHbzKlEsHvtX2dCb0AtMH3FWhW0t7D
+         1kM0+HzJSlOYQJ3XThz+S/mP3uQFMWTCOU1o7cZIQOgU2Va5clO0CKGOPG4M59O5vCVR
+         Npf3ewX8h5u7MK0yswEL9irzHPbIPIiv77qOBIGI4BXkTaDWBwAslaMEa+JwAqOoXI+r
+         tohecqxaWCxQ64Beh8IbYFsk8Kl/uvaiViTBDZYCmzGPbSDZ0QMtyrIlkf6H7CYRs1/X
+         I8tOV3hQWe+/qEWdZrNM73Ah8r1i6Rbdy/9Cv4kD6TR9oeGRPtu4NIuJ/j4UOjlTM5Qb
+         n/Zw==
+Sender: new-projects@khanacademy.org
+X-Gm-Message-State: ALoCoQlv9JbCbuygc90NdyFxIggB0moLFcSKjVZ68E75tf1bFbQCpCjudxcsJwuMBrkSQvTgx90F
+X-Received: by 10.52.189.7 with SMTP id ge7mr578982vdc.6.1433896794542;
+        Tue, 09 Jun 2015 17:39:54 -0700 (PDT)
+X-BeenThere: new-projects@khanacademy.org
+Received: by 10.140.104.245 with SMTP id a108ls675105qgf.76.gmail; Tue, 09 Jun
+ 2015 17:39:54 -0700 (PDT)
+X-Received: by 10.170.37.12 with SMTP id 12mr491214ykf.129.1433896794360;
+        Tue, 09 Jun 2015 17:39:54 -0700 (PDT)
+Received: from mail-yh0-x22a.google.com (mail-yh0-x22a.google.com. [2607:f8b0:4002:c01::22a])
+        by mx.google.com with ESMTPS id e3si2942238ywf.121.2015.06.09.17.39.53
+        for <new-projects@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 09 Jun 2015 17:39:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of kitt@khanacademy.org designates 2607:f8b0:4002:c01::22a as permitted sender) client-ip=2607:f8b0:4002:c01::22a;
+Received: by yhid80 with SMTP id d80so14250229yhi.1
+        for <new-projects@khanacademy.org>; Tue, 09 Jun 2015 17:39:53 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 10.170.125.208 with SMTP id r199mr540922ykb.15.1433896793320;
+ Tue, 09 Jun 2015 17:39:53 -0700 (PDT)
+Received: by 10.37.195.198 with HTTP; Tue, 9 Jun 2015 17:39:53 -0700 (PDT)
+In-Reply-To: <CABa8iZK5vtijsUdHawLghEkLe-8j=bTJ+8FskcYGbiBY88xMuA@mail.gmail.com>
+References: <CAGVfAeOkPdaLFHH16s4CZGd5uERero-by6vwhns+1MdiPYArEA@mail.gmail.com>
+	<CAFBLfVfG7kk7N+TOfF7sHCxC+f4dZdE7a3GM+4aXHC+i-_v_NQ@mail.gmail.com>
+	<CABa8iZKws6QQr5iee5FsMRNpfOHH-ogtHTDCk6KyAG+23tQLVw@mail.gmail.com>
+	<CABa8iZK5vtijsUdHawLghEkLe-8j=bTJ+8FskcYGbiBY88xMuA@mail.gmail.com>
+Date: Tue, 9 Jun 2015 17:39:53 -0700
+Message-ID: <CAFBLfVfncAfyviS8_Km2EBDFyUsb580raaa4ir=+9MZT9UyATg@mail.gmail.com>
+Subject: Fwd: Any updates to proposal?
+From: Kitt Hirasaki <kitt@khanacademy.org>
+To: new-projects@khanacademy.org
+Content-Type: multipart/alternative; boundary=001a1139e97402c44705181f1d4d
+X-Original-Sender: Kitt@khanacademy.org
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com:
+ domain of kitt@khanacademy.org designates 2607:f8b0:4002:c01::22a as
+ permitted sender) smtp.mail=kitt@khanacademy.org;       dkim=pass header.i=@khanacademy.org
+Precedence: list
+Mailing-list: list new-projects@khanacademy.org; contact new-projects+owners@khanacademy.org
+List-ID: <new-projects.khanacademy.org>
+X-Spam-Checked-In-Group: new-projects@khanacademy.org
+X-Google-Group-Id: 775692258477
+List-Post: <http://groups.google.com/a/khanacademy.org/group/new-projects/post>,
+ <mailto:new-projects@khanacademy.org>
+List-Help: <http://support.google.com/a/khanacademy.org/bin/topic.py?topic=25838>,
+ <mailto:new-projects+help@khanacademy.org>
+List-Archive: <http://groups.google.com/a/khanacademy.org/group/new-projects/>
+List-Subscribe: <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>,
+ <mailto:new-projects+subscribe@khanacademy.org>
+List-Unsubscribe: <mailto:googlegroups-manage+775692258477+unsubscribe@googlegroups.com>,
+ <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>
+
+--001a1139e97402c44705181f1d4d
+Content-Type: text/plain; charset=UTF-8
+
+Kitt & Des have updated the Q&A email notification project proposal
+<https://docs.google.com/document/d/1vx9ceBL9MlUJP6aRFW81wdpiqlGewR-kLHVbXhJgu3s/edit>.
+It's now scoped down to a 2-week project.
+
+Cheers
+
+On Fri, May 8, 2015 at 11:58 AM Desmond Brand <desmond@khanacademy.org>
+wrote:
+
+> Yep, I really want to get to this before leaving for vacation.
+> On Thu, May 7, 2015 at 13:50 Kitt Hirasaki <kitt@khanacademy.org> wrote:
+>
+>> I think Desmond is pretty slammed today. Des, do you think we could beat
+>> the discussion emails proposal into shape for next Thursday?
+>>
+>> Kitt
+>>
+>> On Thu, May 7, 2015 at 12:11 PM, Monica Tran <monica@khanacademy.org>
+>> wrote:
+>>
+>>> Hello,
+>>>
+>>> We're getting ready for our weekly project prioritization session, and
+>>> just wanted to check in to see if any of you had any updates to your
+>>> projects, which are currently still in proposal state awaiting updates
+>>> based on feedback/requests. I assume it's too late for today's session, but
+>>> just wanted to check in to see whether you were still working on these or
+>>> wanted to defer/withdraw them.
+>>>
+>>> Thanks,
+>>> Monica
+>>>
+>>>
+>>>
+>>
+
+--001a1139e97402c44705181f1d4d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">Kitt &amp; Des=
+ have updated the <a href=3D"https://docs.google.com/document/d/1vx9ceBL9Ml=
+UJP6aRFW81wdpiqlGewR-kLHVbXhJgu3s/edit" target=3D"_blank">Q&amp;A email not=
+ification project proposal</a>. It&#39;s now scoped down to a 2-week projec=
+t.<div><br></div><div>Cheers</div><div><div class=3D"h5"><div><div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr">On Fri, May 8, 2015 at 11:58 AM Des=
+mond Brand &lt;<a href=3D"mailto:desmond@khanacademy.org" target=3D"_blank"=
+>desmond@khanacademy.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
+1ex">Yep, I really want to get to this before leaving for vacation. <br><di=
+v class=3D"gmail_quote">On Thu, May 7, 2015 at 13:50 Kitt Hirasaki &lt;<a h=
+ref=3D"mailto:kitt@khanacademy.org" target=3D"_blank">kitt@khanacademy.org<=
+/a>&gt; wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
+8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">I think D=
+esmond is pretty slammed today. Des, do you think we could beat the discuss=
+ion emails proposal into shape for next Thursday?</div><div dir=3D"ltr"><di=
+v><br></div><div>Kitt</div></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Thu, May 7, 2015 at 12:11 PM, Monica Tran <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:monica@khanacademy.org" target=3D"_blank">monica=
+@khanacademy.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><d=
+iv dir=3D"ltr"><div style=3D"font-family:arial,helvetica,sans-serif">Hello,=
+</div><div style=3D"font-family:arial,helvetica,sans-serif"><br></div><div =
+style=3D"font-family:arial,helvetica,sans-serif">We&#39;re getting ready fo=
+r our weekly project prioritization session, and just wanted to check in to=
+ see if any of you had any updates to your projects, which are currently st=
+ill in proposal state awaiting updates based on feedback/requests. I assume=
+ it&#39;s too late for today&#39;s session, but just wanted to check in to =
+see whether you were still working on these or wanted to defer/withdraw the=
+m.</div><div style=3D"font-family:arial,helvetica,sans-serif"><br></div><di=
+v style=3D"font-family:arial,helvetica,sans-serif">Thanks,</div><div style=
+=3D"font-family:arial,helvetica,sans-serif">Monica</div><div></div><div><di=
+v dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><p style=3D"line-=
+height:1.15;margin-top:0pt;margin-bottom:0pt"><br></p></div></div></div></d=
+iv></div></div>
+</div>
+</blockquote></div><br></div>
+</blockquote></div></blockquote></div></div></div></div></div></div>
+</div><br></div>
+
+--001a1139e97402c44705181f1d4d--

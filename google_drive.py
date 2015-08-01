@@ -132,8 +132,6 @@ def remove_trello_links(doc_id):
 def extract_doc_ids(s):
     """Extract list of Google Doc IDs from string containing Google Drive URLs.
 
-    TODO(kamens): unit tests
-
     Arguments:
         s: any arbitrary string, like the body of an email message, that may
         contain Google Drive URLs (https://docs.google.com/document/d/1k5toiyOSJQT5D3-rUBQBKLGbNT3VCw01NDK9hGLD7aY/edit)
@@ -145,7 +143,7 @@ def extract_doc_ids(s):
         return []
 
     google_drive_urls = re.findall(
-            r'(https?://docs.google.com/?[^\s]*/document/[^\s]+)', s)
+            r'(https?://docs.google.com/?[^\s]*/document/[^\>\s]+)', s)
 
     google_doc_ids = map(doc_id_from_url, google_drive_urls)
     return filter(None, google_doc_ids)

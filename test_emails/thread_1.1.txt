@@ -1,0 +1,153 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: ben@khanacademy.org
+Received: by 10.25.81.142 with SMTP id f136csp456082lfb;
+        Fri, 31 Jul 2015 11:15:05 -0700 (PDT)
+X-Received: by 10.194.85.130 with SMTP id h2mr9095636wjz.2.1438366505063;
+        Fri, 31 Jul 2015 11:15:05 -0700 (PDT)
+Return-Path: <tompryor@khanacademy.org>
+Received: from mail-wi0-x22b.google.com (mail-wi0-x22b.google.com. [2a00:1450:400c:c05::22b])
+        by mx.google.com with ESMTPS id c2si6954842wix.79.2015.07.31.11.15.04
+        for <ben@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 31 Jul 2015 11:15:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tompryor@khanacademy.org designates 2a00:1450:400c:c05::22b as permitted sender) client-ip=2a00:1450:400c:c05::22b;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of tompryor@khanacademy.org designates 2a00:1450:400c:c05::22b as permitted sender) smtp.mail=tompryor@khanacademy.org;
+       dkim=pass header.i=@khanacademy.org
+Received: by wibud3 with SMTP id ud3so41949147wib.0
+        for <ben@khanacademy.org>; Fri, 31 Jul 2015 11:15:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=khanacademy.org; s=google;
+        h=mime-version:from:date:message-id:subject:to:cc:content-type;
+        bh=S2WC+LKBkE+WYQbKDrzYGrwqDe5bp4THvylnpLgLnxM=;
+        b=G6H+JaFV1e70DH4IKRS9MBfh/cHXvc7OXfvKut+TrlFbmWbyFQcpwsP8OS1Gdg9MDP
+         RALZ3UJN6+Nb628mQ6LTXm9zbXz99SWwtJ741PGqjmxlmK9xaFQRyu9k15qEYBTY+nje
+         DxHLoVaDysHGHU7JSZpckLH4lYhRPKDoj2+pE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
+         :content-type;
+        bh=S2WC+LKBkE+WYQbKDrzYGrwqDe5bp4THvylnpLgLnxM=;
+        b=XlrJATJekoHSeKhN19pggMtR6fyS+RV+wxGn/GHGfMsRWHfC7t5u8f3mZ28In0ATaE
+         1i16OgxNuHqNtLSkuTZqSA8q5NMXBJZFbUyni4n6JXm8jSzxFAPCYLaykfqeskWv7x71
+         wtwZ0buNtSnMphPAtJiGImQGAU/onx1pLR20srIMKoKXkltXuMuADUWDSQ1PzErvzTFw
+         l6iweUtzh2AFEbGvzySC418w7nVn9+eSqr6TX85Jv57dr88C3uD+xPYeuOhTy9Y+ciiJ
+         9aR2JFRm+9BljGdp6V4l0noLEO3HWY0HZnwXW4jr/JIVX11t2HI78eR+9EAPS7eLWGdU
+         I0oA==
+X-Gm-Message-State: ALoCoQnJAor08/JxJLEEUkVgAR3az6oQ7rKkuDjmmATHTs5y7EQPeWRg9OGNZ4efohdMeZxKUkoE
+X-Received: by 10.181.11.229 with SMTP id el5mr8691032wid.40.1438366504457;
+ Fri, 31 Jul 2015 11:15:04 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.27.46.139 with HTTP; Fri, 31 Jul 2015 11:14:45 -0700 (PDT)
+From: Tom Pryor <tompryor@khanacademy.org>
+Date: Fri, 31 Jul 2015 11:14:45 -0700
+Message-ID: <CAGSTLs-DniPSdpX5LfbOeTw6YoddGmyQ8ykwReZvawdR-xt+Bw@mail.gmail.com>
+Subject: Project proposal: Search quick fix aka "Searcher the wound"
+To: new-projects <new-projects@khanacademy.org>
+Cc: Craig Silverstein <csilvers@khanacademy.org>, John Sullivan <johnsullivan@khanacademy.org>, 
+	Shannon Zhu <shannon@khanacademy.org>, William Chargin <william@khanacademy.org>, 
+	Emily Eisenberg <emily@khanacademy.org>, Ben Kamens <ben@khanacademy.org>, 
+	Ben Komalo <benkomalo@khanacademy.org>, Ben Eater <eater@khanacademy.org>
+Content-Type: multipart/alternative; boundary=f46d043c80048e6c01051c2fcc54
+
+--f46d043c80048e6c01051c2fcc54
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+After refining the plan with Komalo's wise help, Craig and I are submitting
+this project project proposal for real:
+=E2=80=8B
+ Search quick fix: "Searcher the wound"
+<https://docs.google.com/a/khanacademy.org/document/d/1JYZ9EGMspPV1bcjgTaG2=
+PH_m8Imzh8eKyAUzD6eq62g/edit?usp=3Ddrive_web>
+=E2=80=8B
+Please add any thoughts or questions if you have 'em
+
+
+On Tue, Jul 28, 2015 at 8:26 AM, Tom Pryor <tompryor@khanacademy.org> wrote=
+:
+
+> Two new projects for input from the Search plan strawman
+> <https://docs.google.com/document/d/1p2r24qIPqvZKEyqSRwUnHSdHU75f8-QOnBHs=
+7rW3Z1g/edit#>
+> Craig has taken the lead on setting up, together with JohnS, Shannon, Wil=
+l
+> and others:
+> =E2=80=8B
+>  Project Proposal: Soul searching
+> <https://docs.google.com/a/khanacademy.org/document/d/1Kwf7HCtvyv9hLn0uNg=
+eo_MAPclL7jepych-3HoF9e7Y/edit?usp=3Ddrive_web>
+> =E2=80=8B=E2=80=8B
+>  Project Proposal: Searcher the wound
+> <https://docs.google.com/a/khanacademy.org/document/d/1JYZ9EGMspPV1bcjgTa=
+G2PH_m8Imzh8eKyAUzD6eq62g/edit?usp=3Ddrive_web>
+> =E2=80=8B
+> We'd really love your input before proposing formally tmrw night (unless
+> of course you make us decide this is a horrible idea through your
+> insightful comments).
+> These are two of the three first concurrent steps of the plan and ideally
+> will start soon.
+>
+> P.S. 'Soul searching' is an substantially updated version of the first.
+>
+
+--f46d043c80048e6c01051c2fcc54
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">After refining the plan with Komalo&#39;s wise help, Craig=
+ and I are submitting this project project proposal for real:<div>=E2=80=8B=
+<div class=3D"gmail_chip gmail_drive_chip" style=3D"width:396px;height:18px=
+;max-height:18px;padding:5px;color:rgb(34,34,34);font-family:arial;font-sty=
+le:normal;font-weight:bold;font-size:13px;border:1px solid rgb(221,221,221)=
+;line-height:1;background-color:rgb(245,245,245)"><a href=3D"https://docs.g=
+oogle.com/a/khanacademy.org/document/d/1JYZ9EGMspPV1bcjgTaG2PH_m8Imzh8eKyAU=
+zD6eq62g/edit?usp=3Ddrive_web" target=3D"_blank" style=3D"display:inline-bl=
+ock;max-width:366px;overflow:hidden;text-overflow:ellipsis;white-space:nowr=
+ap;text-decoration:none;padding:1px 0;border:none"><img style=3D"vertical-a=
+lign: bottom; border: none;" src=3D"https://ssl.gstatic.com/docs/doclist/im=
+ages/icon_11_document_list.png">=C2=A0<span dir=3D"ltr" style=3D"color:rgb(=
+17,85,204);text-decoration:none;vertical-align:bottom">Search quick fix: &q=
+uot;Searcher the wound&quot;</span></a><img src=3D"//ssl.gstatic.com/ui/v1/=
+icons/common/x_8px.png" style=3D"opacity: 0.55; cursor: pointer; float: rig=
+ht; position: relative; top: -1px; display: none;"></div>=E2=80=8B<br></div=
+><div>Please add any thoughts or questions if you have &#39;em</div><div><b=
+r><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, Jul 28,=
+ 2015 at 8:26 AM, Tom Pryor <span dir=3D"ltr">&lt;<a>tompryor@khanacademy.o=
+rg</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"=
+>Two new projects for input from the=C2=A0<a href=3D"https://docs.google.co=
+m/document/d/1p2r24qIPqvZKEyqSRwUnHSdHU75f8-QOnBHs7rW3Z1g/edit#" target=3D"=
+_blank">Search plan strawman</a> Craig has taken the lead on setting up, to=
+gether with JohnS, Shannon, Will and others:<div>=E2=80=8B<br><div class=3D=
+"gmail_chip gmail_drive_chip" style=3D"width:396px;min-height:18px;max-heig=
+ht:18px;background-color:#f5f5f5;padding:5px;color:#222;font-family:arial;f=
+ont-style:normal;font-weight:bold;font-size:13px;border:1px solid #ddd;line=
+-height:1"><a href=3D"https://docs.google.com/a/khanacademy.org/document/d/=
+1Kwf7HCtvyv9hLn0uNgeo_MAPclL7jepych-3HoF9e7Y/edit?usp=3Ddrive_web" style=3D=
+"display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:no=
+wrap;text-decoration:none;padding:1px 0px;border:none;width:100%" target=3D=
+"_blank"><img style=3D"vertical-align:bottom;border:none" src=3D"https://ss=
+l.gstatic.com/docs/doclist/images/icon_11_document_list.png">=C2=A0<span di=
+r=3D"ltr" style=3D"color:#15c;text-decoration:none;vertical-align:bottom">P=
+roject Proposal: Soul searching</span></a></div>=E2=80=8B=E2=80=8B<br><div =
+class=3D"gmail_chip gmail_drive_chip" style=3D"width:396px;min-height:18px;=
+max-height:18px;background-color:#f5f5f5;padding:5px;color:#222;font-family=
+:arial;font-style:normal;font-weight:bold;font-size:13px;border:1px solid #=
+ddd;line-height:1"><a href=3D"https://docs.google.com/a/khanacademy.org/doc=
+ument/d/1JYZ9EGMspPV1bcjgTaG2PH_m8Imzh8eKyAUzD6eq62g/edit?usp=3Ddrive_web" =
+style=3D"display:inline-block;overflow:hidden;text-overflow:ellipsis;white-=
+space:nowrap;text-decoration:none;padding:1px 0px;border:none;width:100%" t=
+arget=3D"_blank"><img style=3D"vertical-align:bottom;border:none" src=3D"ht=
+tps://ssl.gstatic.com/docs/doclist/images/icon_11_document_list.png">=C2=A0=
+<span dir=3D"ltr" style=3D"color:#15c;text-decoration:none;vertical-align:b=
+ottom">Project Proposal: Searcher the wound</span></a></div>=E2=80=8B<br></=
+div><div>We&#39;d really love your input before proposing formally tmrw nig=
+ht (unless of course you make us decide this is a horrible idea through you=
+r insightful comments).</div><div>These are two of the three first concurre=
+nt steps of the plan and ideally will start soon.<br></div><div><br></div><=
+div><div><div>P.S. &#39;Soul searching&#39; is an substantially updated ver=
+sion of the first.</div></div></div></div>
+</blockquote></div><br></div></div></div>
+
+--f46d043c80048e6c01051c2fcc54--

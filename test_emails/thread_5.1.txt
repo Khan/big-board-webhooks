@@ -1,0 +1,141 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: ben@khanacademy.org
+Received: by 10.76.166.165 with SMTP id zh5csp818498oab;
+        Fri, 19 Jun 2015 18:45:52 -0700 (PDT)
+X-Received: by 10.140.22.147 with SMTP id 19mr24828788qgn.52.1434764752290;
+        Fri, 19 Jun 2015 18:45:52 -0700 (PDT)
+Return-Path: <new-projects+bncBCDLDTOESMIRBT4LSOWAKGQE3BQDPSI@khanacademy.org>
+Received: from mail-qk0-x245.google.com (mail-qk0-x245.google.com. [2607:f8b0:400d:c09::245])
+        by mx.google.com with ESMTPS id u64si12702134qge.81.2015.06.19.18.45.52
+        for <ben@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 19 Jun 2015 18:45:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of new-projects+bncBCDLDTOESMIRBT4LSOWAKGQE3BQDPSI@khanacademy.org designates 2607:f8b0:400d:c09::245 as permitted sender) client-ip=2607:f8b0:400d:c09::245;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of new-projects+bncBCDLDTOESMIRBT4LSOWAKGQE3BQDPSI@khanacademy.org designates 2607:f8b0:400d:c09::245 as permitted sender) smtp.mail=new-projects+bncBCDLDTOESMIRBT4LSOWAKGQE3BQDPSI@khanacademy.org;
+       dkim=pass header.i=@khanacademy.org
+Received: by qkbp125 with SMTP id p125sf140653002qkb.3
+        for <ben@khanacademy.org>; Fri, 19 Jun 2015 18:45:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=khanacademy.org; s=google;
+        h=sender:mime-version:from:date:message-id:subject:to:content-type
+         :x-original-sender:x-original-authentication-results:precedence
+         :mailing-list:list-id:x-spam-checked-in-group:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=YsM6eA2E+tgZ7cNfRTN81IjU9iPhC1/fIbJlH5/8J+8=;
+        b=Um6HbJ7hH0+Cb6sjjpx6XNS389wRLKn46OyLUWBg2l2sWwngYX5SRuQass6N7cdpTq
+         5UC5ua/qSXov+F65JorD1odeR63MLLA6npWv8YhpN48dHUtAYs6TMzlc8DOXA+/WWfGd
+         6woO/O8tNwquhu6Qhz1I6W7mQay3b1/I+z7j4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=sender:x-gm-message-state:mime-version:from:date:message-id:subject
+         :to:content-type:x-original-sender:x-original-authentication-results
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=YsM6eA2E+tgZ7cNfRTN81IjU9iPhC1/fIbJlH5/8J+8=;
+        b=GQhzgHFHwWA0ed2CtZBVix+T8Q2qkRZg9VThmDPkV+/kxH+Qo1m7VDl1+OFhbL48KB
+         O34Xa1K98YuH1hT3L+NU8HNxFcPubqlfV6yi9W+cChKcwLUwFE3LIi2ThbQJhKEK4N/d
+         V1HqxJeA1nfTu7nKPIm/fSOjb0cBrY2bRX6MJsHhFhYaej9MEBK9Qo9LUvlkgfPIyhky
+         QRAs3y9fK/Khts+UUiAVpmr8cTUAF7q4CPI8YejB4+WMmT3epj22sXFSpEc+Kkt7aIQd
+         fUOniH2alEDtn47W3OGH+CUjOb2vBLumqdtt/BzvkCpVcLWfh+SqcVMFgKHiQvN7jwJm
+         y9bQ==
+Sender: new-projects@khanacademy.org
+X-Gm-Message-State: ALoCoQmHka8OQQ2BvjUiRT/hG6+lhtmEhH2dvJxXcZ9fUog6jqkqRtsQbQ2cDq2uCwDXqy3fB/nZ
+X-Received: by 10.129.94.11 with SMTP id s11mr23571698ywb.47.1434764751892;
+        Fri, 19 Jun 2015 18:45:51 -0700 (PDT)
+X-BeenThere: new-projects@khanacademy.org
+Received: by 10.140.92.2 with SMTP id a2ls2301607qge.46.gmail; Fri, 19 Jun
+ 2015 18:45:51 -0700 (PDT)
+X-Received: by 10.129.74.135 with SMTP id x129mr23411980ywa.98.1434764751648;
+        Fri, 19 Jun 2015 18:45:51 -0700 (PDT)
+Received: from mail-yk0-x231.google.com (mail-yk0-x231.google.com. [2607:f8b0:4002:c07::231])
+        by mx.google.com with ESMTPS id s206si4853679ywc.13.2015.06.19.18.45.51
+        for <new-projects@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 19 Jun 2015 18:45:51 -0700 (PDT)
+Received-SPF: pass (google.com: domain of aria@khanacademy.org designates 2607:f8b0:4002:c07::231 as permitted sender) client-ip=2607:f8b0:4002:c07::231;
+Received: by ykfr66 with SMTP id r66so102342749ykf.0
+        for <new-projects@khanacademy.org>; Fri, 19 Jun 2015 18:45:51 -0700 (PDT)
+X-Received: by 10.13.207.1 with SMTP id r1mr23614354ywd.166.1434764751447;
+ Fri, 19 Jun 2015 18:45:51 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.37.71.4 with HTTP; Fri, 19 Jun 2015 18:45:30 -0700 (PDT)
+From: Aria Toole <aria@khanacademy.org>
+Date: Fri, 19 Jun 2015 18:45:30 -0700
+Message-ID: <CANfn55WxFhnt-+sqR0-6USv=O45dEBDO3KBqupCXfFJw5OGzrg@mail.gmail.com>
+Subject: Proposals: Particles Everywhere (mobile+i18n)
+To: new-projects <new-projects@khanacademy.org>
+Content-Type: multipart/alternative; boundary=001a114e599258bd6e0518e933f1
+X-Original-Sender: aria@khanacademy.org
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com:
+ domain of aria@khanacademy.org designates 2607:f8b0:4002:c07::231 as
+ permitted sender) smtp.mail=aria@khanacademy.org;       dkim=pass header.i=@khanacademy.org
+Precedence: list
+Mailing-list: list new-projects@khanacademy.org; contact new-projects+owners@khanacademy.org
+List-ID: <new-projects.khanacademy.org>
+X-Spam-Checked-In-Group: new-projects@khanacademy.org
+X-Google-Group-Id: 775692258477
+List-Post: <http://groups.google.com/a/khanacademy.org/group/new-projects/post>,
+ <mailto:new-projects@khanacademy.org>
+List-Help: <http://support.google.com/a/khanacademy.org/bin/topic.py?topic=25838>,
+ <mailto:new-projects+help@khanacademy.org>
+List-Archive: <http://groups.google.com/a/khanacademy.org/group/new-projects/>
+List-Subscribe: <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>,
+ <mailto:new-projects+subscribe@khanacademy.org>
+List-Unsubscribe: <mailto:googlegroups-manage+775692258477+unsubscribe@googlegroups.com>,
+ <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>
+
+--001a114e599258bd6e0518e933f1
+Content-Type: text/plain; charset=UTF-8
+
+Hi new-projects!
+
+Here are three proposals for getting perseus articles (particles) working
+everywhere [that we support content in general], which specifically means
+Android, iOS, and internationalization support (in addition to the web and
+mobile web support we currently have for particles).
+
+I think these are ready to be considered for whether and when they fit into
+the pipeline, but I'm also happy to make changes in response to feedback if
+anyone has questions or concerns about the approaches laid out in these
+docs!
+
+iOS:
+https://docs.google.com/a/khanacademy.org/document/d/1uTXNmnCxQjVp-6_YcqeSNMg388vvWvZNqyrhPzdLnQE/edit?usp=sharing
+
+Android:
+https://docs.google.com/a/khanacademy.org/document/d/1KyteGUXXJ8LSuDL1yql6olxxWaAvnQTaenMlLW6PndE/edit?usp=sharing
+
+Internationalization:
+https://docs.google.com/a/khanacademy.org/document/d/1udt0iKNhL9USgJHyisCTANKazZ1k7JvtYY-TGttPdyw/edit?usp=sharing
+
+Thanks for your consideration!
+Aria
+
+--001a114e599258bd6e0518e933f1
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi new-projects!<div><br></div><div>Here are three proposa=
+ls for getting perseus articles (particles) working everywhere [that we sup=
+port content in general], which specifically means Android, iOS, and intern=
+ationalization support (in addition to the web and mobile web support we cu=
+rrently have for particles).</div><div><br></div><div>I think these are rea=
+dy to be considered for whether and when they fit into the pipeline, but I&=
+#39;m also happy to make changes in response to feedback if anyone has ques=
+tions or concerns about the approaches laid out in these docs!</div><div><b=
+r></div><div>iOS:</div><div><a href=3D"https://docs.google.com/a/khanacadem=
+y.org/document/d/1uTXNmnCxQjVp-6_YcqeSNMg388vvWvZNqyrhPzdLnQE/edit?usp=3Dsh=
+aring">https://docs.google.com/a/khanacademy.org/document/d/1uTXNmnCxQjVp-6=
+_YcqeSNMg388vvWvZNqyrhPzdLnQE/edit?usp=3Dsharing</a><br></div><div><br></di=
+v><div>Android:</div><div><a href=3D"https://docs.google.com/a/khanacademy.=
+org/document/d/1KyteGUXXJ8LSuDL1yql6olxxWaAvnQTaenMlLW6PndE/edit?usp=3Dshar=
+ing">https://docs.google.com/a/khanacademy.org/document/d/1KyteGUXXJ8LSuDL1=
+yql6olxxWaAvnQTaenMlLW6PndE/edit?usp=3Dsharing</a><br></div><div><br></div>=
+<div>Internationalization:</div><div><a href=3D"https://docs.google.com/a/k=
+hanacademy.org/document/d/1udt0iKNhL9USgJHyisCTANKazZ1k7JvtYY-TGttPdyw/edit=
+?usp=3Dsharing">https://docs.google.com/a/khanacademy.org/document/d/1udt0i=
+KNhL9USgJHyisCTANKazZ1k7JvtYY-TGttPdyw/edit?usp=3Dsharing</a><br></div><div=
+><br></div><div>Thanks for your consideration!</div><div>Aria</div></div>
+
+--001a114e599258bd6e0518e933f1--

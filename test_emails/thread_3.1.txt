@@ -1,0 +1,129 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: ben@khanacademy.org
+Received: by 10.76.166.165 with SMTP id zh5csp635338oab;
+        Thu, 23 Jul 2015 11:01:27 -0700 (PDT)
+X-Received: by 10.60.142.170 with SMTP id rx10mr10218016oeb.28.1437674487035;
+        Thu, 23 Jul 2015 11:01:27 -0700 (PDT)
+Return-Path: <compsci-blackhole+bncBDNK72VM2EIRB5WXYSWQKGQEICE3AWQ@khanacademy.org>
+Received: from mail-ob0-x248.google.com (mail-ob0-x248.google.com. [2607:f8b0:4003:c01::248])
+        by mx.google.com with ESMTPS id h137si4695797oib.51.2015.07.23.11.01.26
+        for <ben@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 Jul 2015 11:01:27 -0700 (PDT)
+Received-SPF: pass (google.com: domain of compsci-blackhole+bncBDNK72VM2EIRB5WXYSWQKGQEICE3AWQ@khanacademy.org designates 2607:f8b0:4003:c01::248 as permitted sender) client-ip=2607:f8b0:4003:c01::248;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of compsci-blackhole+bncBDNK72VM2EIRB5WXYSWQKGQEICE3AWQ@khanacademy.org designates 2607:f8b0:4003:c01::248 as permitted sender) smtp.mail=compsci-blackhole+bncBDNK72VM2EIRB5WXYSWQKGQEICE3AWQ@khanacademy.org;
+       dkim=pass header.i=@khanacademy.org
+Received: by obbop1 with SMTP id op1sf354873148obb.3
+        for <ben@khanacademy.org>; Thu, 23 Jul 2015 11:01:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=khanacademy.org; s=google;
+        h=sender:mime-version:date:message-id:subject:from:to:cc:content-type
+         :x-original-sender:x-original-authentication-results:precedence
+         :mailing-list:list-id:x-spam-checked-in-group:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=4DuUfKLdJF1xSPpWRcQ2u1UCM/hhUtYVPZSdZPtF+yQ=;
+        b=V7gX+DZWEy4tRfUjgumFmDhzql5JagJvn6kCuo5AQN7jCf9eVENLaiWSq0M+sx3V5I
+         gb2m5CcdpdZWK5Kn5x2b85xvz6oOH1GUXE8o1Lf6ebQw0+XT8kVdq7vHt74VS8E47hxm
+         oMUSj/DVJABN4hweqkLeCPAk2rSeJhlOl+Fn0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=sender:x-gm-message-state:mime-version:date:message-id:subject:from
+         :to:cc:content-type:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=4DuUfKLdJF1xSPpWRcQ2u1UCM/hhUtYVPZSdZPtF+yQ=;
+        b=l0gK/31hFY5YHcS1A2mFgNQKkeJ+XXv2/MjDRZHK9llFwuBMphdc+VS3hnrTKwMLGr
+         WB4jx39WwNEOQE1/1K6avhENAtGEL52hhHYZIkvm09yypPO6OTcBC/qls7dKzd0yJ1Oz
+         w2IPadAZ41Fxrdm/8aWUIcgLUBRQhODFM4jwOAEiHFzITwZuYIf3rqU5gESjv6FvFUJY
+         nnLaqztJe43K1xBR6vPq+Y73Nekyi6KhVHFFLNahsz2Y/zw7vwwBuyvO4kPinRytWkfM
+         LnhMnF9iQNo+Q1dOuQ8mVQVHpTae2cKb3v3DtI6IIK3pSzpO9JVx1x4Bqkc+/w7g9ELy
+         x1EA==
+Sender: compsci-blackhole@khanacademy.org
+X-Gm-Message-State: ALoCoQmjl2rW+fTPT2Hj+8j7/e6Xh+FM1cN5Ic67orr6c94qaDyVRhoYzwhGegBlvRKx3qMQiE8l
+X-Received: by 10.182.247.2 with SMTP id ya2mr9100409obc.37.1437674486726;
+        Thu, 23 Jul 2015 11:01:26 -0700 (PDT)
+X-BeenThere: compsci-blackhole@khanacademy.org
+Received: by 10.182.52.225 with SMTP id w1ls545296obo.45.gmail; Thu, 23 Jul
+ 2015 11:01:26 -0700 (PDT)
+X-Received: by 10.202.104.155 with SMTP id o27mr9906566oik.19.1437674486575;
+        Thu, 23 Jul 2015 11:01:26 -0700 (PDT)
+Received: from mail-ob0-x22c.google.com (mail-ob0-x22c.google.com. [2607:f8b0:4003:c01::22c])
+        by mx.google.com with ESMTPS id h5si4679132obz.86.2015.07.23.11.01.26
+        for <compsci-blackhole@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 Jul 2015 11:01:26 -0700 (PDT)
+Received-SPF: pass (google.com: domain of pamela@khanacademy.org designates 2607:f8b0:4003:c01::22c as permitted sender) client-ip=2607:f8b0:4003:c01::22c;
+Received: by obbop1 with SMTP id op1so160024167obb.2
+        for <compsci-blackhole@khanacademy.org>; Thu, 23 Jul 2015 11:01:26 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 10.60.157.41 with SMTP id wj9mr10161125oeb.72.1437674486280;
+ Thu, 23 Jul 2015 11:01:26 -0700 (PDT)
+Received: by 10.182.112.103 with HTTP; Thu, 23 Jul 2015 11:01:26 -0700 (PDT)
+Date: Thu, 23 Jul 2015 11:01:26 -0700
+Message-ID: <CAMDEvD4x_o8FHPMNfA7Kx7oM2kfFDScFHFyYQYHG=b7+56Kspw@mail.gmail.com>
+Subject: Project proposal: OhNoesOhYes, The Sequel
+From: Pamela Fox <pamela@khanacademy.org>
+To: new-projects <new-projects@khanacademy.org>
+Cc: Michelle Todd <michelle@khanacademy.org>, Kevin Barabash <kevinb@khanacademy.org>, 
+	compsci-blackhole <compsci-blackhole@khanacademy.org>
+Content-Type: multipart/alternative; boundary=089e01182c6c0ecf62051b8ead29
+X-Original-Sender: pamela@khanacademy.org
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com:
+ domain of pamela@khanacademy.org designates 2607:f8b0:4003:c01::22c as
+ permitted sender) smtp.mail=pamela@khanacademy.org;       dkim=pass header.i=@khanacademy.org
+Precedence: list
+Mailing-list: list compsci-blackhole@khanacademy.org; contact compsci-blackhole+owners@khanacademy.org
+List-ID: <compsci-blackhole.khanacademy.org>
+X-Spam-Checked-In-Group: compsci-blackhole@khanacademy.org
+X-Google-Group-Id: 308945263308
+List-Post: <http://groups.google.com/a/khanacademy.org/group/compsci-blackhole/post>,
+ <mailto:compsci-blackhole@khanacademy.org>
+List-Help: <http://support.google.com/a/khanacademy.org/bin/topic.py?topic=25838>,
+ <mailto:compsci-blackhole+help@khanacademy.org>
+List-Archive: <http://groups.google.com/a/khanacademy.org/group/compsci-blackhole/>
+List-Subscribe: <http://groups.google.com/a/khanacademy.org/group/compsci-blackhole/subscribe>,
+ <mailto:compsci-blackhole+subscribe@khanacademy.org>
+List-Unsubscribe: <mailto:googlegroups-manage+308945263308+unsubscribe@googlegroups.com>,
+ <http://groups.google.com/a/khanacademy.org/group/compsci-blackhole/subscribe>
+
+--089e01182c6c0ecf62051b8ead29
+Content-Type: text/plain; charset=UTF-8
+
+Hello!
+
+This is a follow-up project for OhNoesOhYes:
+https://docs.google.com/document/d/1ZLB3xnP_Pz6UKgc9D8eHGFPJacmQeK-546FR6kghMPc/edit#heading=h.nhyxg0lfaux2
+
+Also, an observation: it's a bit tricky to do projects where we want to
+release something, wait a week to get feedback, then iterate and get more
+feedback. They end up taking longer, since the resources may not exist 2
+weeks after.
+
+(I've noticed that with some of the SEO experiments as well, where they
+seem to have run longer than necessary, due to resources not being
+available to check on the status of the A/B. )
+
+Thanks!
+
+- pamela
+
+--089e01182c6c0ecf62051b8ead29
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello!<div><br></div><div>This is a follow-up project for =
+OhNoesOhYes:</div><div><a href=3D"https://docs.google.com/document/d/1ZLB3x=
+nP_Pz6UKgc9D8eHGFPJacmQeK-546FR6kghMPc/edit#heading=3Dh.nhyxg0lfaux2">https=
+://docs.google.com/document/d/1ZLB3xnP_Pz6UKgc9D8eHGFPJacmQeK-546FR6kghMPc/=
+edit#heading=3Dh.nhyxg0lfaux2</a><br></div><div><br></div><div>Also, an obs=
+ervation: it&#39;s a bit tricky to do projects where we want to release som=
+ething, wait a week to get feedback, then iterate and get more feedback. Th=
+ey end up taking longer, since the resources may not exist 2 weeks after.=
+=C2=A0</div><div><br></div><div>(I&#39;ve noticed that with some of the SEO=
+ experiments as well, where they seem to have run longer than necessary, du=
+e to resources not being available to check on the status of the A/B. )</di=
+v><div><br></div><div>Thanks!</div><div><br></div><div>- pamela</div></div>
+
+--089e01182c6c0ecf62051b8ead29--

@@ -1,0 +1,158 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: ben@khanacademy.org
+Received: by 10.76.166.165 with SMTP id zh5csp1585192oab;
+        Thu, 14 May 2015 13:58:56 -0700 (PDT)
+X-Received: by 10.202.69.130 with SMTP id s124mr4936538oia.70.1431637136812;
+        Thu, 14 May 2015 13:58:56 -0700 (PDT)
+Return-Path: <new-projects+bncBDXNXNEG3AERBEEZ2SVAKGQEEXYOQOA@khanacademy.org>
+Received: from mail-oi0-x248.google.com (mail-oi0-x248.google.com. [2607:f8b0:4003:c06::248])
+        by mx.google.com with ESMTPS id i3si13425261oif.60.2015.05.14.13.58.56
+        for <ben@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 14 May 2015 13:58:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of new-projects+bncBDXNXNEG3AERBEEZ2SVAKGQEEXYOQOA@khanacademy.org designates 2607:f8b0:4003:c06::248 as permitted sender) client-ip=2607:f8b0:4003:c06::248;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of new-projects+bncBDXNXNEG3AERBEEZ2SVAKGQEEXYOQOA@khanacademy.org designates 2607:f8b0:4003:c06::248 as permitted sender) smtp.mail=new-projects+bncBDXNXNEG3AERBEEZ2SVAKGQEEXYOQOA@khanacademy.org;
+       dkim=pass header.i=@khanacademy.org;
+       dmarc=pass (p=NONE dis=NONE) header.from=khanacademy.org
+Received: by oign205 with SMTP id n205sf123045930oig.2
+        for <ben@khanacademy.org>; Thu, 14 May 2015 13:58:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=khanacademy.org; s=google;
+        h=sender:mime-version:in-reply-to:references:date:message-id:subject
+         :from:to:cc:content-type:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=De1U1G5TSFlMYT6+2l8JIbyUk1V/kWvYGVnfzwCY0Dw=;
+        b=MKx4Yg9jexFb34hlvM27X8RWBxqsxB56/U5FN7EVGbV3hJws8sHEfotnL2rutnM6rn
+         9SX9Dc2ll4RnldpGSSEy64kN96iSe0MbSO+5qmd+73vzj7jYObswIutyff8OpwLrSToS
+         gheik2nWZXpeHxpyaIO3YWc9zjV3P34R52EHo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=sender:x-gm-message-state:mime-version:in-reply-to:references:date
+         :message-id:subject:from:to:cc:content-type:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=De1U1G5TSFlMYT6+2l8JIbyUk1V/kWvYGVnfzwCY0Dw=;
+        b=dUJmIwu+/vzWFrHpLQdqiVRcZ5fczuUfgx/+R9mk1k3G34YuuiZiC/4ge8m1kgXytJ
+         /UqL+WQI4PywhbWCX0NmDyKT9ikT3cwRD2E0Ss7umg+hznEW3e0A+YT0ZFWMZwIge10s
+         m1+0+uGF+UBtOanK6bI2CzObfz/mbJNOxX9qxKLVSSliDI4n0NRSjhQrBvNW5on9YHPM
+         q/2Wl3RBx7fygAmW0k7JqBCCkz6L/O5Fi6tDLEGesPU/COMK/mcF5ncfrz3QIvGHF7In
+         UsnDZEU8eA6w0tr7VV+O8jIf/nxvtfWD1uGpMaHms0WV1licAlVorcO1mJvwx6NwsCLX
+         fkBg==
+Sender: new-projects@khanacademy.org
+X-Gm-Message-State: ALoCoQkshgskParfE2cyT+Bb37EuoZnpoBC5ci5K/r8kB4mBkd0nMq1pUmzZt5LcWUZ6kkDr0783
+X-Received: by 10.42.26.137 with SMTP id f9mr21596533icc.17.1431637136516;
+        Thu, 14 May 2015 13:58:56 -0700 (PDT)
+X-BeenThere: new-projects@khanacademy.org
+Received: by 10.50.4.99 with SMTP id j3ls2320384igj.1.canary; Thu, 14 May 2015
+ 13:58:56 -0700 (PDT)
+X-Received: by 10.107.158.15 with SMTP id h15mr4458348ioe.14.1431637136347;
+        Thu, 14 May 2015 13:58:56 -0700 (PDT)
+Received: from mail-ie0-x22e.google.com (mail-ie0-x22e.google.com. [2607:f8b0:4001:c03::22e])
+        by mx.google.com with ESMTPS id x2si46073igl.26.2015.05.14.13.58.56
+        for <new-projects@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 14 May 2015 13:58:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of alex@khanacademy.org designates 2607:f8b0:4001:c03::22e as permitted sender) client-ip=2607:f8b0:4001:c03::22e;
+Received: by iepk2 with SMTP id k2so70281171iep.3
+        for <new-projects@khanacademy.org>; Thu, 14 May 2015 13:58:56 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 10.42.43.199 with SMTP id y7mr16776015ice.12.1431637136072;
+ Thu, 14 May 2015 13:58:56 -0700 (PDT)
+Received: by 10.64.250.3 with HTTP; Thu, 14 May 2015 13:58:56 -0700 (PDT)
+In-Reply-To: <CAGVfAeOkPdaLFHH16s4CZGd5uERero-by6vwhns+1MdiPYArEA@mail.gmail.com>
+References: <CAGVfAeOkPdaLFHH16s4CZGd5uERero-by6vwhns+1MdiPYArEA@mail.gmail.com>
+Date: Thu, 14 May 2015 13:58:56 -0700
+Message-ID: <CADONaHyNQP9pumqCQf8TjVnwRmOMOBRniBN6wRZhzxZWXpJcPA@mail.gmail.com>
+Subject: Re: Any updates to proposal?
+From: Alex Lopatin <alex@khanacademy.org>
+To: Monica Tran <monica@khanacademy.org>
+Cc: new-projects <new-projects@khanacademy.org>
+Content-Type: multipart/alternative; boundary=bcaec5196941f18003051610fe54
+X-Original-Sender: alex@khanacademy.org
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com:
+ domain of alex@khanacademy.org designates 2607:f8b0:4001:c03::22e as
+ permitted sender) smtp.mail=alex@khanacademy.org;       dkim=pass
+ header.i=@khanacademy.org;       dmarc=pass (p=NONE dis=NONE) header.from=khanacademy.org
+Precedence: list
+Mailing-list: list new-projects@khanacademy.org; contact new-projects+owners@khanacademy.org
+List-ID: <new-projects.khanacademy.org>
+X-Google-Group-Id: 775692258477
+List-Post: <http://groups.google.com/a/khanacademy.org/group/new-projects/post>,
+ <mailto:new-projects@khanacademy.org>
+List-Help: <http://support.google.com/a/khanacademy.org/bin/topic.py?topic=25838>,
+ <mailto:new-projects+help@khanacademy.org>
+List-Archive: <http://groups.google.com/a/khanacademy.org/group/new-projects/>
+List-Subscribe: <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>,
+ <mailto:new-projects+subscribe@khanacademy.org>
+List-Unsubscribe: <mailto:googlegroups-manage+775692258477+unsubscribe@googlegroups.com>,
+ <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>
+
+--bcaec5196941f18003051610fe54
+Content-Type: text/plain; charset=UTF-8
+
+Hey Monica,
+
+Here's the first half of the Better Links in Articles
+<https://docs.google.com/document/d/1aQfqmuXP6z2Hj3cYwAoCetXledZQRAfTlAJqjA0hl7A>
+project, broken out: Fix Links in Articles
+<https://docs.google.com/document/d/1o-LhqDSfkC-LQwHlBl-p3bDqM-tpfLkLmJnqhX2adW8>
+.
+The second half needs more reworking, specifically in terms of making the
+motivations/imperatives behind it clearer.
+
+- Alex
+
+On Thu, May 7, 2015 at 12:11 PM, Monica Tran <monica@khanacademy.org> wrote:
+
+> Hello,
+>
+> We're getting ready for our weekly project prioritization session, and
+> just wanted to check in to see if any of you had any updates to your
+> projects, which are currently still in proposal state awaiting updates
+> based on feedback/requests. I assume it's too late for today's session, but
+> just wanted to check in to see whether you were still working on these or
+> wanted to defer/withdraw them.
+>
+> Thanks,
+> Monica
+>
+>
+>
+
+--bcaec5196941f18003051610fe54
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hey Monica,</div><div><br></div><div>Here&#39;s the f=
+irst half of the <a href=3D"https://docs.google.com/document/d/1aQfqmuXP6z2=
+Hj3cYwAoCetXledZQRAfTlAJqjA0hl7A">Better Links in Articles</a> project, bro=
+ken out: <a href=3D"https://docs.google.com/document/d/1o-LhqDSfkC-LQwHlBl-=
+p3bDqM-tpfLkLmJnqhX2adW8">Fix Links in Articles</a>.</div><div>The second h=
+alf needs more reworking, specifically in terms of making the motivations/i=
+mperatives behind it clearer.</div><div><br></div><div>- Alex</div></div><d=
+iv class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, May 7, 2015=
+ at 12:11 PM, Monica Tran <span dir=3D"ltr">&lt;<a href=3D"mailto:monica@kh=
+anacademy.org" target=3D"_blank">monica@khanacademy.org</a>&gt;</span> wrot=
+e:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_d=
+efault" style=3D"font-family:arial,helvetica,sans-serif">Hello,</div><div c=
+lass=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><br=
+></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sa=
+ns-serif">We&#39;re getting ready for our weekly project prioritization ses=
+sion, and just wanted to check in to see if any of you had any updates to y=
+our projects, which are currently still in proposal state awaiting updates =
+based on feedback/requests. I assume it&#39;s too late for today&#39;s sess=
+ion, but just wanted to check in to see whether you were still working on t=
+hese or wanted to defer/withdraw them.</div><div class=3D"gmail_default" st=
+yle=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmai=
+l_default" style=3D"font-family:arial,helvetica,sans-serif">Thanks,</div><d=
+iv class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"=
+>Monica</div><div></div><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><d=
+iv dir=3D"ltr"><p style=3D"line-height:1.15;margin-top:0pt;margin-bottom:0p=
+t"><br></p></div></div></div></div></div></div>
+</div>
+</blockquote></div><br></div>
+
+--bcaec5196941f18003051610fe54--

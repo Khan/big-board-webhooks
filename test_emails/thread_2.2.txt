@@ -1,0 +1,155 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: ben@khanacademy.org
+Received: by 10.25.81.142 with SMTP id f136csp1464437lfb;
+        Mon, 27 Jul 2015 12:38:55 -0700 (PDT)
+X-Received: by 10.70.42.134 with SMTP id o6mr71375019pdl.11.1438025934402;
+        Mon, 27 Jul 2015 12:38:54 -0700 (PDT)
+Return-Path: <new-projects+bncBDZ2HF4FIQIM3EO2VUCRUBHAXUVPQ@khanacademy.org>
+Received: from mail-pd0-x246.google.com (mail-pd0-x246.google.com. [2607:f8b0:400e:c02::246])
+        by mx.google.com with ESMTPS id ml1si46427320pab.24.2015.07.27.12.38.53
+        for <ben@khanacademy.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 27 Jul 2015 12:38:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of new-projects+bncBDZ2HF4FIQIM3EO2VUCRUBHAXUVPQ@khanacademy.org designates 2607:f8b0:400e:c02::246 as permitted sender) client-ip=2607:f8b0:400e:c02::246;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of new-projects+bncBDZ2HF4FIQIM3EO2VUCRUBHAXUVPQ@khanacademy.org designates 2607:f8b0:400e:c02::246 as permitted sender) smtp.mail=new-projects+bncBDZ2HF4FIQIM3EO2VUCRUBHAXUVPQ@khanacademy.org;
+       dkim=pass header.i=@khanacademy.org
+Received: by pdbfo6 with SMTP id fo6sf186439502pdb.3
+        for <ben@khanacademy.org>; Mon, 27 Jul 2015 12:38:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=khanacademy.org; s=google;
+        h=sender:mime-version:in-reply-to:references:date:message-id:subject
+         :from:to:content-type:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=tyPPc9bJI/2tLoOaatg+SasDFNCuil5RNi2JGTjR7V4=;
+        b=gFx82o1mqcV/u2tR//1S5Dece0kDlS2cBjbprXFY85fHSK3Se0dzTSq2svbj0cqaa9
+         cIg2UY2y0CzpbP2Kkrt7+gsKIIUwsLxIGmanvgaciQ/sjOldX19upjpEHwNqE+vrn0OM
+         dJOWdQM0mThZ/+GmrvzODK/7jH0nTVaMqTTYU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=sender:x-gm-message-state:mime-version:in-reply-to:references:date
+         :message-id:subject:from:to:content-type:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=tyPPc9bJI/2tLoOaatg+SasDFNCuil5RNi2JGTjR7V4=;
+        b=UqfoJjsgwPH01sio+A03ygQL42mDV1LLf2wUZeYhHsBTaQInm+R2vze24+B06p9ONE
+         R32gyLqvQMDcYCFSCjYdhtTagiksPdVG+c7iakzJK4JvRXKf4sYE0DZAA+K3h7ie68AU
+         xuhU2QHnovG3IrUJzuqA6JVAI0+i59I5dbnZbr47yiuIXz+T5NP0fEkFfyPyq7URWkwJ
+         yzAnzO6UJ/Tg1qoZxtn1p3PvPbTPRV/r+ut7z/IT+OFp7t3ug66cGy14N3yC4ejWeDDf
+         JSytbpCBuviZXQXwqxI/EMWWRggqeHUty5SUkiEeS0lYwrCRvcxQ/TXvDegk0Ff9U3oh
+         yQ1Q==
+Sender: new-projects@khanacademy.org
+X-Gm-Message-State: ALoCoQkZPWCuipFSZdKBpJrUewOObwikgLMFq7MKemudTnEeRvUnhJY2JFl4VWS5UXiNQkcF8He+
+X-Received: by 10.66.118.134 with SMTP id km6mr31376520pab.37.1438025933507;
+        Mon, 27 Jul 2015 12:38:53 -0700 (PDT)
+X-BeenThere: new-projects@khanacademy.org
+Received: by 10.107.135.201 with SMTP id r70ls1771643ioi.34.gmail; Mon, 27 Jul
+ 2015 12:38:53 -0700 (PDT)
+X-Received: by 10.50.80.19 with SMTP id n19mr21088808igx.30.1438025933342;
+        Mon, 27 Jul 2015 12:38:53 -0700 (PDT)
+Received: from mail-ig0-x22f.google.com (mail-ig0-x22f.google.com. [2607:f8b0:4001:c05::22f])
+        by mx.google.com with ESMTPS id t20si16245677ioi.1.2015.07.27.12.38.53
+        for <new-projects@khanacademy.org>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 27 Jul 2015 12:38:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ayman@khanacademy.org designates 2607:f8b0:4001:c05::22f as permitted sender) client-ip=2607:f8b0:4001:c05::22f;
+Received: by igbij6 with SMTP id ij6so86491474igb.1
+        for <new-projects@khanacademy.org>; Mon, 27 Jul 2015 12:38:53 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 10.50.143.37 with SMTP id sb5mr6943002igb.13.1438025933163;
+ Mon, 27 Jul 2015 12:38:53 -0700 (PDT)
+Received: by 10.79.107.198 with HTTP; Mon, 27 Jul 2015 12:38:53 -0700 (PDT)
+In-Reply-To: <CAKsNPY+GzrmSn7Toxp6ccxb2LqeRyy=gZ=W6zekFFu664HXntw@mail.gmail.com>
+References: <CAKsNPY+GzrmSn7Toxp6ccxb2LqeRyy=gZ=W6zekFFu664HXntw@mail.gmail.com>
+Date: Mon, 27 Jul 2015 12:38:53 -0700
+Message-ID: <CAKsNPYK9saVoYb5ODcZQDExw+qyBrUSFKoAwe_9mM3htOS901w@mail.gmail.com>
+Subject: Re: Proposal: Design Investigation for Exercises on Phone
+From: Ayman Nadeem <ayman@khanacademy.org>
+To: new-projects@khanacademy.org, Tabitha Yong <tabitha@khanacademy.org>, 
+	Nefaur Khandker <nefaurk@khanacademy.org>
+Content-Type: multipart/alternative; boundary=001a1135fe4eeca8c7051be08023
+X-Original-Sender: ayman@khanacademy.org
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com:
+ domain of ayman@khanacademy.org designates 2607:f8b0:4001:c05::22f as
+ permitted sender) smtp.mail=ayman@khanacademy.org;       dkim=pass header.i=@khanacademy.org
+Precedence: list
+Mailing-list: list new-projects@khanacademy.org; contact new-projects+owners@khanacademy.org
+List-ID: <new-projects.khanacademy.org>
+X-Spam-Checked-In-Group: new-projects@khanacademy.org
+X-Google-Group-Id: 775692258477
+List-Post: <http://groups.google.com/a/khanacademy.org/group/new-projects/post>,
+ <mailto:new-projects@khanacademy.org>
+List-Help: <http://support.google.com/a/khanacademy.org/bin/topic.py?topic=25838>,
+ <mailto:new-projects+help@khanacademy.org>
+List-Archive: <http://groups.google.com/a/khanacademy.org/group/new-projects/>
+List-Subscribe: <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>,
+ <mailto:new-projects+subscribe@khanacademy.org>
+List-Unsubscribe: <mailto:googlegroups-manage+775692258477+unsubscribe@googlegroups.com>,
+ <http://groups.google.com/a/khanacademy.org/group/new-projects/subscribe>
+
+--001a1135fe4eeca8c7051be08023
+Content-Type: text/plain; charset=UTF-8
+
++ing Tabitha & Nefaur,
+
+I think the right output of this investigation is to have design
+architectures/UIs addressing our most trafficked + top design challenges
+for items on phone and mobile-web. What I can do to focus us more is to
+take my findings and update this proposal doc with exactly *what* those
+widgets/items are and also propose a schedule for how I think things might
+play out.
+
+Doing this now.
+
+On Fri, Jul 24, 2015 at 5:18 PM, Ayman Nadeem <ayman@khanacademy.org> wrote:
+
+> Hi all,
+>
+> Another result of the exercise classification project
+> <https://docs.google.com/presentation/d/1YUWNh0VUKNJ85RgtyRcj0kucatxqSJw1coFXfuEbO7U/edit#slide=id.g5b3f975f5_0_96>
+> (aside from the perf project proposal
+> <https://docs.google.com/a/khanacademy.org/document/d/1ZKcH46_jHP47RnVXl_YLUSqS9pL7JdnQCxqfscUN9vI/edit?usp=sharing>
+> I sent out earlier) is around the design work that needs to be done to
+> tease out how to make exercises usable on phones.
+>
+> The project proposal is here
+> <https://docs.google.com/a/khanacademy.org/document/d/1ZKcH46_jHP47RnVXl_YLUSqS9pL7JdnQCxqfscUN9vI/edit?usp=sharing>.
+> Please have a look and let me know what the best way is to move forward.
+>
+> Ayman
+>
+
+--001a1135fe4eeca8c7051be08023
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">+ing Tabitha &amp; Nefaur,<div><br></div><div>I think the =
+right output of this investigation is to have design architectures/UIs addr=
+essing our most trafficked + top design challenges for items on phone and m=
+obile-web. What I can do to focus us more is to take my findings and update=
+ this proposal doc with exactly <i>what</i> those widgets/items are and als=
+o propose a schedule for how I think things might play out.</div><div><br><=
+/div><div>Doing this now.</div></div><div class=3D"gmail_extra"><br><div cl=
+ass=3D"gmail_quote">On Fri, Jul 24, 2015 at 5:18 PM, Ayman Nadeem <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:ayman@khanacademy.org" target=3D"_blank">aym=
+an@khanacademy.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
+<div dir=3D"ltr">Hi all,<div><br></div><div>Another result of the <a href=
+=3D"https://docs.google.com/presentation/d/1YUWNh0VUKNJ85RgtyRcj0kucatxqSJw=
+1coFXfuEbO7U/edit#slide=3Did.g5b3f975f5_0_96" target=3D"_blank">exercise cl=
+assification project</a> (aside from the <a href=3D"https://docs.google.com=
+/a/khanacademy.org/document/d/1ZKcH46_jHP47RnVXl_YLUSqS9pL7JdnQCxqfscUN9vI/=
+edit?usp=3Dsharing" target=3D"_blank">perf project proposal</a> I sent out =
+earlier) is around the design work that needs to be done to tease out how t=
+o make exercises usable on phones.=C2=A0</div><div><br></div><div>The proje=
+ct proposal is <a href=3D"https://docs.google.com/a/khanacademy.org/documen=
+t/d/1ZKcH46_jHP47RnVXl_YLUSqS9pL7JdnQCxqfscUN9vI/edit?usp=3Dsharing" target=
+=3D"_blank">here</a>. Please have a look and let me know what the best way =
+is to move forward.</div><span class=3D"HOEnZb"><font color=3D"#888888"><di=
+v><br></div><div>Ayman</div></font></span></div>
+</blockquote></div><br></div>
+
+--001a1135fe4eeca8c7051be08023--

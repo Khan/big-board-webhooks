@@ -10,6 +10,7 @@ import math
 import os
 import random
 
+import email_reply_parser
 from google.appengine.api import mail
 from google.appengine.ext import deferred
 from google.appengine.ext.webapp import mail_handlers
@@ -153,12 +154,30 @@ def _get_html_content(cards):
 
 class NewProjectsMailHandler(mail_handlers.InboundMailHandler):
     @staticmethod
+    def get_non_quoted_text_fragments(body_text):
+        """Return list of non-quoted text fragments from email body."""
+        parsed_msg = email_reply_parser.EmailReplyParser.read(body_text)
+        non_quoted_fragments = filter(lambda f: not f.quoted,
+                parsed_msg.fragments)
+
+        text_fragments = map(lambda f: f.content, non_quoted_fragments)
+        return text_fragments
+
+    @staticmethod
     def google_doc_ids_from_message(message):
-        """Pull all referenced Google Doc IDs from email message body."""
+        """Pull all referenced Google Doc IDs from email message text."""
         google_docs_ids = []
 
-        for content_type, body in message.bodies():
-            google_docs_ids += google_drive.extract_doc_ids(body.decode())
+        for content_type, body in message.bodies("text/plain"):
+            # Grab non-quoted fragments of email body text.
+            # We don't wanna include google doc ids from quoted reply parts.
+            non_quoted_text_fragments = (
+                    NewProjectsMailHandler.get_non_quoted_text_fragments(
+                        body.decode()))
+
+            for text_fragment in non_quoted_text_fragments:
+                # Extract all google doc ids
+                google_docs_ids += google_drive.extract_doc_ids(text_fragment)
 
         return list(set(google_docs_ids))
 
@@ -169,19 +188,15 @@ class NewProjectsMailHandler(mail_handlers.InboundMailHandler):
         creates new Trello cards for emails received that contain links to new
         Google Doc project docs.
         """
-        # We only want to do auto-responder magic if the message is the first
-        # in its thread. Subsequent responses (or our own auto-response) should
-        # be ignored.
-        if 'In-Reply-To' in message.original:
-            logging.info(
-                "No auto-response because message is already a response")
-            return
-
         # Find all google doc ids referenced in email
         google_doc_ids = NewProjectsMailHandler.google_doc_ids_from_message(
                 message)
         logging.info("Received mail message from %s w/ google doc IDs: %s" %
                 (message.sender, google_doc_ids))
+
+        if not google_doc_ids:
+            # Bail if no google doc ids
+            return
 
         # Get the message id (and use a dummy id if in dev).
         message_id = message.original.get('Message-ID', 'dummy-id-for-dev')
