@@ -36,9 +36,6 @@ def create_cards_from_doc_ids(doc_ids):
         cards_data.append({
             'name': card.name,
             'url': card.url,
-
-            # TODO(marcia): Decide how to incorporate this visually. Not used
-            # at the moment. If not used ever, remove.
             'already_existed': already_existed,
         })
 

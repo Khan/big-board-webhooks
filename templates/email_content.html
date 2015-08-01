@@ -53,7 +53,7 @@
     <td>
         <table align="center" valign="top" border="0"
         cellpadding="0" cellspacing="0" width="600"
-        style="width: 600px; padding: 50px;"
+        style="width: 600px; padding: 20px 50px 50px 130px;"
         >
         {% for card in cards %}
         <!-- spacer -->
@@ -65,20 +65,6 @@
 
         <tr style="vertical-align: top;">
             <td style="padding-right: 20px;">
-                <div style="background-image: url(https://www.khanacademy.org/images/emails/email-speech-bubble.png);
-            background-repeat: no-repeat;
-            width: 40px;
-            max-height: 39px;
-            min-height: 39px;
-            line-height: 33px;
-            color: #fff;
-            text-align: center;
-            font-size: 24px;
-            font-weight:bold;
-            font-family: 'Varela Round', 'Helvetica Neue',
-    Calibri, Helvetica, Arial, sans-serif">
-        !
-                </div>
                 <img src="https://www.khanacademy.org/images/avatars/piceratops-ultimate.png" alt=""
                     style="width: 40px; padding-top: 5px;">
             </td>
@@ -86,7 +72,14 @@
                 <p style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 20px; line-height: 24px; color: #666; margin: 0 0 10px; color: #333; margin-bottom: 2px;">
                     <strong>
                         <a href="{{ card['url'] }}" target="_blank" style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 20px; color: #678d00; text-decoration: underline; color: #333;">{{ card['name'] }}</a>
+                        {% if not card['already_existed'] %}
+                        <span style="text-transform: uppercase; vertical-align: super; font-size: 10px; color: #639b24;">new!
+                        </span>
+                        {% endif %}
                     </strong>
+                </p>
+                <p style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 10px; line-height: 24px; color: #bbb; margin: 0 0 10px; margin-bottom: 2px;">
+                    {{ card['snippet'] }}
                 </p>
             </td>
         </tr>

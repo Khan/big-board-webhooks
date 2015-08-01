@@ -6,7 +6,9 @@ TODO(kamens): expand docs
 """
 
 import logging
+import math
 import os
+import random
 
 from google.appengine.api import mail
 from google.appengine.ext import deferred
@@ -23,6 +25,19 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
+
+# TODO(marcia): Add more of these and make them cuter.
+CARD_CREATED_SNIPPETS = [
+    "Brand new card, created just for you!",
+    "Hot off the presses, check out this new card!",
+    "Aye aye cap'n, here's your brand new card!",
+]
+
+CARD_ALREADY_EXISTS_SNIPPETS = [
+    "This card already exists, silly pilly!",
+    "Why create a new card, when it already exists?",
+    "Fleetwood found this card for you!",
+]
 
 
 def process_message(message_id, respondees, subject, google_doc_ids):
@@ -65,16 +80,39 @@ def _get_text_content(cards):
     return body
 
 
+def _insert_random_snippets(stock_snippets, cards):
+    """Insert a snippet for each card, sampled from our stock snippets."""
+    num_cards = len(cards)
+    num_snippets = len(stock_snippets)
+
+    # If we have fewer stock snippets than we need to give, we'll repeat them.
+    if num_snippets < num_cards:
+        stock_snippets = list(stock_snippets)
+        multiplier = int(math.ceil(num_cards * 1.0 / num_snippets))
+        stock_snippets *= multiplier
+
+    snippets = random.sample(stock_snippets, num_cards)
+
+    for card, snippet in zip(cards, snippets):
+        card['snippet'] = snippet
+
+
 def _get_html_content(cards):
     """Return email html content linking to Trello cards."""
     template = JINJA_ENVIRONMENT.get_template(
         'templates/email_content.html')
 
+    new_cards = [c for c in cards if not c['already_existed']]
+    existing_cards = [c for c in cards if c['already_existed']]
+
+    _insert_random_snippets(CARD_CREATED_SNIPPETS, new_cards)
+    _insert_random_snippets(CARD_ALREADY_EXISTS_SNIPPETS, existing_cards)
+
     if len(cards) == 1:
-        cta_text = "Check out your brand new Trello card!"
+        cta_text = "Check out your Trello card!"
         cta_url = cards[0]["url"]
     else:
-        cta_text = "Check out the proposals board"
+        cta_text = "Check out the proposals board!"
         cta_url = "https://trello.com/b/L0D5OwTL/pipeline-1-proposals"
 
     return template.render(cards=cards, cta_text=cta_text, cta_url=cta_url)
