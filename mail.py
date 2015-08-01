@@ -17,7 +17,6 @@ from google.appengine.ext.webapp import mail_handlers
 import jinja2
 import webapp2
 
-import appengine_config  # @UnusedImport
 import google_drive
 import proposals_board
 
