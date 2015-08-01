@@ -59,8 +59,6 @@ def _add_card(name, desc=None):
 
     card = proposal_list.add_card(name, desc)
 
-    # STOPSHIP(marcia): Respond back to new-projects@ with a link to this newly
-    # created Trello card!
     logging.info(card.url)
 
     return card

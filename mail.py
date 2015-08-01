@@ -70,8 +70,6 @@ def process_message(message_id, respondees, subject, google_doc_ids):
         logging.info("No auto-response because message has no project docs")
         return
 
-    # STOPSHIP(kamens): any sort of error handling / emailing if something
-    # wasn't created??...?
     SENDER = "Projects Platypus <no-reply@khan-big-board.appspotmail.com>"
 
     message = mail.EmailMessage(to=respondees, sender=SENDER, subject=subject,
