@@ -45,9 +45,9 @@ def query_for_user_email_by_name(name):
     results = service.users().list(
             domain="khanacademy.org",
             viewType="domain_public",
-            query="name:%s" % name).execute()
+            query="name='%s'" % name).execute()
 
-    if results and len(results["users"]) == 1:
+    if results and len(results.get("users", [])) > 0:
         emails = results["users"][0]["emails"]
         for email in emails:
             if email.get("primary", False):

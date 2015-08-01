@@ -12,6 +12,9 @@ class QueryUserDirectoryTest(unittest.TestCase):
         email = google_directory.query_for_user_email_by_name("Big Board")
         self.assertEqual(email, "bigboard@khanacademy.org")
 
-        email = google_directory.query_for_user_email_by_name("Kamens")
+        email = google_directory.query_for_user_email_by_name("Ben Kamens")
         self.assertEqual(email, "ben@khanacademy.org")
+
+        email = google_directory.query_for_user_email_by_name("Annie Ding")
+        self.assertEqual(email, "annie@khanacademy.org")
 
