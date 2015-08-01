@@ -127,17 +127,14 @@ class UpdateBoardWebHook(RequestHandler):
         try:
             action_type = body_json["action"]["type"]
             card_id = body_json["action"]["data"]["card"]["id"]
+            board_id = body_json["action"]["data"]["board"]["id"]
         except KeyError:
             # If missing expected data from webhook, just bail
             logging.info("Ignoring this webhook from Trello "
                          "due to missing action type or card id")
             return
 
-        # If a card was updated, make sure its stickers are still up-to-date
-        if action_type in ["moveCardToBoard", "createCard", "updateCard"]:
-            logging.info("Syncing card stickers for %s due to action type %s" %
-                    (card_id, action_type))
-            stickers.sync_card_stickers(card_id)
+        webhooks.trigger_update_handlers(action_type, card_id, board_id)
 
         self.success("WebHook received")
 

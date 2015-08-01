@@ -5,6 +5,7 @@ See https://trello.com/docs/gettingstarted/webhooks.html for more.
 import logging
 
 import secrets
+import stickers
 import trello_util
 
 # The webhook URL that'll be registered and fired any time a board is updated
@@ -25,6 +26,49 @@ def _remove_all_webhooks(client, oauth_token):
     for webhook in token.webhooks:
         logging.info("Removing webhook: %s" % webhook)
         webhook.delete()
+
+
+class StickerWebhookHandler(object):
+    """Webhook handler for keeping card stickers up-to-date on card edit."""
+
+    @staticmethod
+    def should_handle(action_type, card_id, board_id):
+        """Should sync stickers any time card is updated, created, or moved."""
+        return action_type in ["moveCardToBoard", "createCard", "updateCard"]
+
+    @staticmethod
+    def handle(action_type, card_id, board_id):
+        """Sync card stickers."""
+        stickers.sync_card_stickers(card_id)
+
+
+class RetrospectiveWebhookHandler(object):
+    """Webhook handler for firing off retro reminders on project completion."""
+
+    @staticmethod
+    def should_handle(action_type, card_id, board_id):
+        """Should fire reminders when a card is moved to completed."""
+        completed_board_id = trello_util.get_board_id_by_name(
+                "COMPLETED_BOARD")
+        return (action_type == "moveCardToBoard" and
+                board_id == completed_board_id)
+
+    @staticmethod
+    def handle(action_type, card_id, board_id):
+        """Sync card stickers."""
+        # STOPSHIP(kamens): implement
+        logging.critical("Fire off the retro!")
+
+
+def trigger_update_handlers(action_type, card_id, board_id):
+    """Webhook handler fired when any card is updated.
+
+    Dispatches to different handlers depending on the event type, source Trello
+    board, etc.
+    """
+    for handler in [StickerWebhookHandler, RetrospectiveWebhookHandler]:
+        if handler.should_handle(action_type, card_id, board_id):
+            handler.handle(action_type, card_id, board_id)
 
 
 def setup():
