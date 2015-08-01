@@ -82,6 +82,28 @@ def pull_doc_data(doc_id):
     return (title, html)
 
 
+def copy_retro_template():
+    template_doc_id = '1gbejuiityqZR9LDq-tyJGL0RHkAbCFe9Wc5IULPSQqw'
+    service, http = get_authenticated_drive_service()
+
+    # Copy the template file
+    retro_doc = service.files().copy(fileId=template_doc_id,
+        visibility='DEFAULT', body={}).execute()
+    retro_doc_id = retro_doc['id']
+
+    permission = {
+        'value': 'khanacademy.org',
+        'type': 'domain',
+        'role': 'writer',
+    }
+
+    # Edit so anyone at KA can find an edit this doc
+    service.permissions().insert(
+        fileId=retro_doc_id, body=permission).execute()
+
+    return doc_url_from_id(retro_doc_id)
+
+
 def add_trello_link(doc_id, trello_card_id):
     """Add a link to Trello within the specified Google Doc.
 
@@ -148,6 +170,11 @@ def extract_doc_ids(s):
 
     google_doc_ids = map(doc_id_from_url, google_drive_urls)
     return filter(None, google_doc_ids)
+
+
+def doc_url_from_id(doc_id):
+    """Return the Google Doc url from its id"""
+    return 'https://docs.google.com/document/d/%s/edit' % doc_id
 
 
 def doc_id_from_url(s):

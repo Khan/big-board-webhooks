@@ -76,13 +76,23 @@ class SetupRetro(RequestHandler):
             r'\[Retrospective doc\]\((%s)\)' % google_drive.GOOGLE_DOC_RE,
             card.desc)
 
+        url = None
+
         if not retro_urls:
-            # TODO(marcia): Copy the template and then add it to the card
-            # And then remove below `else` and we'll always just redirect
-            pass
+            # Make a copy of the retro template
+            url = google_drive.copy_retro_template()
+
+            # Add this retro doc url back to the card
+            # TODO(marcia): Make this DRY'er
+            new_desc = '[Retrospective doc](%s)\n%s' % (url, card.desc)
+            card.update_desc(new_desc)
         else:
-            url = str(retro_urls[0])
-            self.redirect(url)
+            url = retro_urls[0]
+
+        if url:
+            self.redirect(str(url))
+        else:
+            logging.warning("No retro whatsoever - something weird happened")
 
 
 class ProposalTest(RequestHandler):
