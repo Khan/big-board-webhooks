@@ -82,22 +82,26 @@ def pull_doc_data(doc_id):
     return (title, html)
 
 
-def copy_retro_template():
+def copy_retro_template(project_title):
     template_doc_id = '1gbejuiityqZR9LDq-tyJGL0RHkAbCFe9Wc5IULPSQqw'
     service, http = get_authenticated_drive_service()
 
-    # Copy the template file
+    # Rename the file during copy
+    copied_file_body = {
+            "title": "Retrospective for '%s'" % project_title
+            }
+
+    # Copy the template
     retro_doc = service.files().copy(fileId=template_doc_id,
-        visibility='DEFAULT', body={}).execute()
+        visibility='DEFAULT', body=copied_file_body).execute()
     retro_doc_id = retro_doc['id']
 
+    # Edit so anyone at KA can find and edit this doc
     permission = {
         'value': 'khanacademy.org',
         'type': 'domain',
         'role': 'writer',
     }
-
-    # Edit so anyone at KA can find an edit this doc
     service.permissions().insert(
         fileId=retro_doc_id, body=permission).execute()
 

@@ -7,6 +7,7 @@ from google.appengine.api import apiproxy_stub_map
 from google.appengine.api import urlfetch_stub
 from google.appengine.ext import testbed
 
+import google_drive
 import retrospective
 import trello_util
 
@@ -54,11 +55,19 @@ class RetrospectiveEmailTest(unittest.TestCase):
         # existing Trello card
         card_id = "vj7RC8T5"
 
+        # Make sure there's no retro doc already attached to the card
         card = trello_util.get_card_by_id(card_id)
         self.assertNotIn("Retrospective doc", card.desc)
 
-        retrospective.ensure_card_has_retro_doc(card_id)
+        retro_doc_url = retrospective.ensure_card_has_retro_doc(card_id)
+        retro_doc_id = google_drive.doc_id_from_url(retro_doc_url)
 
+        # Make sure the retro doc was successfully created
+        title, html = google_drive.pull_doc_data(retro_doc_id)
+        self.assertIn("Retrospective", title)
+        self.assertIn(card.name, title)
+
+        # Make sure the retro doc was linked to the trello card
         card = trello_util.get_card_by_id(card_id)
         self.assertIn("Retrospective doc", card.desc)
 

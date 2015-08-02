@@ -91,6 +91,8 @@ def ensure_card_has_retro_doc(card_id):
     """Ensure Trello card's description has a link to a retro doc.
 
     Will create a new retro doc if necessary.
+
+    Returns URL of retro doc.
     """
     card = trello_util.get_card_by_id(card_id)
     if not card:
@@ -125,7 +127,7 @@ def _get_or_create_retro_doc_for_card(card):
         return (existing_retro_doc_url, False)
 
     # Make a copy of the retro template
-    new_retro_doc_url = google_drive.copy_retro_template()
+    new_retro_doc_url = google_drive.copy_retro_template(card.name)
     
     return (new_retro_doc_url, True)
 
