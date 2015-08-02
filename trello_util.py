@@ -82,7 +82,17 @@ def get_client():
 
 def get_description_snippet(emoji, label, doc_url):
     """Return snippet with an emoji and label, each inside a link."""
-    return '- [:%s:](%s) [%s](%s)' % (emoji, doc_url, label, doc_url)
+    emoji_link_markdown = ""
+    if isinstance(emoji, basestring):
+        emoji_link_markdown = "[:%s:](%s)" % (emoji, doc_url)
+    else:
+        # Multiple emoji
+        for single_emoji in emoji:
+            if len(emoji_link_markdown):
+                emoji_link_markdown += " "
+            emoji_link_markdown += "[:%s:](%s)" % (single_emoji, doc_url)
+
+    return '- %s [%s](%s)' % (emoji_link_markdown, label, doc_url)
 
 
 def _get_board_by_name(name):

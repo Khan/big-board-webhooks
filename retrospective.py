@@ -172,7 +172,7 @@ def _get_existing_retro_doc_url(card):
 
 def _get_description_without_create_retro_link(desc):
     """Get the card description with "Create your retro doc" links removed."""
-    return re.sub(r'(\[.*%s.*\))' % CREATE_YOUR_RETRO_DOC_LABEL, '', desc)
+    return re.sub(r'\n- \[.*%s.*\)' % CREATE_YOUR_RETRO_DOC_LABEL, '', desc)
 
 
 def _get_retro_reminder_email(to_email, card):

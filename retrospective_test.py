@@ -43,6 +43,21 @@ class RetrospectiveEmailTest(unittest.TestCase):
         self.mock_patch.stop()
         self.testbed.deactivate()
 
+    def test_manipulating_links_in_trello_desc(self):
+        project_snippet = trello_util.get_description_snippet(
+                trello_util.CustomEmoji.PROJECT_PLATYPUS,
+                "Monkey", "moo.com")
+
+        create_retro_snippet = trello_util.get_description_snippet(
+                [trello_util.CustomEmoji.RETRO_RACCOON, "warning"],
+                retrospective.CREATE_YOUR_RETRO_DOC_LABEL, "zoo.com")
+
+        desc_combined = "\n".join([project_snippet, create_retro_snippet])
+        desc_actual = retrospective._get_description_without_create_retro_link(
+                desc_combined)
+
+        self.assertEqual(desc_actual, project_snippet)
+
     @unittest.skip("Unskip if you have a test card for adding a retro link.")
     def test_creating_retro_doc_for_card(self):
         """Test creating a new retro doc and adding it to a Trello card.
@@ -53,7 +68,7 @@ class RetrospectiveEmailTest(unittest.TestCase):
         """
         # TODO(kamens): make this test less brittle by not making it rely on an
         # existing Trello card
-        card_id = "HxW09pM3"
+        card_id = "gMPifFD0"
 
         # Make sure there's no retro doc already attached to the card
         card = trello_util.get_card_by_id(card_id)
@@ -81,7 +96,7 @@ class RetrospectiveEmailTest(unittest.TestCase):
         """Test sending a retro reminder for specific Trello card."""
         # TODO(kamens): make this test less brittle by not making it rely on an
         # existing Trello card
-        card_id = "ZyHIYoPz"  # Example trello card from completed board
+        card_id = "trudGlxB"  # Example trello card from completed board
 
         # Try to send a retro reminder as if triggered by this Trello card's
         # move to the completed board

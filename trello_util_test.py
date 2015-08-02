@@ -19,6 +19,20 @@ class TrelloUtilTest(unittest.TestCase):
         apiproxy_stub_map.apiproxy.RegisterStub(
             'urlfetch', urlfetch_stub.URLFetchServiceStub())
 
+    def test_description_snippets(self):
+        snippet = trello_util.get_description_snippet(
+                trello_util.CustomEmoji.PROJECT_PLATYPUS, "Monkey", "moo.com")
+        self.assertEqual("- [:projectplatypus:](moo.com) [Monkey](moo.com)",
+                snippet)
+
+        snippet = trello_util.get_description_snippet(
+                [trello_util.CustomEmoji.PROJECT_PLATYPUS, "warning"],
+                "Monkey", "moo.com")
+
+        self.assertEqual("- [:projectplatypus:](moo.com) " +
+                "[:warning:](moo.com) [Monkey](moo.com)",
+                snippet)
+
     def test_find_card_on_proposal_board(self):
         # This is the how-to product planning doc id on the proposal board's
         # intro card. Even though it is more of a meta doc as opposed to a true

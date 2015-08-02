@@ -8,7 +8,7 @@ import google_drive
 
 # TODO(kamens): make this less fragile by supplying/creating own google doc for
 # edit tests.
-EXAMPLE_GOOGLE_DOC_ID = "10BqZBGx_PLaj3MtO7rf7VRsbIm2xCk-PeufYzPoerkQ"
+EXAMPLE_GOOGLE_DOC_ID = "1A-Kn5_kYGljsC1oohPwMkGsiH5YJr2LKpVhWNUYjXwQ"
 EXAMPLE_TRELLO_CARD_ID = "Owfp15Jo"
 
 EXAMPLE_READ_ONLY_GOOGLE_DOC_ID = (
