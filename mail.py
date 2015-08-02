@@ -29,15 +29,15 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 # TODO(marcia): Add more of these and make them cuter.
 CARD_CREATED_SNIPPETS = [
-    "Brand new card, created just for you!",
-    "Hot off the presses, check out this new card!",
-    "Aye aye cap'n, here's your brand new card!",
+    "A brand new project, submitted just for you!",
+    "Hot off the presses!",
+    "Aye aye cap'n, your project's in the pipeline!",
+    "The project pipeline thanks you.",
 ]
 
 CARD_ALREADY_EXISTS_SNIPPETS = [
-    "This card already exists, silly pilly!",
-    "Why create a new card, when it already exists?",
-    "Fleetwood found this card for you!",
+    "This project was already submitted, silly pilly!",
+    "Fleetwood found this project, it was already submitted.",
 ]
 
 AVATAR_NAMES = [
@@ -141,10 +141,10 @@ def _get_html_content(cards):
     _insert_random_images(cards)
 
     if len(cards) == 1:
-        cta_text = "Check out your Trello card!"
+        cta_text = "See your project in the pipeline"
         cta_url = cards[0]["url"]
     else:
-        cta_text = "Check out the proposals board!"
+        cta_text = "See these projects in the pipeline"
         cta_url = "https://trello.com/b/L0D5OwTL/pipeline-1-proposals"
 
     return template.render(cards=cards, cta_text=cta_text, cta_url=cta_url)

@@ -71,11 +71,10 @@
             <td style="vertical-align: middle;">
                 <p style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 20px; line-height: 24px; margin: 0 0 10px; margin-bottom: 2px;">
                     <strong>
-                        <a href="{{ card['url'] }}" target="_blank" style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 20px; text-decoration: underline; color: #1C758A;">{{ card['name'] }}</a>
                         {% if not card['already_existed'] %}
-                        <span style="text-transform: uppercase; vertical-align: super; font-size: 10px; color: #639b24;">new!
-                        </span>
+                        <span style="text-transform: uppercase; vertical-align: super; font-size: 10px; color: #639b24;">new project!</span><br>
                         {% endif %}
+                        <a href="{{ card['url'] }}" target="_blank" style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 20px; text-decoration: underline; color: #1C758A;">{{ card['name'] }}</a>
                     </strong>
                 </p>
                 <p style="font-family: 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif; font-size: 10px; line-height: 24px; color: #bbb; margin: 0 0 10px; margin-bottom: 2px;">
