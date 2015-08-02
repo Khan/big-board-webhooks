@@ -15,6 +15,8 @@ import httplib2
 import oauth2client.client
 
 import google_app_script
+import google_drive
+import project_docs
 import secrets
 import trello_util
 
@@ -72,12 +74,12 @@ def pull_doc_data(doc_id):
     return (title, html)
 
 
-def copy_retro_template(project_title):
+def copy_retro_template(card):
     """Copy retrospective template and populate it w/ relevant project info."""
     service, http = get_authenticated_drive_service()
 
     # Rename the file during copy
-    retro_title = "Retrospective for '%s'" % project_title
+    retro_title = "Retrospective for '%s'" % card.name
     copied_file_body = {"title": retro_title}
 
     # Copy the template
@@ -94,7 +96,15 @@ def copy_retro_template(project_title):
     service.permissions().insert(
         fileId=retro_doc_id, body=permission).execute()
 
+    # Populate newly created retro doc w/ proper title (and one day more...)
     populate_retro_doc(retro_doc_id, retro_title)
+
+    # Cross-link b/w project doc and newly created retro doc, but only if we
+    # can grab the existing project doc from card description w/ certainty.
+    maybe_project_doc_ids = google_drive.extract_doc_ids(card.desc)
+    docs = project_docs.pull_project_docs_data(maybe_project_doc_ids)
+    if len(docs) == 1:
+        cross_link_project_and_retro_docs(docs[0].doc_id, retro_doc_id)
 
     return doc_url_from_id(retro_doc_id)
 
@@ -107,6 +117,17 @@ def populate_retro_doc(doc_id, title):
             }
     google_app_script.send_action_request(
             google_app_script.Actions.POPULATE_RETRO_DOC, params)
+
+
+def cross_link_project_and_retro_docs(project_doc_id, retro_doc_id):
+    """Cross link between project and retro google docs."""
+    cross_link_params = {
+            "docId": project_doc_id,
+            "retroDocId": retro_doc_id
+            }
+    google_app_script.send_action_request(
+            google_app_script.Actions.CROSS_LINK_PROJECT_AND_RETRO_DOCS,
+            cross_link_params)
 
 
 def add_trello_link(doc_id, trello_card_id):
@@ -161,7 +182,7 @@ def doc_url_from_id(doc_id):
 
 def doc_id_from_url(s):
     """Return Google Doc ID given a Google Drive URL."""
-    match = re.search(".*/d/(?P<id>[^/]+)/?", s)
+    match = re.search(".*/d/(?P<id>[^/)]+)/?", s)
     if not match:
         return None
     return match.group("id")

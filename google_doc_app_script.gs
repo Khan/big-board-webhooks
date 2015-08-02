@@ -38,23 +38,23 @@ function doGet(e) {
   if (!(permission === DriveApp.Permission.EDIT)) {
     return ContentService.createTextOutput("Error: Missing edit permissions");
   }
-
-  var doc = DocumentApp.openById(docId);
-  var body = doc.getBody();
   
   // Choose doc editing action based on query param
   switch(e.parameter.action) {
     case 'add-trello-link':
       // Add a link from Google Doc to trello
-      linkToTrello(body, e.parameter.trelloURL);
+      linkToTrello(docId, e.parameter.trelloURL);
       break;
     case 'remove-trello-links':
       // Remove all trello links from google doc ID. Only used when cleaning up unit tests.
-      removeTrelloLinks(body);
+      removeTrelloLinks(docId);
       break;
     case 'populate-retro-doc':
       // Populate a retro doc w/ correct title and such
-      populateRetroDoc(body, e.parameter.title);
+      populateRetroDoc(docId, e.parameter.title);
+      break;
+    case 'cross-link-project-and-retro-docs':
+      crossLinkProjectAndRetroDocs(docId, e.parameter.retroDocId);
       break;
   }
   
@@ -66,11 +66,31 @@ function doGet(e) {
  * Populate the retrospective template w/ various bits of
  * project-specific info (e.g. project title)
  */
-function populateRetroDoc(body, title) {
+function populateRetroDoc(docId, title) {
+  var doc = DocumentApp.openById(docId);
+  var body = doc.getBody();
+  
   titleParagraph = findTitleParagraph(body);
   if (titleParagraph) {
     titleParagraph.setText(title);
   }
+}
+
+
+/**
+ * Add cross-links between project and retro docs.
+ */
+function crossLinkProjectAndRetroDocs(projectDocId, retroDocId) {
+  var projectDoc = DocumentApp.openById(projectDocId);
+  var retroDoc = DocumentApp.openById(retroDocId);
+  
+  var projectBody = projectDoc.getBody();
+  addLinkBeneathTitle(projectBody, retroDoc.getUrl(),
+                      'See retrospective doc for lessons\'n\'results.');
+  
+  var retroBody = retroDoc.getBody();
+  addLinkBeneathTitle(retroBody, projectDoc.getUrl(),
+                      'See original project doc.');
 }
 
 
@@ -81,7 +101,10 @@ function populateRetroDoc(body, title) {
  *    body: Google document body
  *    trelloURL: target trello URL for adding card link
  */
-function linkToTrello(body, trelloURL) {
+function linkToTrello(docId, trelloURL) {
+  var doc = DocumentApp.openById(docId);
+  var body = doc.getBody();
+  
   // Add trello link to google doc, if possible
   var trelloURL = trelloURL;
   if (trelloURL && !alreadyHasTrelloLink(body, trelloURL)) {
@@ -96,7 +119,10 @@ function linkToTrello(body, trelloURL) {
  * This is only used during unit testing to wipe our test docs of any Trello
  * links inserted during unit testing.
  */
-function removeTrelloLinks(body) {
+function removeTrelloLinks(docId) {
+  var doc = DocumentApp.openById(docId);
+  var body = doc.getBody();
+  
   var paragraphs = body.getParagraphs();
   for (var ix = 0; ix < paragraphs.length; ix++) {
     var paragraph = paragraphs[ix];
@@ -166,6 +192,15 @@ function populateStylesFromTitleParagraph(titleParagraph, style) {
  * Add new paragraph to Google Doc w/ link to specified Trello card
  */
 function addTrelloLink(body, trelloURL) {
+  addLinkBeneathTitle(body, trelloURL,
+                      'See Trello card for project\'s current status.');
+}
+
+
+/**
+ * Add new paragraph w/ link beneath document title
+ */
+function addLinkBeneathTitle(body, url, text) {
   var indexToInsert = 0;
   var style = {};
 
@@ -180,10 +215,9 @@ function addTrelloLink(body, trelloURL) {
   }
   
   // Insert paragraph immediately after title, styled similarly
-  var paragraph = body.insertParagraph(indexToInsert,
-    'See Trello card for project\'s current status.');
+  var paragraph = body.insertParagraph(indexToInsert, text);
   
-  paragraph.setLinkUrl(trelloURL);
+  paragraph.setLinkUrl(url);
   paragraph.setAttributes(style);
 }
 
@@ -193,9 +227,10 @@ function addTrelloLink(body, trelloURL) {
  */
 function debug() {
   doGet({parameter: {
-    action: "add-trello-link",
-    docId: "10BqZBGx_PLaj3MtO7rf7VRsbIm2xCk-PeufYzPoerkQ",
-    trelloURL: "https://trello.com/c/Owfp15Jo"
+    action: 'cross-link-project-and-retro-docs',
+    docId: '1XJTR31o3u-Z_syREH0G1JpMSoNnjIiFqUgeUF4fH4rg',
+    retroDocId: '1MrRxLb2zCx56Q3hNY6H8EZYFCx5Tdc2iYj04KlUBKwA'
+    // trelloURL: 'https://trello.com/c/Owfp15Jo'
   }});
 }
 

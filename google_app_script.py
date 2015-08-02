@@ -25,6 +25,7 @@ class Actions(object):
     ADD_TRELLO_LINK = "add-trello-link"
     REMOVE_TRELLO_LINKS = "remove-trello-links"
     POPULATE_RETRO_DOC = "populate-retro-doc"
+    CROSS_LINK_PROJECT_AND_RETRO_DOCS = "cross-link-project-and-retro-docs"
 
 
 class PermissionError(Exception):

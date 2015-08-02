@@ -53,7 +53,7 @@ class RetrospectiveEmailTest(unittest.TestCase):
         """
         # TODO(kamens): make this test less brittle by not making it rely on an
         # existing Trello card
-        card_id = "ZyHIYoPz"
+        card_id = "OkYLsnCs"
 
         # Make sure there's no retro doc already attached to the card
         card = trello_util.get_card_by_id(card_id)

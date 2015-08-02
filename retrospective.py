@@ -145,7 +145,7 @@ def _get_or_create_retro_doc_for_card(card):
         return (existing_retro_doc_url, False)
 
     # Make a copy of the retro template
-    new_retro_doc_url = google_drive.copy_retro_template(card.name)
+    new_retro_doc_url = google_drive.copy_retro_template(card)
     
     return (new_retro_doc_url, True)
 
