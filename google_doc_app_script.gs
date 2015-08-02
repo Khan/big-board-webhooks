@@ -88,11 +88,11 @@ function crossLinkProjectAndRetroDocs(projectDocId, retroDocId) {
   
   var projectBody = projectDoc.getBody();
   addLinkBeneathTitle(projectBody, retroDoc.getUrl(),
-                      'See retrospective doc for lessons\'n\'results.');
+                      'Retrospective');
   
   var retroBody = retroDoc.getBody();
   addLinkBeneathTitle(retroBody, projectDoc.getUrl(),
-                      'See original project doc.');
+                      'Original project doc');
 }
 
 
@@ -194,7 +194,7 @@ function populateStylesFromTitleParagraph(titleParagraph, style) {
  */
 function addTrelloLink(body, trelloURL) {
   addLinkBeneathTitle(body, trelloURL,
-                      'See Trello card for project\'s current status.');
+                      'Trello card');
 }
 
 
@@ -206,7 +206,8 @@ function addLinkBeneathTitle(body, url, text) {
   var style = {};
 
   style[DocumentApp.Attribute.FONT_FAMILY] = 'Proxima Nova';  
-  style[DocumentApp.Attribute.FONT_SIZE] = 11;
+  style[DocumentApp.Attribute.FONT_SIZE] = 10;
+  style[DocumentApp.Attribute.ITALIC] = true;
   style[DocumentApp.Attribute.FOREGROUND_COLOR] = '#999999';
   
   var titleParagraph = findTitleParagraph(body);
@@ -230,8 +231,8 @@ function debug() {
   doGet({parameter: {
     action: 'cross-link-project-and-retro-docs',
     docId: '1L5nU9Zr3Ft64zlCkVLvu3SHtDMTK_iY3ylvVQdHoFlw',
-    retroDocId: '1dPUCCQC6zv8tIIl-lrtiIsUMojP9uXIFTyy8hx7_yb8'
-    //trelloUrl: 'https://trello.com/c/SqZT3eXF/169-monkey-city'
+    retroDocId: '1YUlKjEp-irEl7-sD9gYBVbUqpN23hEU-JAkCl8TZzTs',
+    trelloUrl: 'https://trello.com/c/55bdb198ef8485b7e443a7b4'
   }});
 }
 

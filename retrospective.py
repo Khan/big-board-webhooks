@@ -85,9 +85,9 @@ def send_retro_reminder_for_card(card_id):
 
     # If the raccoon image isn't in the card description, then we'll add the
     # same "create a retro doc" url to the card.
-    if RACCOON_IMAGE_URL not in card.desc:
+    if trello_util.CustomEmoji.RETRO_RACCOON not in card.desc:
         retro_desc = trello_util.get_description_snippet(
-                trello_util.CustomEmoji.RETRO_RACCOON,
+                [trello_util.CustomEmoji.RETRO_RACCOON, "warning"],
                 CREATE_YOUR_RETRO_DOC_LABEL,
                 _get_url_for_retro_doc_creation(card))
         new_desc = '%s\n%s' % (card.desc, retro_desc)
