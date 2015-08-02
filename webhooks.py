@@ -56,7 +56,7 @@ class RetrospectiveWebhookHandler(object):
 
     @staticmethod
     def handle(action_type, card_id, board_id):
-        """Sync card stickers."""
+        """Send retrospective reminder to somebody on the card."""
         # STOPSHIP(kamens): only fire this webhook on "Monkey" cards so I can
         # test in prod w/out others getting emails if they move cards
         card = trello_util.get_card_by_id(card_id)
