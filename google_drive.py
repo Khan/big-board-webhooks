@@ -77,9 +77,8 @@ def copy_retro_template(project_title):
     service, http = get_authenticated_drive_service()
 
     # Rename the file during copy
-    copied_file_body = {
-            "title": "Retrospective for '%s'" % project_title
-            }
+    retro_title = "Retrospective for '%s'" % project_title
+    copied_file_body = {"title": retro_title}
 
     # Copy the template
     retro_doc = service.files().copy(fileId=RETRO_TEMPLATE_GOOGLE_DOC_ID,
@@ -95,12 +94,19 @@ def copy_retro_template(project_title):
     service.permissions().insert(
         fileId=retro_doc_id, body=permission).execute()
 
+    populate_retro_doc(retro_doc_id, retro_title)
+
     return doc_url_from_id(retro_doc_id)
 
 
-def populate_retro_body(project_title):
-    """STOPSHIP(kamens): implement/docstring"""
-    pass
+def populate_retro_doc(doc_id, title):
+    """Populate body of the retro doc w/ project-specific info."""
+    params = {
+            "docId": doc_id,
+            "title": title
+            }
+    google_app_script.send_action_request(
+            google_app_script.Actions.POPULATE_RETRO_DOC, params)
 
 
 def add_trello_link(doc_id, trello_card_id):

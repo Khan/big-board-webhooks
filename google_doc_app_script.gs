@@ -54,7 +54,7 @@ function doGet(e) {
       break;
     case 'populate-retro-doc':
       // Populate a retro doc w/ correct title and such
-      populateRetroDoc(body);
+      populateRetroDoc(body, e.parameter.title);
       break;
   }
   
@@ -63,15 +63,19 @@ function doGet(e) {
 
 
 /**
- * STOPSHIP(kamens): undone
+ * Populate the retrospective template w/ various bits of
+ * project-specific info (e.g. project title)
  */
-function populateRetroDoc(body) {
-  
+function populateRetroDoc(body, title) {
+  titleParagraph = findTitleParagraph(body);
+  if (titleParagraph) {
+    titleParagraph.setText(title);
+  }
 }
 
 
 /**
- * Handles requests to link google docs to Trello
+ * Add link from Google Doc to Trello
  *
  * Arguments:
  *    body: Google document body
@@ -189,8 +193,8 @@ function addTrelloLink(body, trelloURL) {
  */
 function debug() {
   doGet({parameter: {
-    action: "remove-trello-links",
-    docId: "1baO_sKsAuuwPmmbXshJMZlx7sRYT1D6widBu_EOpZMM",
+    action: "add-trello-link",
+    docId: "10BqZBGx_PLaj3MtO7rf7VRsbIm2xCk-PeufYzPoerkQ",
     trelloURL: "https://trello.com/c/Owfp15Jo"
   }});
 }
