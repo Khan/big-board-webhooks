@@ -2,7 +2,8 @@
 
 These handlers manage hooks that fire upon email receipt.
 
-TODO(kamens): expand docs
+Right now this app listens to mail sent to new-projects@, finds new project doc
+submissions, and sets up Trello cards for 'em.
 """
 
 import logging

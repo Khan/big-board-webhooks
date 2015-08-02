@@ -21,8 +21,6 @@ import os
 from google.appengine.api import taskqueue
 import webapp2
 
-import google_drive
-import proposals_board
 import retrospective
 import stickers
 import webhooks
@@ -51,16 +49,10 @@ class Setup(RequestHandler):
         stickers.sync_big_board_stickers()
 
 
-class GoogleTest(RequestHandler):
-    def get(self):
-        doc_id = self.request.get("doc_id")
-        title, html = google_drive.pull_doc_data(doc_id)
-        logging.info("Title: %s" % title)
-
-
 class CreateRetro(RequestHandler):
     def get(self):
-        # STOPSHIP(kamens): do anything in error cases during redirect attempt?
+        # TODO(kamens): do anything in error cases during redirect attempt?
+        # If redirect fails right now, it'll fail hard. Ah well.
         card_id = self.request.get("card_id")
         retro_url = retrospective.ensure_card_has_retro_doc(card_id)
 
@@ -71,12 +63,6 @@ class CreateRetro(RequestHandler):
         if retro_url.startswith("https://docs.google.com/"):
             # Header redirect values must be str, not unicode
             self.redirect(str(retro_url))
-
-
-class ProposalTest(RequestHandler):
-    def get(self):
-        # Very rudimentary "test" that adds a card to the Proposals board
-        proposals_board.test()
 
 
 class UpdateBoardWebHook(RequestHandler):
@@ -121,8 +107,4 @@ app = webapp2.WSGIApplication([
     ('/setup', Setup),
     ('/webhook/update_board', UpdateBoardWebHook),
     ('/retro/create', CreateRetro),
-
-    # STOPSHIP(kamens): remove or organize these little tests?
-    ('/googletest', GoogleTest),  # TODO(kamens): remove this test handler
-    ('/proposaltest', ProposalTest),
 ], debug=True)
