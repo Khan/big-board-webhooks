@@ -96,8 +96,8 @@ def copy_retro_template(card):
     service.permissions().insert(
         fileId=retro_doc_id, body=permission).execute()
 
-    # Populate newly created retro doc w/ proper title (and one day more...)
-    populate_retro_doc(retro_doc_id, retro_title)
+    # Populate newly created retro doc w/ proper title and Trello link
+    populate_retro_doc(retro_doc_id, retro_title, card.url)
 
     # Cross-link b/w project doc and newly created retro doc, but only if we
     # can grab the existing project doc from card description w/ certainty.
@@ -109,11 +109,12 @@ def copy_retro_template(card):
     return doc_url_from_id(retro_doc_id)
 
 
-def populate_retro_doc(doc_id, title):
+def populate_retro_doc(doc_id, title, trello_url):
     """Populate body of the retro doc w/ project-specific info."""
     params = {
             "docId": doc_id,
-            "title": title
+            "title": title,
+            "trelloUrl": trello_url
             }
     google_app_script.send_action_request(
             google_app_script.Actions.POPULATE_RETRO_DOC, params)
@@ -140,7 +141,7 @@ def add_trello_link(doc_id, trello_card_id):
     """
     params = {
             "docId": doc_id,
-            "trelloURL": trello_util.get_url_by_card_id(trello_card_id)
+            "trelloUrl": trello_util.get_url_by_card_id(trello_card_id)
             }
     google_app_script.send_action_request(
             google_app_script.Actions.ADD_TRELLO_LINK, params)

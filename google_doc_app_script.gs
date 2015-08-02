@@ -43,7 +43,7 @@ function doGet(e) {
   switch(e.parameter.action) {
     case 'add-trello-link':
       // Add a link from Google Doc to trello
-      linkToTrello(docId, e.parameter.trelloURL);
+      linkToTrello(docId, e.parameter.trelloUrl);
       break;
     case 'remove-trello-links':
       // Remove all trello links from google doc ID. Only used when cleaning up unit tests.
@@ -51,7 +51,7 @@ function doGet(e) {
       break;
     case 'populate-retro-doc':
       // Populate a retro doc w/ correct title and such
-      populateRetroDoc(docId, e.parameter.title);
+      populateRetroDoc(docId, e.parameter.title, e.parameter.trelloUrl);
       break;
     case 'cross-link-project-and-retro-docs':
       crossLinkProjectAndRetroDocs(docId, e.parameter.retroDocId);
@@ -66,7 +66,7 @@ function doGet(e) {
  * Populate the retrospective template w/ various bits of
  * project-specific info (e.g. project title)
  */
-function populateRetroDoc(docId, title) {
+function populateRetroDoc(docId, title, trelloUrl) {
   var doc = DocumentApp.openById(docId);
   var body = doc.getBody();
   
@@ -74,6 +74,8 @@ function populateRetroDoc(docId, title) {
   if (titleParagraph) {
     titleParagraph.setText(title);
   }
+  
+  addTrelloLink(body, trelloUrl);
 }
 
 
@@ -101,14 +103,13 @@ function crossLinkProjectAndRetroDocs(projectDocId, retroDocId) {
  *    body: Google document body
  *    trelloURL: target trello URL for adding card link
  */
-function linkToTrello(docId, trelloURL) {
+function linkToTrello(docId, trelloUrl) {
   var doc = DocumentApp.openById(docId);
   var body = doc.getBody();
   
   // Add trello link to google doc, if possible
-  var trelloURL = trelloURL;
-  if (trelloURL && !alreadyHasTrelloLink(body, trelloURL)) {
-    addTrelloLink(body, trelloURL);
+  if (trelloUrl && !alreadyHasTrelloLink(body, trelloUrl)) {
+    addTrelloLink(body, trelloUrl);
   }
 }
 
@@ -228,9 +229,9 @@ function addLinkBeneathTitle(body, url, text) {
 function debug() {
   doGet({parameter: {
     action: 'cross-link-project-and-retro-docs',
-    docId: '1XJTR31o3u-Z_syREH0G1JpMSoNnjIiFqUgeUF4fH4rg',
-    retroDocId: '1MrRxLb2zCx56Q3hNY6H8EZYFCx5Tdc2iYj04KlUBKwA'
-    // trelloURL: 'https://trello.com/c/Owfp15Jo'
+    docId: '1L5nU9Zr3Ft64zlCkVLvu3SHtDMTK_iY3ylvVQdHoFlw',
+    retroDocId: '1dPUCCQC6zv8tIIl-lrtiIsUMojP9uXIFTyy8hx7_yb8'
+    //trelloUrl: 'https://trello.com/c/SqZT3eXF/169-monkey-city'
   }});
 }
 
