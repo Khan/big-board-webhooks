@@ -6,6 +6,7 @@ described in README.md.
 If you think hitting a bit of App Script this is hacky, just think of it as a
 microservice.
 """
+import logging
 import urllib
 
 import google_drive
@@ -41,6 +42,8 @@ def send_action_request(action, params):
         web app will make to a google doc.
         params: dictionary of params sent to web app in query string
     """
+    logging.info("Sending request to app script w/ action %s and params %s" %
+            (action, params))
     service, http = google_drive.get_authenticated_drive_service()
 
     params.update({"action": action})
