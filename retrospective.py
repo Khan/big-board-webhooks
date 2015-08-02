@@ -15,7 +15,9 @@ import trello_util
 
 # The URL that'll be hit by users following the "create a retro doc" email link
 ABSOLUTE_RETRO_CREATION_URL = 'http://khan-big-board.appspot.com/retro/create'
-
+RACCOON_IMAGE_URL = (
+    'http://khan-big-board.appspot.com/images/retro-raccoon.png')
+CREATE_YOUR_RETRO_DOC_LABEL = "Create your retro doc"
 
 # TODO(kamens): find some way to keep these lists of PM names up-to-date.
 # Likely via pingboard or google directory API.
@@ -81,6 +83,15 @@ def send_retro_reminder_for_card(card_id):
                 "for card members: %s" % full_names)
         return False
 
+    # If the raccoon image isn't in the card description, then we'll add the
+    # same "create a retro doc" url to the card.
+    if RACCOON_IMAGE_URL not in card.desc:
+        retro_desc = trello_util.get_description_snippet(
+            CREATE_YOUR_RETRO_DOC_LABEL, RACCOON_IMAGE_URL,
+            _get_url_for_retro_doc_creation(card))
+        new_desc = '%s\n%s' % (card.desc, retro_desc)
+        card.update_desc(new_desc)
+
     email_msg = _get_retro_reminder_email(to_email, card)
     email_msg.send()
 
@@ -105,13 +116,15 @@ def ensure_card_has_retro_doc(card_id):
     if created_new_doc:
         logging.info("Created new retro doc: %s" % retro_doc_url)
 
+        # Remove the "Create your retro doc" label and raccoon
+        desc = _get_description_without_create_retro_link(card.desc)
+
         # Add this retro doc url back to the card
         # TODO(kamens): insert retro link directly after project doc link?
         retro_desc = trello_util.get_description_snippet('Retrospective doc',
-            'http://khan-big-board.appspot.com/images/retro-raccoon.png',
-            retro_doc_url)
+            RACCOON_IMAGE_URL, retro_doc_url)
 
-        new_desc = '%s\n%s' % (card.desc, retro_desc)
+        new_desc = '%s\n%s' % (desc, retro_desc)
 
         card.update_desc(new_desc)
 
@@ -153,6 +166,11 @@ def _get_existing_retro_doc_url(card):
         return retro_matches[0]
 
     return None
+
+
+def _get_description_without_create_retro_link(desc):
+    """Get the card description with "Create your retro doc" links removed."""
+    return re.sub(r'(\[.*%s.*\))' % CREATE_YOUR_RETRO_DOC_LABEL, '', desc)
 
 
 def _get_retro_reminder_email(to_email, card):

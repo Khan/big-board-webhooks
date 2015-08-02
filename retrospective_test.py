@@ -53,11 +53,14 @@ class RetrospectiveEmailTest(unittest.TestCase):
         """
         # TODO(kamens): make this test less brittle by not making it rely on an
         # existing Trello card
-        card_id = "VRIkkvaD"
+        card_id = "ZyHIYoPz"
 
         # Make sure there's no retro doc already attached to the card
         card = trello_util.get_card_by_id(card_id)
         self.assertNotIn("Retrospective doc", card.desc)
+
+        # The "Create your retro doc" label and image should be in the desc
+        self.assertIn(retrospective.CREATE_YOUR_RETRO_DOC_LABEL, card.desc)
 
         retro_doc_url = retrospective.ensure_card_has_retro_doc(card_id)
         retro_doc_id = google_drive.doc_id_from_url(retro_doc_url)
@@ -71,15 +74,22 @@ class RetrospectiveEmailTest(unittest.TestCase):
         card = trello_util.get_card_by_id(card_id)
         self.assertIn("Retrospective doc", card.desc)
 
+        # Make sure the "Create your retro doc" label was removed from desc
+        self.assertNotIn(retrospective.CREATE_YOUR_RETRO_DOC_LABEL, card.desc)
+
     def test_sending_retro_reminder_for_card(self):
         """Test sending a retro reminder for specific Trello card."""
         # TODO(kamens): make this test less brittle by not making it rely on an
         # existing Trello card
-        card_id = "trudGlxB"  # Example trello card from completed board
+        card_id = "ZyHIYoPz"  # Example trello card from completed board
 
         # Try to send a retro reminder as if triggered by this Trello card's
         # move to the completed board
         retrospective.send_retro_reminder_for_card(card_id)
+
+        # Check that the card now has the "Create your retro doc" label
+        card = trello_util.get_card_by_id(card_id)
+        self.assertIn(retrospective.CREATE_YOUR_RETRO_DOC_LABEL, card.desc)
 
         # The above card is an SAT card, and Annie's the PM. Make sure she got
         # a retro reminder email.
