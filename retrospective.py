@@ -87,8 +87,9 @@ def send_retro_reminder_for_card(card_id):
     # same "create a retro doc" url to the card.
     if RACCOON_IMAGE_URL not in card.desc:
         retro_desc = trello_util.get_description_snippet(
-            CREATE_YOUR_RETRO_DOC_LABEL, RACCOON_IMAGE_URL,
-            _get_url_for_retro_doc_creation(card))
+                trello_util.CustomEmoji.RETRO_RACCOON,
+                CREATE_YOUR_RETRO_DOC_LABEL,
+                _get_url_for_retro_doc_creation(card))
         new_desc = '%s\n%s' % (card.desc, retro_desc)
         card.update_desc(new_desc)
 
@@ -121,8 +122,9 @@ def ensure_card_has_retro_doc(card_id):
 
         # Add this retro doc url back to the card
         # TODO(kamens): insert retro link directly after project doc link?
-        retro_desc = trello_util.get_description_snippet('Retrospective doc',
-            RACCOON_IMAGE_URL, retro_doc_url)
+        retro_desc = trello_util.get_description_snippet(
+                trello_util.CustomEmoji.RETRO_RACCOON, 'Retrospective doc',
+                retro_doc_url)
 
         new_desc = '%s\n%s' % (desc, retro_desc)
 

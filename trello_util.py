@@ -17,6 +17,21 @@ BOARD_NAME_TO_ID = {
 }
 
 
+class CustomEmoji(object):
+    """Custom emoji shortcuts that've been uploaded as custom emoji in Trello.
+
+    Source files found in images/*_emoji.png.
+
+    Note: for these emojis to work, they have to be uploaded to the Trello
+    account for bigboard@khanacademy.org. This has already been done for
+    bigboard@ka.org, but in case it needs to be done again: log into Trello w/
+    the user this script will auth as, open a card, and upload custom emoji for
+    the two emoji pngs in the images/ dir.
+    """
+    PROJECT_PLATYPUS = "projectplatypus"
+    RETRO_RACCOON = "retroraccoon"
+
+
 def get_board_id_by_name(name):
     return BOARD_NAME_TO_ID.get(name, None)
 
@@ -65,10 +80,9 @@ def get_client():
     return client
 
 
-def get_description_snippet(label, img_url, doc_url):
-    """Return snippet with an image and label, where both are links."""
-    img = '![](%s)' % img_url
-    return '[%s](%s)[%s](%s)' % (img, doc_url, label, doc_url)
+def get_description_snippet(emoji, label, doc_url):
+    """Return snippet with an emoji and label, each inside a link."""
+    return '- [:%s:](%s) [%s](%s)' % (emoji, doc_url, label, doc_url)
 
 
 def _get_board_by_name(name):
