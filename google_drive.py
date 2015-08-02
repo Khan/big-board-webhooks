@@ -8,13 +8,13 @@ Note: Getting google drive integration working requires a bit of secrets+config
 setup. See README.md for more.
 """
 import re
-import urllib
 
 import googleapiclient.discovery
 import googleapiclient.http
 import httplib2
 import oauth2client.client
 
+import google_app_script
 import secrets
 import trello_util
 
@@ -24,21 +24,11 @@ import trello_util
 # domain.
 GOOGLE_DRIVE_USER = "bigboard@khanacademy.org"
 
+# Google doc id for the retrospective template that gets copied when making new
+# retrospectives
+RETRO_TEMPLATE_GOOGLE_DOC_ID = "1gbejuiityqZR9LDq-tyJGL0RHkAbCFe9Wc5IULPSQqw"
+
 GOOGLE_DOC_RE = r'https?://docs.google.com/?[^\s]*/document/[^\>\s]+'
-
-# Google script web app URL that's used to trigger edits of google docs. See
-# README.md and google_doc_app_script.gs
-GOOGLE_SCRIPT_WEB_APP_PROD_URL = "https://script.google.com/a/macros/khanacademy.org/s/AKfycbzpHXKPW8Un5u-apTpS_CB_5LTFK0UWugrmn6WcZyijes2FlCs/exec"
-GOOGLE_SCRIPT_WEB_APP_DEBUG_URL = "https://script.google.com/a/macros/khanacademy.org/s/AKfycbxeIDtwA2z-MWnp2DgiSwCPpheSReOMHLTJlo-FT8o/dev"
-# Switch this to use _DEBUG_URL during testing - debug url always hits the
-# latest version of the google apps script. prod url hits a stable published
-# version.
-GOOGLE_SCRIPT_WEB_APP_URL = GOOGLE_SCRIPT_WEB_APP_PROD_URL
-
-
-class PermissionError(Exception):
-    """Permission exception raised when missin perm/access to a Google Doc."""
-    pass
 
 
 def get_authenticated_drive_service():
@@ -83,7 +73,7 @@ def pull_doc_data(doc_id):
 
 
 def copy_retro_template(project_title):
-    template_doc_id = '1gbejuiityqZR9LDq-tyJGL0RHkAbCFe9Wc5IULPSQqw'
+    """Copy retrospective template and populate it w/ relevant project info."""
     service, http = get_authenticated_drive_service()
 
     # Rename the file during copy
@@ -92,7 +82,7 @@ def copy_retro_template(project_title):
             }
 
     # Copy the template
-    retro_doc = service.files().copy(fileId=template_doc_id,
+    retro_doc = service.files().copy(fileId=RETRO_TEMPLATE_GOOGLE_DOC_ID,
         visibility='DEFAULT', body=copied_file_body).execute()
     retro_doc_id = retro_doc['id']
 
@@ -108,6 +98,11 @@ def copy_retro_template(project_title):
     return doc_url_from_id(retro_doc_id)
 
 
+def populate_retro_body(project_title):
+    """STOPSHIP(kamens): implement/docstring"""
+    pass
+
+
 def add_trello_link(doc_id, trello_card_id):
     """Add a link to Trello within the specified Google Doc.
 
@@ -116,30 +111,12 @@ def add_trello_link(doc_id, trello_card_id):
 
     If the Trello link already exists, this won't add another one.
     """
-    service, http = get_authenticated_drive_service()
-
-    url = GOOGLE_SCRIPT_WEB_APP_URL + "?" + urllib.urlencode({
-        "docId": doc_id,
-        "trelloURL": trello_util.get_url_by_card_id(trello_card_id)
-        })
-
-    response, content = http.request(url)
-
-    # We have to check the content for error messages b/c Apps Script always
-    # returns 200 status codes. See this case for more:
-    # https://code.google.com/p/google-apps-script-issues/issues/detail?id=3151
-    if content.startswith("Error:"):
-        if content == "Error: Missing edit permissions":
-            # No edit permissions on doc
-            raise PermissionError()
-        if content == "Error: Cannot find doc":
-            # Either doc doesn't exist or no read permissions
-            raise PermissionError()
-        else:
-            # TODO(kamens): handle other unknown error cases
-            pass
-
-    return response
+    params = {
+            "docId": doc_id,
+            "trelloURL": trello_util.get_url_by_card_id(trello_card_id)
+            }
+    google_app_script.send_action_request(
+            google_app_script.Actions.ADD_TRELLO_LINK, params)
 
 
 def remove_trello_links(doc_id):
@@ -147,14 +124,9 @@ def remove_trello_links(doc_id):
 
     Only used during unit testing to clean up previously-added links.
     """
-    service, http = get_authenticated_drive_service()
-
-    url = GOOGLE_SCRIPT_WEB_APP_URL + "?" + urllib.urlencode({
-        "docId": doc_id,
-        "removeTrelloLinks": "true"
-        })
-
-    response, html = http.request(url)
+    params = {"docId": doc_id}
+    google_app_script.send_action_request(
+            google_app_script.Actions.REMOVE_TRELLO_LINKS, params)
 
 
 def extract_doc_ids(s):

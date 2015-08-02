@@ -2,6 +2,7 @@
 
 import unittest
 
+import google_app_script
 import google_drive
 
 
@@ -41,11 +42,11 @@ class AddTrelloLinkToDocTest(unittest.TestCase):
         self.assertIn(EXAMPLE_TRELLO_CARD_ID, html)
 
     def test_add_trello_link_to_read_only_doc(self):
-        with self.assertRaises(google_drive.PermissionError):
+        with self.assertRaises(google_app_script.PermissionError):
             google_drive.add_trello_link(EXAMPLE_READ_ONLY_GOOGLE_DOC_ID,
                     EXAMPLE_TRELLO_CARD_ID)
 
     def test_add_trello_link_to_private_doc(self):
-        with self.assertRaises(google_drive.PermissionError):
+        with self.assertRaises(google_app_script.PermissionError):
             google_drive.add_trello_link(EXAMPLE_PRIVATE_GOOGLE_DOC_ID,
                     EXAMPLE_TRELLO_CARD_ID)

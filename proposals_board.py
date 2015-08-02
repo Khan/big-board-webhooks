@@ -1,6 +1,7 @@
 """Tool for interacting with Trello's project proposals board."""
 import logging
 
+import google_app_script
 import google_drive
 import project_docs
 import trello_util
@@ -24,7 +25,7 @@ def create_cards_from_doc_ids(doc_ids):
         # link exists from the Google Doc to the Trello Card
         try:
             google_drive.add_trello_link(doc.doc_id, card._id)
-        except google_drive.PermissionError:
+        except google_app_script.PermissionError:
             logging.warning("No edit permissions for Google doc: %s"
                     % doc.doc_id)
         except Exception as e:

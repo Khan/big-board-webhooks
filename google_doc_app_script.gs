@@ -8,13 +8,12 @@
 
 /**
  * Request handler for this Apps Script's published web service.
- * Used to trigger Google Doc updates that add links to Trello
+ * Used to trigger various types of Google Doc updates.
  *
  * Query parameters:
  *    docId: google doc ID to be edited
- *    trelloURL: target trello URL for adding card link
- *    removeTrelloLinks (optional): if "true", remove all trello links from
- *        google doc ID. This is used when cleaning up unit tests.
+ *    action: type of document edit being requested
+ *        (e.g. "link-to-trello", "populate-retro-doc")
  *
  * Returns a 200 status response w/ "Done!" if successful and
  *  "Error: [explanation]" otherwise.
@@ -34,28 +33,56 @@ function doGet(e) {
     // File doesn't exist or no access to file whatsoever
     return ContentService.createTextOutput("Error: Cannot find doc");
   }
-    
+
   var permission = file.getSharingPermission();
   if (!(permission === DriveApp.Permission.EDIT)) {
     return ContentService.createTextOutput("Error: Missing edit permissions");
   }
-  
+
   var doc = DocumentApp.openById(docId);
   var body = doc.getBody();
   
-  if (e.parameter.removeTrelloLinks === "true") {
-    // This "remove all trello links" functionality is used by unit tests to
-    // clean up docs during tests
-    removeTrelloLinks(body);
-  }
-  
-  // Add trello link to google doc, if possible
-  var trelloURL = e.parameter.trelloURL;
-  if (trelloURL && !alreadyHasTrelloLink(body, trelloURL)) {
-    addTrelloLink(body, trelloURL);
+  // Choose doc editing action based on query param
+  switch(e.parameter.action) {
+    case 'add-trello-link':
+      // Add a link from Google Doc to trello
+      linkToTrello(body, e.parameter.trelloURL);
+      break;
+    case 'remove-trello-links':
+      // Remove all trello links from google doc ID. Only used when cleaning up unit tests.
+      removeTrelloLinks(body);
+      break;
+    case 'populate-retro-doc':
+      // Populate a retro doc w/ correct title and such
+      populateRetroDoc(body);
+      break;
   }
   
   return ContentService.createTextOutput("Done!");
+}
+
+
+/**
+ * STOPSHIP(kamens): undone
+ */
+function populateRetroDoc(body) {
+  
+}
+
+
+/**
+ * Handles requests to link google docs to Trello
+ *
+ * Arguments:
+ *    body: Google document body
+ *    trelloURL: target trello URL for adding card link
+ */
+function linkToTrello(body, trelloURL) {
+  // Add trello link to google doc, if possible
+  var trelloURL = trelloURL;
+  if (trelloURL && !alreadyHasTrelloLink(body, trelloURL)) {
+    addTrelloLink(body, trelloURL);
+  }
 }
 
 
@@ -162,9 +189,9 @@ function addTrelloLink(body, trelloURL) {
  */
 function debug() {
   doGet({parameter: {
-    docId: "1KByn1RUhm6DyEGHB1dj9BRyDUxBOKFw2Nh4xWyQUv6M",
+    action: "remove-trello-links",
+    docId: "1baO_sKsAuuwPmmbXshJMZlx7sRYT1D6widBu_EOpZMM",
     trelloURL: "https://trello.com/c/Owfp15Jo"
   }});
 }
-
 
