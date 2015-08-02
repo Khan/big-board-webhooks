@@ -107,7 +107,12 @@ def ensure_card_has_retro_doc(card_id):
 
         # Add this retro doc url back to the card
         # TODO(kamens): insert retro link directly after project doc link?
-        new_desc = '%s\n[Retrospective doc](%s)' % (card.desc, retro_doc_url)
+        retro_desc = trello_util.get_description_snippet('Retrospective doc',
+            'http://khan-big-board.appspot.com/images/retro-raccoon.png',
+            retro_doc_url)
+
+        new_desc = '%s\n%s' % (card.desc, retro_desc)
+
         card.update_desc(new_desc)
 
     return retro_doc_url

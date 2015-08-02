@@ -7,6 +7,10 @@ import project_docs
 import trello_util
 
 
+PLATYPUS_IMAGE_URL = (
+    'http://khan-big-board.appspot.com/images/project-platypus.png')
+
+
 def create_cards_from_doc_ids(doc_ids):
     docs = project_docs.pull_project_docs_data(doc_ids)
 
@@ -18,7 +22,9 @@ def create_cards_from_doc_ids(doc_ids):
 
         if not card:
             # A new card was created!
-            card = _add_card(doc.title, doc.url)
+            desc = trello_util.get_description_snippet('Project doc',
+                PLATYPUS_IMAGE_URL, doc.url)
+            card = _add_card(doc.title, desc)
             already_existed = False
 
         # Regardless of whether or not a card was created, try to make sure a

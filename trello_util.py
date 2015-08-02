@@ -65,6 +65,12 @@ def get_client():
     return client
 
 
+def get_description_snippet(label, img_url, doc_url):
+    """Return snippet with an image and label, where both are links."""
+    img = '![](%s)' % img_url
+    return '[%s](%s)[%s](%s)' % (img, doc_url, label, doc_url)
+
+
 def _get_board_by_name(name):
     board_id = get_board_id_by_name(name)
     if not board_id:
