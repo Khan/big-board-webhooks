@@ -179,6 +179,7 @@ function populateStylesFromTitleParagraph(titleParagraph, style) {
   attrsToCopy[DocumentApp.Attribute.INDENT_FIRST_LINE] = true;
   attrsToCopy[DocumentApp.Attribute.INDENT_END] = true;
   attrsToCopy[DocumentApp.Attribute.FONT_FAMILY] = true;
+  attrsToCopy[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] = true;
   
   var attrs = titleParagraph.getAttributes();
   for (var key in attrs) {
