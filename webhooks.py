@@ -94,4 +94,6 @@ def setup():
             trello_util.get_board_id_by_name('PROPOSALS_BOARD'))
     _add_update_board_webhook(client,
             trello_util.get_board_id_by_name('COMPLETED_BOARD'))
+    _add_update_board_webhook(client,
+            trello_util.get_board_id_by_name('ENG_MGMT_LITTLE_BOARD'))
 

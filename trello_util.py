@@ -14,6 +14,9 @@ BOARD_NAME_TO_ID = {
 
     # https://trello.com/b/bJhNUT7y/pipeline-3-land-of-completed-project
     'COMPLETED_BOARD': '556e59e75aa60c1fe1e1a09e',
+
+    # https://trello.com/b/zPe5FPP0/eng-management-s-little-board
+    'ENG_MGMT_LITTLE_BOARD': '5661e537099209d67b3b07c4',
 }
 
 
