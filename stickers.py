@@ -88,10 +88,12 @@ def create_sticker_post_data(client, card):
     offset = 18
     count = 0
 
-    if len(sticker_string) > 6:
-        # Hacky little fix for cards w/ lots of stickers.
-        # TODO(kamens): actually measure Trello's x position limit and
-        # calculate correct offset per card depending on # of stickers
+    # Hacky little fix for cards w/ lots of stickers.
+    # TODO(kamens): actually measure Trello's x position limit and
+    # calculate correct offset per card depending on # of stickers
+    if len(sticker_string) > 10:
+        offset = 6
+    elif len(sticker_string) > 6:
         offset = 10
 
     for sticker_letter in sticker_string.upper():
