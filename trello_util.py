@@ -17,6 +17,9 @@ BOARD_NAME_TO_ID = {
 
     # https://trello.com/b/zPe5FPP0/eng-management-s-little-board
     'ENG_MGMT_LITTLE_BOARD': '5661e537099209d67b3b07c4',
+
+    # https://trello.com/b/lhunZXxz/x0m-mini-board
+    'X_ON_MOBILE_MINI_BOARD': '5717b6fd9df9604293d4886c',
 }
 
 
