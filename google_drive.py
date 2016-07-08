@@ -31,6 +31,7 @@ GOOGLE_DRIVE_USER = "bigboard@khanacademy.org"
 RETRO_TEMPLATE_GOOGLE_DOC_ID = "1gbejuiityqZR9LDq-tyJGL0RHkAbCFe9Wc5IULPSQqw"
 
 GOOGLE_DOC_RE = r'https?://docs.google.com/?[^\s]*/document/[^\>\s]+'
+GOOGLE_DRIVE_RE = r'https?://drive.google.com/open.*[?&]id=[^\>\s]+'
 
 
 def get_authenticated_drive_service():
@@ -173,6 +174,7 @@ def extract_doc_ids(s):
         return []
 
     google_drive_urls = re.findall(r'(%s)' % GOOGLE_DOC_RE, s)
+    google_drive_urls += re.findall(r'(%s)' % GOOGLE_DRIVE_RE, s)
 
     google_doc_ids = map(doc_id_from_url, google_drive_urls)
     return list(set(filter(None, google_doc_ids)))
@@ -184,8 +186,13 @@ def doc_url_from_id(doc_id):
 
 
 def doc_id_from_url(s):
-    """Return Google Doc ID given a Google Drive URL."""
+    """Return Google Doc ID given a Google Drive URL.
+
+    The URL may be in drive.google.com or docs.google.com format, consider both
+    when searching for the ID."""
     match = re.search(".*/d/(?P<id>[^/)]+)/?", s)
     if not match:
-        return None
+        match = re.search(".*[&?]id=(?P<id>[^/&)]+)&?", s)
+        if not match:
+            return None
     return match.group("id")
