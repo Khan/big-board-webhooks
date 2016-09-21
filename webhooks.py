@@ -98,4 +98,6 @@ def setup():
             trello_util.get_board_id_by_name('ENG_MGMT_LITTLE_BOARD'))
     _add_update_board_webhook(client,
             trello_util.get_board_id_by_name('X_ON_MOBILE_MINI_BOARD'))
+    _add_update_board_webhook(client,
+            trello_util.get_board_id_by_name('ADOPTION_TEAM_BOARD'))
 

@@ -20,6 +20,9 @@ BOARD_NAME_TO_ID = {
 
     # https://trello.com/b/lhunZXxz/x0m-mini-board
     'X_ON_MOBILE_MINI_BOARD': '5717b6fd9df9604293d4886c',
+
+    # https://trello.com/b/CVsg98XX/adoption-team-standup
+    'ADOPTION_TEAM_BOARD': '57d6d2eb8146d93f415ec473',
 }
 
 
