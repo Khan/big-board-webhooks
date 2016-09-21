@@ -39,19 +39,35 @@ def get_authenticated_directory_service():
 
 
 def query_for_user_email_by_name(name):
-    """Query for a single user's in our Google domain by their name."""
+    """Query for a single user's email in our Google domain by their name."""
     service, http = get_authenticated_directory_service()
 
+    # Google's documentation is a giant lie. You're supposed to be able to
+    # construct queries for users as described here:
+    # https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+    # But in reality, I couldn't manage to get any results using queries like
+    # that. I even tried their API explorer thingie here:
+    # https://developers.google.com/admin-sdk/directory/v1/reference/users/list
+    # The only thing that seemed to consistently work, was to put the first
+    # letters of someone's name as the query string (no name: or name= as the
+    # documentation would lead you to believe. This will then return a list of
+    # all users with those first three letters in their first names.
     results = service.users().list(
             domain="khanacademy.org",
             viewType="domain_public",
-            query="name='%s'" % name).execute()
+            query="%s" % name[:3]).execute()
 
-    if results and len(results.get("users", [])) > 0:
-        emails = results["users"][0]["emails"]
-        for email in emails:
-            if email.get("primary", False):
-                return email["address"]
+    if results is None:
+        return None
+
+    users = [u for u in results.get("users", [])
+             if u["name"]["fullName"] == name]
+    if users is None or len(users) == 0:
+        return None
+
+    for email in users[0].get("emails", []):
+        if email.get("primary", False):
+            return email["address"]
 
     return None
 
