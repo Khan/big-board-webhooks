@@ -23,6 +23,9 @@ BOARD_NAME_TO_ID = {
 
     # https://trello.com/b/CVsg98XX/adoption-team-standup
     'ADOPTION_TEAM_BOARD': '57d6d2eb8146d93f415ec473',
+
+    # https://trello.com/b/0FV1X7gO/content-big-board
+    'CONTENT_TEAM_BOARD': '57bf62670baabb8ed7898c65',
 }
 
 
